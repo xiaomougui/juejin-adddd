@@ -1,15 +1,18 @@
 <template>
-  <div id="app"></div>
+  <div id="app">
+  <Article />
+  </div>
 </template>
 
 <script>
 import md from "./components/test/md.vue";
-
+import Article from "./components/Article.vue";
 export default {
   name: "App",
   components: {
     md,
-  },
+    Article,
+},
 };
 </script>
 
