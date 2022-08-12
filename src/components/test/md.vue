@@ -1,7 +1,8 @@
 <template>
   <div>
     <v-md-preview :text="mdata" height="2000px"></v-md-preview>
-    <button @click="getdata">点我2</button>
+    <button @click="getdata">home</button>
+    <button @click="post">article</button>
   </div>
 </template>
 
@@ -21,15 +22,33 @@ export default {
           if (xhr.status >= 200 && xhr.status < 300) {
             setTimeout(() => {
               let data = JSON.parse(xhr.responseText);
+              console.log(data);
               that.mdata = data.essay;
-              console.log(that.mdata);
             }, 500);
           }
         }
       };
-      xhr.open("GET", "http://127.0.0.1:8081/list", true);
+      xhr.open("GET", "http://127.0.0.1:3000/data/home", true);
       xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xhr.send("");
+    },
+    post() {
+      let xhr = new XMLHttpRequest();
+      let that = this;
+      xhr.onreadystatechange = function (res) {
+        if (xhr.readyState == 4) {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            setTimeout(() => {
+              let data = JSON.parse(xhr.responseText);
+              console.log(data);
+              that.mdata = data.essay;
+            }, 500);
+          }
+        }
+      };
+      xhr.open("POST", "http://127.0.0.1:3000/data/article", true);
+      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhr.send("index=" + "6");
     },
   },
 };
