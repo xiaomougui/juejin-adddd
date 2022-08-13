@@ -28,9 +28,9 @@ export default {
           }
         }
       };
-      xhr.open("GET", "http://127.0.0.1:3000/data/home", true);
+      xhr.open("POST", "http://127.0.0.1:3000/data/home", true);
       xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      xhr.send("");
+      xhr.send("category=" + "后端");
     },
     post() {
       let xhr = new XMLHttpRequest();

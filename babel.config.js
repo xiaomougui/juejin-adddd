@@ -1,3 +1,7 @@
+// babel.config.js
+const components = require('prismjs/components');
+const allLanguages = Object.keys(components.languages).filter((item) => item !== 'meta');
+
 module.exports = {
   presets: [
     '@vue/cli-plugin-babel/preset'
@@ -6,7 +10,7 @@ module.exports = {
     [
       'prismjs',
       {
-        languages: ['json'],
+        languages: allLanguages,
       },
     ],
   ],
