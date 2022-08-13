@@ -2,15 +2,25 @@
     <div class="blo">
         <div class="line1">
             <div class="auther"> {{ passage.author }} </div>
-            <div class="time">2天前</div>
+            <div class="time">{{passage.time}}</div>
+            <div class="category">{{passage.category}}</div>
         </div>
         <div class="line2">
             <div class="left">
                 <div class="title">{{ passage.title }}</div>
                 <div class="text">{{ passage.goodtext }}</div>
-                <div class="other">{{passage.browse}}</div>
+                <div class="other">
+                    <i class="iconfont icon-liulanliang"></i>
+                    {{passage.browse}}  
+                    <i class="iconfont icon-dianzan"></i>
+                    {{passage.like}}   
+                    <i class="iconfont icon-pinglun"></i>
+                    {{passage.comments}} 
+                </div>
             </div>
-            <div class="right"></div>
+            <div class="right">
+                <div class="image"></div>
+            </div>
         </div>
         
     </div>
@@ -38,6 +48,8 @@ export default{
 
 
 <style scoped>
+@import '../../../assets/css/iconfont.css';
+
 .blo{
     height: 200px;
     border-top: 1px solid #BBB;
@@ -67,31 +79,48 @@ export default{
     color:#bbb;
 }
 
+.category{
+    height: 20px;
+    line-height: 20px;
+    margin-top: 15px;
+    left: 20px;
+    padding-left: 20px;
+    color:#bbb;
+}
+
 .line2{
     height: 150px;
-    position: relative;
+    display: flex;
+    
+    width: 100%;
 }
 
 .left{
     position: relative;
     padding-left: 20px;
+    
     height: 100%;
-    width: 80%;
+    flex-grow: 1;
 }
 
 .title{
+    text-align: left;
     position: absolute;
     font-size:20px;
     font-weight: 800;
     line-height: 40px;
     height: 40px;
+    width:100% ;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .text{
     position: absolute;
-    top: 50px;
+    top: 60px;
     height: 40px;
-    width:90% ;
+    width:95% ;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -104,11 +133,17 @@ export default{
 }
 
 .right{
-    width: 18%;
-    height: 120px;
-    background-color: aqua;
-    position: absolute;
-    right: 2%;
-    top:15px;
+    height: 100%;
+    
+    
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.image{
+    background-color:aquamarine;
+    width: 100px;
+    margin-top: 10%;
+    height: 80%;
 }
 </style>
