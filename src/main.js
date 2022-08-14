@@ -11,6 +11,13 @@ import '@kangc/v-md-editor/lib/theme/style/github.css';
 // highlightjs
 import hljs from 'highlight.js';
 
+
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+
+Vue.use(ElementUI);
+
+
 VMdPreview.use(githubTheme, {
   Hljs: hljs,
   config:{
