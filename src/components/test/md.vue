@@ -48,7 +48,7 @@ export default {
       };
       xhr.open("POST", "http://127.0.0.1:3000/data/article", true);
       xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      xhr.send("index=" + "6");
+      xhr.send();
     },
   },
 };

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import router from './router/index'
 // Markdown 编辑插件
 
 import VMdPreview from '@kangc/v-md-editor/lib/preview';
@@ -29,19 +30,9 @@ Vue.use(ElementUI);
 
 Vue.use(VMdPreview);
 
-
-
-
-
-
-
-
-
-
-
-
 Vue.config.productionTip = false
 
 new Vue({
+  router,
   render: h => h(App),
 }).$mount('#app')
