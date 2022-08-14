@@ -1,6 +1,6 @@
 <template>
   <el-menu
-    :default-active="activeIndex"
+    default-active="1"
     class="el-menu-demo"
     mode="horizontal"
     @select="handleSelect"
@@ -12,26 +12,42 @@
         fit="contain"
       ></el-image>
     </el-menu-item>
-    <el-menu-item index="1" id="shouye">首页</el-menu-item>
-    <el-menu-item index="2" id="wenzi">沸点</el-menu-item>
-    <el-menu-item index="3" id="wenzi">课程</el-menu-item>
-    <el-menu-item index="4" id="wenzi">直播</el-menu-item>
-    <el-menu-item index="5" id="wenzi">活动</el-menu-item>
-    <el-menu-item index="6" id="wenzi">商城</el-menu-item>
-    <el-menu-item index="7" id="wenzi">APP</el-menu-item>
-    <el-menu-item index="8" id="wenzi">插件</el-menu-item>
-    <el-menu-item>
-      <div> 
-        <el-input
-          placeholder="探索稀土掘金"
-          v-model="input3"
-          class="input-with-select"
-        >
-          <el-button slot="append" icon="el-icon-search"></el-button>
-        </el-input>
-      </div>
+    <el-menu-item index="1">
+      <el-link href="#" style="color: #409eff" class="shouye">首页</el-link>
     </el-menu-item>
-    <el-menu-item>
+    <el-menu-item index="2">
+      <el-link href="#">沸点</el-link>
+    </el-menu-item>
+    <el-menu-item index="3">
+      <el-link href="#">课程</el-link>
+    </el-menu-item>
+    <el-menu-item index="4">
+      <el-link href="#">直播</el-link>
+    </el-menu-item>
+    <el-menu-item index="5">
+      <el-link href="#">活动</el-link>
+    </el-menu-item>
+    <el-menu-item index="6">
+      <el-link href="#">商城</el-link>
+    </el-menu-item>
+    <el-menu-item index="7">
+      <el-link href="#">APP</el-link>
+    </el-menu-item>
+    <el-menu-item index="8">
+      <el-link href="#">插件</el-link>
+    </el-menu-item>
+
+    <el-menu-item index="9" style="margin-left: 70px">
+      <el-input
+        placeholder="探索稀土掘金"
+        v-model="input3"
+        class="input-with-select"
+      >
+        <el-button slot="append" icon="el-icon-search"></el-button>
+      </el-input>
+    </el-menu-item>
+
+    <el-menu-item index="10">
       <el-dropdown split-button type="primary" @click="handleClick">
         创作者中心
         <el-dropdown-menu slot="dropdown">
@@ -50,19 +66,20 @@
         </el-dropdown-menu>
       </el-dropdown>
     </el-menu-item>
-    <el-menu-item>
+
+    <el-menu-item index="11">
       <img
         src="https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/24127194d5b158d7eaf8f09a256c5d01.svg"
       />
       <el-button type="text" style="color: gray">会员</el-button>
     </el-menu-item>
+
     <el-menu-item>
       <i class="el-icon-message-solid"></i>
     </el-menu-item>
+
     <el-menu-item>
-      <div>
-        <el-avatar icon="el-icon-user-solid"></el-avatar>
-      </div>
+      <el-avatar src="https://p3-passport.byteacctimg.com/img/mosaic-legacy/3791/5035712059~300x300.image"></el-avatar>
     </el-menu-item>
   </el-menu>
 </template>
@@ -70,12 +87,6 @@
 <script>
 export default {
   name: "Header",
-  data() {
-    return {
-      activeIndex: "1",
-      activeIndex2: "1",
-    };
-  },
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
@@ -87,8 +98,7 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
 .el-dropdown {
   vertical-align: top;
 }
@@ -99,21 +109,23 @@ export default {
   font-size: 12px;
 }
 
-#shouye{
-  color: #409EFF;
-  border-bottom-color: transparent;
-}
-#shouye:hover{
-  color: #252933;
-  border-bottom: 2px solid #409EFF!important;
-}
-#wenzi {
+.el-menu--horizontal > .el-menu-item.is-active {
   font-size: 13.92px;
-  color: #71777c;
+  color: #409eff;
+  border-bottom: 2px solid transparent;
 }
 
-#wenzi:hover {
-  color: #252933;
-  border-bottom: 2px solid #409EFF!important;
+.el-menu--horizontal > .el-menu-item {
+  float: left;
+  height: 60px;
+  line-height: 60px;
+  margin: 0;
+  color: #71777c;
+  font-size: 13.92px;
+}
+
+
+.el-menu--horizontal > .el-menu-item .shouye :hover {
+  color: #71777c;
 }
 </style>
