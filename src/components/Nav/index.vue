@@ -4,7 +4,30 @@
       <ul class="leimu">
         <li><a href="#">综合</a></li>
         <li><a href="#">关注</a></li>
-        <li><a href="#">后端</a></li>
+        <li>
+          <a href="#">
+            <el-popover placement="top-start" width="300" trigger="hover">
+              <el-row>
+                <el-button type="primary" round size="mini">后端</el-button>
+                <el-button round size="mini">Java</el-button>
+                <el-button round size="mini">Go</el-button>
+                <el-button round size="mini">算法</el-button>
+                <el-button round size="mini">Python</el-button>
+                <el-button round size="mini">Spring Boot</el-button>
+                <el-button round size="mini">数据库</el-button>
+                <el-button round size="mini">面试</el-button>
+                <el-button round size="mini">MySQL</el-button>
+                <el-button round size="mini">LeetCode</el-button>
+                <el-button round size="mini">架构</el-button>
+                <el-button round size="mini">Redis</el-button>
+                <el-button round size="mini">Spring</el-button>
+                <el-button round size="mini">前端</el-button>
+                <el-button round size="mini">大数据</el-button>
+              </el-row>
+              <!-- <el-button slot="reference">后端</el-button> -->
+            </el-popover></a
+          >
+        </li>
         <li><a href="#">前端</a></li>
         <li><a href="#">Android</a></li>
         <li><a href="#">iOS</a></li>
@@ -27,14 +50,14 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .nav {
-  height: 50px;
+  height: 80px;
   /* width:100%; */
   background-color: #fff;
 }
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
 }
 .zuo {
   padding-bottom: 50px;
