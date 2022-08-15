@@ -1,5 +1,6 @@
 <template>
     <div class="home">
+        <nav></nav>
         <h1>这是主页</h1>
         <button @click="test">click me</button>
         <Passages :passages="passages"></Passages>
@@ -9,6 +10,7 @@
 
 <script>
 import Passages from "./childrenComps/Passages.vue"
+import Nav from "./childrenComps/Nav.vue"
 
 import { getHomeData} from "../../network/home";
 
@@ -21,7 +23,8 @@ export default{
     },
 
     components:{
-    Passages
+    Passages,
+    Nav
 },
 
     methods:{
