@@ -13,7 +13,7 @@
       ></el-image>
     </el-menu-item>
     <el-menu-item index="1">
-      <el-link href="#" style="color: #409eff" class="shouye">首页</el-link>
+      <el-link href="#" class="shouye">首页</el-link>
     </el-menu-item>
     <el-menu-item index="2">
       <el-link href="#">沸点</el-link>
@@ -37,7 +37,7 @@
       <el-link href="#">插件</el-link>
     </el-menu-item>
 
-    <el-menu-item index="9" style="margin-left: 70px">
+    <el-menu-item index="9" style="margin-left: 70px" class="search">
       <el-input
         placeholder="探索稀土掘金"
         v-model="input3"
@@ -47,7 +47,7 @@
       </el-input>
     </el-menu-item>
 
-    <el-menu-item index="10">
+    <el-menu-item index="10" class="center">
       <el-dropdown split-button type="primary" @click="handleClick">
         创作者中心
         <el-dropdown-menu slot="dropdown">
@@ -79,7 +79,9 @@
     </el-menu-item>
 
     <el-menu-item>
-      <el-avatar src="https://p3-passport.byteacctimg.com/img/mosaic-legacy/3791/5035712059~300x300.image"></el-avatar>
+      <el-avatar
+        src="https://p3-passport.byteacctimg.com/img/mosaic-legacy/3791/5035712059~300x300.image"
+      ></el-avatar>
     </el-menu-item>
   </el-menu>
 </template>
@@ -124,8 +126,15 @@ export default {
   font-size: 13.92px;
 }
 
-
-.el-menu--horizontal > .el-menu-item .shouye :hover {
+li .el-menu-item .search :hover {
   color: #71777c;
+}
+
+div .search :focus{
+  width: 400px;
+}
+
+div .search :focus div .el-dropdown {
+  display: none;
 }
 </style>
