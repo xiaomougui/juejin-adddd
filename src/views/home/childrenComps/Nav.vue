@@ -52,7 +52,7 @@ export default {
 
 <style scoped>
 .nav {
-  height: 80px;
+  height: 50px;
   /* width:100%; */
   background-color: #fff;
 }
