@@ -129,12 +129,12 @@ export default {
 li .el-menu-item .search :hover {
   color: #71777c;
 }
-
+/* 
 div .search :focus{
   width: 400px;
 }
 
 div .search :focus div .el-dropdown {
   display: none;
-}
+} */
 </style>
