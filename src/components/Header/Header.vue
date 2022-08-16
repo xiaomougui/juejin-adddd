@@ -13,7 +13,7 @@
       ></el-image>
     </el-menu-item>
     <el-menu-item index="1">
-      <el-link href="#" style="color: #409eff" class="shouye">首页</el-link>
+      <el-link href="#" style="color: #409eff" class="shouye" @click="goHome">首页</el-link>
     </el-menu-item>
     <el-menu-item index="2">
       <el-link href="#">沸点</el-link>
@@ -93,6 +93,9 @@ export default {
     },
     handleClick() {
       alert("button click");
+    },
+    goHome(){
+      this.$router.push('/home');
     },
   },
 };

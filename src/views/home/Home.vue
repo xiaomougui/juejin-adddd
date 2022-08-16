@@ -7,7 +7,7 @@
                 <Passages :passages="passages"></Passages>
             </div>   
         </div>
-        <button @click="test">click me</button>
+        <!-- <button @click="test">click me</button> -->
     </div>
 </template>
 
@@ -38,9 +38,7 @@ export default{
     methods:{
         getHomeData(){
             getHomeData().then((res)=>{
-                res.forEach((item)=>{
-                    this.passages.push(item)
-                })
+                this.passages = res
             });
         },
         
@@ -59,37 +57,40 @@ export default{
 
     created(){
         this.getHomeData()
-        this.getHomeData()
     },
 
     
-    // mounted () {
-    //     const that = this;
-    //     window.addEventListener('scroll',function(){
-    //     // 滚动视口高度(也就是当前元素的真实高度)
-    //     let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
-    //     //console.log(scrollHeight)
+    mounted () {
+        const that = this;
+        window.addEventListener('scroll',function(){
+        // 滚动视口高度(也就是当前元素的真实高度)
+        let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+        //console.log(scrollHeight)
         
-    //     // 可见区域高度
-    //     let clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    //     // 滚动条顶部到浏览器顶部高度
-    //     let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-    //     //console.log(clientHeight)
-    //     //console.log(scrollTop)
-    //     //console.log("和："+clientHeight + scrollTop)
-    //     if(clientHeight + scrollTop + 1 >= scrollHeight){
-    //             	// 触底执行更多操作（如：发起ajax请求）
-    //                 // this.dataList = [...this.dataList, ...[1,2,3,4,5]]
-
-    //                 // const data = [1,2,3,4];
-    //                 // that.dataList = that.dataList.concat(data)
-    //         console.log('!!!!')
-    //         this.getHomeData()
-    //                 }
-                   
-    //             }
-    //         )
-    //     },
+        // 可见区域高度
+        let clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        // 滚动条顶部到浏览器顶部高度
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+        //console.log(clientHeight)
+        //console.log(scrollTop)
+        //console.log("和："+clientHeight + scrollTop)
+        if(clientHeight + scrollTop + 1 >= scrollHeight){
+            const data = []
+            getHomeData().then((res)=>{
+                //console.log(res)
+                for(let i = 0;i<15;i++){
+                    data.push(res[i])
+                }
+                this.setTimeout(function(){
+                    that.passages = that.passages.concat(data)
+                },1000)
+                
+                console.log(data)
+                console.log(that.passages)
+            });
+        }
+        })
+    }
 
 
 }

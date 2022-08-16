@@ -2,14 +2,14 @@
   <div class="nav">
     <div class="zuo">
       <ul class="leimu">
-        <li><a href="#">综合</a></li>
-        <li><a href="#">关注</a></li>
+        <li><a href="javascript:;" @click="goHome">综合</a></li>
+        <li><a href="javascript:;" @click="follow">关注</a></li>
         <li>
-          <a href="#">
+          <a href="javascript:;">
             <el-popover placement="top-start" width="300" trigger="hover">
               <el-row>
                 <el-button type="primary" round size="mini">后端</el-button>
-                <el-button round size="mini">Java</el-button>
+                <el-button round size="mini" >Java</el-button>
                 <el-button round size="mini">Go</el-button>
                 <el-button round size="mini">算法</el-button>
                 <el-button round size="mini">Python</el-button>
@@ -47,6 +47,26 @@ export default {
   data() {
     return {};
   },
+  methods:{
+    goHome(){
+      this.$router.push('/home');
+    },
+    follow(){
+      this.$router.push('/following');
+    },
+    goHome(){
+      this.$router.push('/home');
+    },
+    follow(){
+      this.$router.push('/following');
+    },
+    goHome(){
+      this.$router.push('/home');
+    },
+    follow(){
+      this.$router.push('/following');
+    },
+  }
 };
 </script>
 

@@ -4,6 +4,9 @@ import VueRouter from 'vue-router'
 const Home = () =>
     import('../views/home/Home')
 
+const Newest = () =>
+    import('../views/home/Home')
+
 const Article = () =>
     import('../views/articles/Article')
 
@@ -22,14 +25,23 @@ const routes = [
         component: Home
     },
     {
+        path: '/following',
+        component: Home
+    },
+    {
         path: '/article',
         component: Article
-    }
+    },
+    {
+        path: '/newest',
+        component: Newest
+    },
 
 ]
 const router = new VueRouter({
+    mode: 'history',
     routes,
-    mode: 'history'
+    
 })
 
 //3.导出router
