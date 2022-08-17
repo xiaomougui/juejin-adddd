@@ -49,7 +49,7 @@
     </el-menu-item>
 
     <el-menu-item index="10" class="center">
-      <el-dropdown split-button type="primary" @click="handleClick">
+      <el-dropdown split-button type="primary" trigger="click">
         创作者中心
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>
@@ -94,15 +94,13 @@ export default {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
-    handleClick() {
-      alert("button click");
+
+    changeInput() {
+      document.querySelector("li.center").style.visibility = "hidden";
     },
-    changeInput(){
-      document.querySelector('li.center').style.visibility = 'hidden'
+    changeDiv() {
+      document.querySelector("li.center").style.visibility = "visible";
     },
-    changeDiv(){
-      document.querySelector('li.center').style.visibility = 'visible'
-    }
   },
 };
 </script>
@@ -110,12 +108,6 @@ export default {
 <style scoped>
 .el-dropdown {
   vertical-align: top;
-}
-.el-dropdown + .el-dropdown {
-  margin-left: 15px;
-}
-.el-icon-arrow-down {
-  font-size: 12px;
 }
 
 ul > li:nth-child(1) > div {
@@ -126,7 +118,7 @@ ul > li:nth-child(1) > div {
 ul > li.el-menu-item.is-active {
   font-size: 1.167rem;
   color: #409eff;
-  border-bottom: 2px solid transparent;
+  border-bottom-color: transparent;
 }
 
 ul > li:nth-child(2) > div {
@@ -139,7 +131,7 @@ ul > li:nth-child(2) > div {
   font-size: 1.167rem;
 }
 
-ul > li:nth-child(n + 3):nth-child(-n + 9) {
+#app ul > li:nth-child(n + 3):nth-child(-n + 9) {
   float: left;
   width: 3.25rem;
   height: 3.75rem;
@@ -157,7 +149,6 @@ ul > li.el-menu-item.search {
   width: 30rem;
   padding-left: 6rem;
 }
-
 
 ul > li.el-menu-item.search :focus {
   -webkit-animation-name: myfirst;
@@ -186,4 +177,6 @@ ul > li:nth-child(13) {
 ul > li:nth-child(14) {
   width: 3.5rem;
 }
+
+
 </style>

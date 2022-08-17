@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import Passages from "./childrenComps/Passages.vue"
-import Nav from "./childrenComps/Nav.vue";
-import Top from "./childrenComps/Top.vue";
+import Passages from "../home/childrenComps/Passages.vue"
+import Nav from "../home/childrenComps/Nav.vue";
+import Top from "../home/childrenComps/Top.vue";
 
-import { getHomeData} from "../../network/home";
+import { getFrontData} from "../../network/home";
 
 
 
@@ -35,31 +35,15 @@ export default{
 },
 
     methods:{
-        getHomeData(){
-            getHomeData().then((res)=>{
+        getData(){
+            getFrontData().then((res)=>{
                 this.passages = res
             });
-        },
-        
-			
-
-        test(){
-            this.getHomeData()
-            console.log(this.passages)
-            console.log(this.passages[0])
-            console.log(this.passages[0].isimage)
-            
-        },
-
-        backHome(){
-            this.getHomeData()
-        }
-
-        
+        },  
     },
 
     created(){
-        this.getHomeData()
+        this.getData()
     },
 
     
@@ -79,7 +63,7 @@ export default{
         //console.log("和："+clientHeight + scrollTop)
         if(clientHeight + scrollTop + 1 >= scrollHeight){
             const data = []
-            getHomeData().then((res)=>{
+            getData().then((res)=>{
                 //console.log(res)
                 for(let i = 0;i<15;i++){
                     data.push(res[i])
@@ -88,8 +72,8 @@ export default{
                     that.passages = that.passages.concat(data)
                 },1000)
                 
-                console.log(data)
-                console.log(that.passages)
+                // console.log(data)
+                // console.log(that.passages)
             });
         }
         })
