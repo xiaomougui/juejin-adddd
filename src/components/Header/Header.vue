@@ -7,13 +7,12 @@
   >
     <el-menu-item>
       <el-image
-        style="width: 107px; height: 22px"
         src="https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/e08da34488b114bd4c665ba2fa520a31.svg"
         fit="contain"
       ></el-image>
     </el-menu-item>
     <el-menu-item index="1">
-      <el-link href="#" style="color: #409eff" class="shouye" @click="goHome">首页</el-link>
+      <el-link href="#" class="shouye">首页</el-link>
     </el-menu-item>
     <el-menu-item index="2">
       <el-link href="#">沸点</el-link>
@@ -37,18 +36,20 @@
       <el-link href="#">插件</el-link>
     </el-menu-item>
 
-    <el-menu-item index="9" style="margin-left: 70px">
+    <el-menu-item index="9" style="margin-left: 70px" class="search">
       <el-input
         placeholder="探索稀土掘金"
         v-model="input3"
         class="input-with-select"
+        @focus="changeInput"
+        @blur="changeDiv"
       >
         <el-button slot="append" icon="el-icon-search"></el-button>
       </el-input>
     </el-menu-item>
 
-    <el-menu-item index="10">
-      <el-dropdown split-button type="primary" @click="handleClick">
+    <el-menu-item index="10" class="center">
+      <el-dropdown split-button type="primary" trigger="click">
         创作者中心
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>
@@ -78,9 +79,11 @@
       <i class="el-icon-message-solid"></i>
     </el-menu-item>
 
-    <!-- <el-menu-item>
-      <el-avatar src="https://p3-passport.byteacctimg.com/img/mosaic-legacy/3791/5035712059~300x300.image"></el-avatar>
-    </el-menu-item> -->
+    <el-menu-item>
+      <el-avatar
+        src="https://p3-passport.byteacctimg.com/img/mosaic-legacy/3791/5035712059~300x300.image"
+      ></el-avatar>
+    </el-menu-item>
   </el-menu>
 </template>
 
@@ -91,11 +94,12 @@ export default {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
-    handleClick() {
-      alert("button click");
+
+    changeInput() {
+      document.querySelector("li.center").style.visibility = "hidden";
     },
-    goHome(){
-      this.$router.push('/home');
+    changeDiv() {
+      document.querySelector("li.center").style.visibility = "visible";
     },
   },
 };
@@ -105,26 +109,74 @@ export default {
 .el-dropdown {
   vertical-align: top;
 }
-.el-dropdown + .el-dropdown {
-  margin-left: 15px;
+
+ul > li:nth-child(1) > div {
+  width: 6.6875rem;
+  height: 1.375rem;
 }
-.el-icon-arrow-down {
-  font-size: 12px;
-}
-.el-menu--horizontal > .el-menu-item.is-active {
-  font-size: 13.92px;
+
+ul > li.el-menu-item.is-active {
+  font-size: 1.167rem;
   color: #409eff;
-  border-bottom: 2px solid transparent;
+  border-bottom-color: transparent;
 }
-.el-menu--horizontal > .el-menu-item {
+
+ul > li:nth-child(2) > div {
   float: left;
-  height: 60px;
+  width: 3.25rem;
+  height: 3.75rem;
+  line-height: 60px;
+  margin: 0;
+  color: #409eff;
+  font-size: 1.167rem;
+}
+
+#app ul > li:nth-child(n + 3):nth-child(-n + 9) {
+  float: left;
+  width: 3.25rem;
+  height: 3.75rem;
   line-height: 60px;
   margin: 0;
   color: #71777c;
-  font-size: 13.92px;
+  font-size: 1.167rem;
 }
-.el-menu--horizontal > .el-menu-item .shouye :hover {
-  color: #71777c;
+
+ul > li :hover {
+  color: #252933;
 }
+
+ul > li.el-menu-item.search {
+  width: 30rem;
+  padding-left: 6rem;
+}
+
+ul > li.el-menu-item.search :focus {
+  -webkit-animation-name: myfirst;
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes myfirst {
+  0% {
+    width: 23rem;
+  }
+  100% {
+    width: 30rem;
+  }
+}
+
+ul > li:nth-child(12) {
+  width: 5rem;
+}
+
+ul > li:nth-child(13) {
+  width: 3.5rem;
+}
+
+ul > li:nth-child(14) {
+  width: 3.5rem;
+}
+
+
 </style>
