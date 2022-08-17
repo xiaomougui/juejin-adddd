@@ -44,9 +44,7 @@
       >
         <el-button slot="append" icon="el-icon-search"></el-button>
       </el-input>
-    </el-menu-item>
 
-    <el-menu-item index="10">
       <el-dropdown split-button type="primary" @click="handleClick">
         创作者中心
         <el-dropdown-menu slot="dropdown">
@@ -95,7 +93,7 @@ export default {
     handleClick() {
       alert("button click");
     },
-  },
+  }
 };
 </script>
 
@@ -109,6 +107,7 @@ export default {
 .el-icon-arrow-down {
   font-size: 12px;
 }
+
 
 ul > li:nth-child(1) > div {
   width: 6.6875rem;
@@ -145,27 +144,19 @@ ul > li :hover {
 }
 
 ul > li.el-menu-item.search {
-  width: 30rem;
-  padding: 0px;
-  margin-right: 0px;
+  width: 38rem;
 }
 
-ul
-  > li.el-menu-item.search
-  > div.input-with-select.el-input.el-input-group.el-input-group--append {
+ul > li.el-menu-item.search > div.input-with-select.el-input.el-input-group.el-input-group--append {
   width: 23rem;
-  margin-left: 2rem;
+  margin-left: 3rem;
 }
 
-
-/* ul > li.el-menu-item.search > div.el-dropdown {
+ul > li.el-menu-item.search > div.el-dropdown {
   padding-left: 2rem;
-} */
+}
 
-ul
-  > li.el-menu-item.search
-  > div.input-with-select.el-input.el-input-group.el-input-group--append
-  :focus {
+ul > li.el-menu-item.search > div.input-with-select.el-input.el-input-group.el-input-group--append :focus{
   -webkit-animation-name: myfirst;
   -webkit-animation-duration: 0.5s;
   -webkit-animation-timing-function: linear;
@@ -181,11 +172,9 @@ ul
   }
 }
 
-ul > li:nth-child(11) {
-  width: 10rem;
-  padding: 0px;
+ul > li.el-menu-item.search.is-active > div.input-with-select.el-input.el-input-group.el-input-group--append + div{
+  visibility: hidden;
 }
-
 
 
 ul > li:nth-child(12) {
