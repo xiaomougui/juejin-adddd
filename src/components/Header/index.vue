@@ -7,7 +7,6 @@
   >
     <el-menu-item>
       <el-image
-        style="width: 107px; height: 22px"
         src="https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/e08da34488b114bd4c665ba2fa520a31.svg"
         fit="contain"
       ></el-image>
@@ -111,30 +110,83 @@ export default {
   font-size: 12px;
 }
 
-.el-menu--horizontal > .el-menu-item.is-active {
-  font-size: 13.92px;
+
+#app > div.main > ul > li:nth-child(1) > div {
+  width: 6.6875rem;
+  height: 1.375rem;
+}
+
+
+#app > div.main > ul > li.el-menu-item.is-active {
+  font-size: 1.167rem;
   color: #409eff;
   border-bottom: 2px solid transparent;
 }
 
-.el-menu--horizontal > .el-menu-item {
+#app > div.main > ul > li:nth-child(2) > div {
   float: left;
-  height: 60px;
+  width: 3.25rem;
+  height: 3.75rem;
+  line-height: 60px;
+  margin: 0;
+  color: #409eff;
+  font-size: 1.167rem;
+}
+
+#app > div.main > ul > li:nth-child(n+3):nth-child(-n+9) {
+  float: left;
+  width: 3.25rem;
+  height: 3.75rem;
   line-height: 60px;
   margin: 0;
   color: #71777c;
-  font-size: 13.92px;
+  font-size: 1.167rem;
 }
 
-li .el-menu-item .search :hover {
-  color: #71777c;
-}
-/* 
-div .search :focus{
-  width: 400px;
+
+
+#app > div.main > ul > li :hover {
+  color: #252933;
 }
 
-div .search :focus div .el-dropdown {
-  display: none;
-} */
+
+#app > div.main > ul > li.el-menu-item.search {
+  width: 29rem;
+}
+
+#app > div.main > ul > li.el-menu-item.search > div{
+  width: 23rem;
+  margin-left: 3rem;
+}
+
+#app > div.main > ul > li.el-menu-item.search > div :focus {
+  -webkit-animation-name: myfirst;
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes myfirst
+{
+  0% {width: 23rem;}
+  100% {width: 30rem;}
+}
+
+
+#app > div.main > ul > li.el-menu-item.center{
+  width: 11rem;
+}
+
+#app > div.main > ul > li:nth-child(12){
+  width: 5rem;
+}
+
+#app > div.main > ul > li:nth-child(13){
+  width: 3.75rem;
+}
+
+#app > div.main > ul > li:nth-child(14){
+  width: 3.75rem;
+}
+
 </style>
