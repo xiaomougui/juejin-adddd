@@ -4,6 +4,7 @@
     <button @click="getdata">home</button>
     <button @click="post">article</button>
     <button @click="about">about</button>
+    <button @click="author">author</button>
   </div>
 </template>
 
@@ -66,6 +67,24 @@ export default {
         }
       };
       xhr.open("GET", "http://127.0.0.1:3000/data/correlation", true);
+      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhr.send();
+    },
+    author() {
+      let xhr = new XMLHttpRequest();
+      let that = this;
+      xhr.onreadystatechange = function (res) {
+        if (xhr.readyState == 4) {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            setTimeout(() => {
+              let data = JSON.parse(xhr.responseText);
+              console.log(data);
+              that.mdata = data.essay;
+            }, 500);
+          }
+        }
+      };
+      xhr.open("GET", "http://127.0.0.1:3000/data/author", true);
       xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xhr.send();
     },

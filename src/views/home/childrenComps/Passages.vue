@@ -24,7 +24,4 @@ export default {
 </script>
 
 <style scoped>
-.passages {
-  margin-top: 10px;
-}
 </style>
