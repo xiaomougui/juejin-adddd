@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <!-- <Header />
-    <Article /> -->
-    <Home />
+    <Header />
+    <Article />
+    <!-- <Home /> -->
   </div>
 </template>
 
@@ -32,5 +32,8 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+}
+html {
+  background-color: #f4f5f5;
 }
 </style>

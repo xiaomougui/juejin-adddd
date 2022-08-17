@@ -46,7 +46,7 @@ export default {
 .LeftSideButton {
     position: fixed;
     top: 130px;
-    left: 0;
+    /* left: 570px; */
     width: 70px;
 }
 .LeftSideButton .button {

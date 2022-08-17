@@ -1,43 +1,62 @@
 <template>
   <div class="main">
-    <div class="header"></div>
-    <LeftSideButton v-if="screenWidth >= 1000"></LeftSideButton>
-    <!-- <BottomButton v-else></BottomButton> -->
-    <RightSideButton v-if="screenWidth >= 1000"></RightSideButton>
-    <div :class="screenWidth >= 1000 ? 'bg' : 'bg1'">
+    <!-- <div class="header"></div> -->
+
+    <div :class="screenWidth >= 1150 ? 'bg' : 'bg1'">
       <div class="content">
-        <!-- 目录 -->
-        <div class="right" v-if="screenWidth >= 1000">
-          <div class="author-info">作者信息</div>
-          <div class="download">下载稀土掘金APP</div>
-          <div class="article-rela">相关文章</div>
-          <div class="box_categories">
-            <div class="nav_catalogue">
-              <span>目录</span>
+        <div class="view">
+            <LeftSideButton v-if="screenWidth >= 1150" class="left-button"></LeftSideButton>
+            <!-- <BottomButton v-else></BottomButton> -->
+            <RightSideButton v-if="screenWidth >= 1150"></RightSideButton>
+          <!-- 主体内容 -->
+          <div class="left">
+            <div class="titleInfo">
+              <TitleInfo :titleInfo = "titleInfo"></TitleInfo>
             </div>
-            <div class="categories" ref="categories">
-              <!-- :moveIndex="index" -->
-              <div
-                ref="catalogue"
-                v-for="(anchor, index) in titles"
-                :key="index"
-                :class="moveIndex === index ? 'activeLight' : ''"
-                :style="{ padding: `10px 0 10px ${anchor.indent * 20}px` }"
-                @click="handleAnchorClick(anchor)"
-              >
-                <a style="cursor: pointer">{{ anchor.title }}</a>
+            <v-md-preview
+              :text="text"
+              ref="preview"
+              id="article"
+              :class="screenWidth >= 1150 ? 'article' : 'article1'"
+            ></v-md-preview>
+          </div>
+          <!-- 目录 -->
+          <div class="right" v-if="screenWidth >= 1150">
+            <!-- <div class="author-info">作者信息</div> -->
+            <div class="author-info">
+              <AuthorInfo :authorInfo = "authorInfo"></AuthorInfo>
+            </div>
+            <div class="download">
+              <DownloadInfo></DownloadInfo>
+            </div>
+            <div class="circleInfo">
+              <CircleInfo></CircleInfo>
+            </div>
+            
+            <div class="article-rela">
+              <RelativeInfo :relativeInfo = "relativeInfo"></RelativeInfo>
+            </div>
+            <div class="box_categories">
+              <div class="nav_catalogue">
+                <span>目录</span>
+              </div>
+              <div class="categories" ref="categories">
+                <!-- :moveIndex="index" -->
+                <div
+                  ref="catalogue"
+                  v-for="(anchor, index) in titles"
+                  :key="index"
+                  :class="moveIndex === index ? 'activeLight' : ''"
+                  :style="{ padding: `10px 0 10px ${anchor.indent * 20}px` }"
+                  @click="handleAnchorClick(anchor)"
+                >
+                  <a style="cursor: pointer">{{ anchor.title }}</a>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- 主体内容 -->
-      <v-md-preview
-        :text="text"
-        ref="preview"
-        id="article"
-        :class="screenWidth >= 1000 ? 'article' : 'article1'"
-      ></v-md-preview>
     </div>
   </div>
 </template>
@@ -45,15 +64,27 @@
 <script>
 import LeftSideButton from "./Buttons/LeftSideButton.vue";
 import RightSideButton from "./Buttons/RightSideButton.vue";
-import { demoMD } from "../api/demo";
+import AuthorInfo from './OtherInfo/AuthorInfo.vue'
+import DownloadInfo from './OtherInfo/DownloadInfo.vue'
+import CircleInfo from './OtherInfo/CircleInfo.vue'
+import RelativeInfo from './OtherInfo/RelativeInfo.vue'
+import TitleInfo from "./OtherInfo/TitleInfo.vue";
+import { demoMD,getRightInfo,getRelativeInfo } from "../api/demo";
+import {getTiltleData} from '../network/article'
 // import BottomButton  from "./Buttons/BottomButton.vue";
 export default {
   name: "Article",
   components: {
     LeftSideButton,
     RightSideButton,
+    AuthorInfo,
+    DownloadInfo,
+    CircleInfo,
+    RelativeInfo,
+    TitleInfo
     // BottomButton
-  },
+    ,
+},
   data() {
     return {
       text: "",
@@ -63,6 +94,9 @@ export default {
       screenWidth: document.body.clientWidth,
       moveIndex: 0,
       ContentHeightList: null,
+      authorInfo:{},
+      relativeInfo:[],
+      titleInfo:{},
     };
   },
   methods: {
@@ -85,9 +119,9 @@ export default {
     handleScroll() {
       const scrollY = window.pageYOffset;
       let cate = this.$el.querySelector(".box_categories");
-      if (scrollY > 610) {
+      if (scrollY > 1000) {
         cate.style.position = "fixed";
-        cate.style.marginTop = "-650px";
+        cate.style.marginTop = "-1000px";
       } else {
         cate.style.position = "relative";
         cate.style.marginTop = "0px";
@@ -180,6 +214,21 @@ export default {
         this.ContentHeightList = arr;
       });
     });
+    // 获取右侧作者信息 
+    getRightInfo({}).then((res)=>{
+      this.authorInfo = res.data
+    })
+    // 获取相关文章信息
+    getRelativeInfo({}).then((res)=>{
+
+      this.relativeInfo = res.data
+    })
+    // 获取标题相关信息
+    getTiltleData().then((res)=>{
+      
+      this.titleInfo = res
+    })
+    
     // 响应式布局
     //获取屏幕尺寸
     window.onresize = () => {
@@ -201,14 +250,17 @@ export default {
 };
 </script>
 <style scoped>
+html {
+  color:#f4f5f5;
+}
 .main {
   margin: 0;
   padding: 0;
   background: #f4f5f5;
 }
 .bg {
-  padding-left: 85px;
-  padding-right: 85px;
+  /* padding-left: 400px;
+  padding-right: 400px; */
 }
 
 .bg1 {
@@ -226,22 +278,24 @@ export default {
 }
 .content {
   position: relative;
-  /* max-width: 1140px; */
+  max-width: 1140px;
   width: 100%;
-  margin: 0;
-  padding: 0;
+  margin: 0 auto;
+}
+.view {
+  margin-top: 17.67px;
+  padding: 0 0 80px;
 }
 .right {
-  font-size: 14px;
   position: absolute;
+  font-size: 14px;
   top: 0;
   right: 0;
-  width: 250px;
+  width: 300px;
   background: #f4f5f5;
 }
 .author-info {
   position: relative;
-  /* width: 100%; */
   width: 300px;
   height: 150px;
   background: #fff;
@@ -251,7 +305,15 @@ export default {
   position: relative;
   /* width: 100%; */
   width: 300px;
-  height: 100px;
+  height: 90px;
+  background: #fff;
+  margin-bottom: 20px;
+}
+.circleInfo {
+  position: relative;
+  /* width: 100%; */
+  width: 300px;
+  height: 248px;
   background: #fff;
   margin-bottom: 20px;
 }
@@ -259,7 +321,7 @@ export default {
   position: relative;
   /* width: 100%; */
   width: 300px;
-  height: 300px;
+  height: 370px;
   background: #fff;
   margin-bottom: 20px;
 }
@@ -271,15 +333,30 @@ a {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.titleInfo {
+  position: relative;
+  /* padding: 27px; */
+  /* margin-right: 16.875rem; */
+  display: block;
+  width: 820px;
+  z-index: 1;
+  border-radius: 4px;
+  background-color: #fff;
+}
 .article {
   position: relative;
   /* padding: 27px; */
   /* margin-right: 16.875rem; */
   width: 75%;
+  width: 820px;
+  height: 90px;
+  max-width: 100%;
   z-index: 1;
   border-radius: 4px;
-
+  /* margin-top: 100px; */
+  margin-bottom: 15px;
   background-color: #fff;
+  box-sizing: border-box;
 }
 .article1 {
   position: relative;
@@ -288,7 +365,6 @@ a {
   width: 100%;
   z-index: 1;
   border-radius: 4px;
-
   background-color: #fff;
 }
 .box_categories {
@@ -305,7 +381,7 @@ a {
   background: #fff;
 }
 .nav_catalogue {
-  width: 250px;
+  width: 300px;
   height: 50px;
   line-height: 60px;
   margin: 0 auto;
@@ -313,9 +389,13 @@ a {
 }
 .nav_catalogue span {
   font-size: 16px;
+  margin-left: 15px;
 }
 .categories a {
-  margin-left: 10px;
+  margin-left: 15px;
+}
+.left-button {
+  margin-left: -90px;
 }
 /* .content .categories .activeLight {
   border-left: 2px solid rgb(30,128,255);
@@ -342,5 +422,8 @@ a {
   background-color: rgba(228, 230, 235);
   width: 6px;
   border-radius: 3px;
+}
+h1 {
+  font-size: 10px;
 }
 </style>
