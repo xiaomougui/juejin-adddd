@@ -86,6 +86,11 @@
 <script>
 export default {
   name: "Header",
+  // data() {
+  //   mystyle: {
+  //     visibility: hidden;
+  //   }
+  // },
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
@@ -93,6 +98,12 @@ export default {
     handleClick() {
       alert("button click");
     },
+    // mystyle:function(){
+    //   var element = document.querySelector('li.el-menu-item.search.is-active > div.el-dropdown')
+    //   element.addEventListener(click,function(){
+    //     element.style.visibility = 'hidden';
+    //   })
+    // }
   }
 };
 </script>
@@ -108,17 +119,18 @@ export default {
   font-size: 12px;
 }
 
-
-ul > li:nth-child(1) > div {
+#app > div.main > ul > li:nth-child(1) > div {
   width: 6.6875rem;
   height: 1.375rem;
 }
 
-ul > li.el-menu-item.is-active {
+#app > div.main > ul > li.el-menu-item.is-active {
+  font-size: 1.167rem;
+  color: #409eff;
   border-bottom: 2px solid transparent;
 }
 
-ul > li:nth-child(2) {
+#app > div.main > ul > li:nth-child(2) > div {
   float: left;
   width: 3.25rem;
   height: 3.75rem;
@@ -126,10 +138,9 @@ ul > li:nth-child(2) {
   margin: 0;
   color: #409eff;
   font-size: 1.167rem;
-  border-bottom: 2px solid transparent;
 }
 
-ul > li:nth-child(n + 3):nth-child(-n + 9) {
+#app > div.main > ul > li:nth-child(n + 3):nth-child(-n + 9) {
   float: left;
   width: 3.25rem;
   height: 3.75rem;
@@ -139,24 +150,24 @@ ul > li:nth-child(n + 3):nth-child(-n + 9) {
   font-size: 1.167rem;
 }
 
-ul > li :hover {
+#app > div.main > ul > li :hover {
   color: #252933;
 }
 
-ul > li.el-menu-item.search {
+#app > div.main > ul > li.el-menu-item.search {
   width: 38rem;
 }
 
-ul > li.el-menu-item.search > div.input-with-select.el-input.el-input-group.el-input-group--append {
+#app > div.main > ul > li.el-menu-item.search > div.input-with-select.el-input.el-input-group.el-input-group--append {
   width: 23rem;
   margin-left: 3rem;
 }
 
-ul > li.el-menu-item.search > div.el-dropdown {
+#app > div.main > ul > li.el-menu-item.search > div.el-dropdown {
   padding-left: 2rem;
 }
 
-ul > li.el-menu-item.search > div.input-with-select.el-input.el-input-group.el-input-group--append :focus{
+#app > div.main > ul > li.el-menu-item.search > div.input-with-select.el-input.el-input-group.el-input-group--append :focus{
   -webkit-animation-name: myfirst;
   -webkit-animation-duration: 0.5s;
   -webkit-animation-timing-function: linear;
@@ -177,15 +188,15 @@ ul > li.el-menu-item.search.is-active > div.input-with-select.el-input.el-input-
 }
 
 
-ul > li:nth-child(12) {
+#app > div.main > ul > li:nth-child(12) {
   width: 5rem;
 }
 
-ul > li:nth-child(13) {
+#app > div.main > ul > li:nth-child(13) {
   width: 3.75rem;
 }
 
-ul > li:nth-child(14) {
+#app > div.main > ul > li:nth-child(14) {
   width: 3.75rem;
 }
 </style>
