@@ -41,10 +41,14 @@
         placeholder="探索稀土掘金"
         v-model="input3"
         class="input-with-select"
+        @focus="changeInput"
+        @blur="changeDiv"
       >
         <el-button slot="append" icon="el-icon-search"></el-button>
       </el-input>
+    </el-menu-item>
 
+    <el-menu-item index="10" class="center">
       <el-dropdown split-button type="primary" @click="handleClick">
         创作者中心
         <el-dropdown-menu slot="dropdown">
@@ -93,7 +97,13 @@ export default {
     handleClick() {
       alert("button click");
     },
-  }
+    changeInput() {
+      document.querySelector("li.center").style.visibility = "hidden";
+    },
+    changeDiv() {
+      document.querySelector("li.center").style.visibility = "visible";
+    },
+  },
 };
 </script>
 
@@ -108,17 +118,18 @@ export default {
   font-size: 12px;
 }
 
-
 ul > li:nth-child(1) > div {
   width: 6.6875rem;
   height: 1.375rem;
 }
 
 ul > li.el-menu-item.is-active {
+  font-size: 1.167rem;
+  color: #409eff;
   border-bottom: 2px solid transparent;
 }
 
-ul > li:nth-child(2) {
+ul > li:nth-child(2) > div {
   float: left;
   width: 3.25rem;
   height: 3.75rem;
@@ -126,7 +137,6 @@ ul > li:nth-child(2) {
   margin: 0;
   color: #409eff;
   font-size: 1.167rem;
-  border-bottom: 2px solid transparent;
 }
 
 ul > li:nth-child(n + 3):nth-child(-n + 9) {
@@ -144,19 +154,11 @@ ul > li :hover {
 }
 
 ul > li.el-menu-item.search {
-  width: 38rem;
+  width: 30rem;
+  padding-left: 6rem;
 }
 
-ul > li.el-menu-item.search > div.input-with-select.el-input.el-input-group.el-input-group--append {
-  width: 23rem;
-  margin-left: 3rem;
-}
-
-ul > li.el-menu-item.search > div.el-dropdown {
-  padding-left: 2rem;
-}
-
-ul > li.el-menu-item.search > div.input-with-select.el-input.el-input-group.el-input-group--append :focus{
+ul > li.el-menu-item.search :focus {
   -webkit-animation-name: myfirst;
   -webkit-animation-duration: 0.5s;
   -webkit-animation-timing-function: linear;
@@ -171,11 +173,6 @@ ul > li.el-menu-item.search > div.input-with-select.el-input.el-input-group.el-i
     width: 30rem;
   }
 }
-
-ul > li.el-menu-item.search.is-active > div.input-with-select.el-input.el-input-group.el-input-group--append + div{
-  visibility: hidden;
-}
-
 
 ul > li:nth-child(12) {
   width: 5rem;

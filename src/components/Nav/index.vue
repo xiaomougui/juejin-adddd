@@ -207,7 +207,7 @@
       </div>
     </div>
     <div class="biaoqian">
-      <div class="xifen">
+      <!-- <div class="xifen">
         <el-row style="display: inline">
           <el-button type="primary" round size="mini">后端</el-button>
           <el-button round size="mini">Java </el-button>
@@ -225,7 +225,7 @@
           <el-button round size="mini">前端 </el-button>
           <el-button round size="mini">大数据 </el-button>
         </el-row>
-      </div>
+      </div> -->
 
       <!-- <el-row>
         <el-button v-for="item in houduan" :key="item" size="mini">{{

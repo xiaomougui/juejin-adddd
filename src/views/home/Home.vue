@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <Nav></Nav>
     <div class="board">
       <div class="left">
         <Top></Top>
