@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <Header />
-    <Nav />
+    <!-- <Header />
+    <Article /> -->
     <Home />
   </div>
 </template>
