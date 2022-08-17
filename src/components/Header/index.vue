@@ -86,11 +86,6 @@
 <script>
 export default {
   name: "Header",
-  // data() {
-  //   mystyle: {
-  //     visibility: hidden;
-  //   }
-  // },
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
@@ -98,12 +93,6 @@ export default {
     handleClick() {
       alert("button click");
     },
-    // mystyle:function(){
-    //   var element = document.querySelector('li.el-menu-item.search.is-active > div.el-dropdown')
-    //   element.addEventListener(click,function(){
-    //     element.style.visibility = 'hidden';
-    //   })
-    // }
   }
 };
 </script>
@@ -119,18 +108,17 @@ export default {
   font-size: 12px;
 }
 
-#app > div.main > ul > li:nth-child(1) > div {
+
+ul > li:nth-child(1) > div {
   width: 6.6875rem;
   height: 1.375rem;
 }
 
-#app > div.main > ul > li.el-menu-item.is-active {
-  font-size: 1.167rem;
-  color: #409eff;
+ul > li.el-menu-item.is-active {
   border-bottom: 2px solid transparent;
 }
 
-#app > div.main > ul > li:nth-child(2) > div {
+ul > li:nth-child(2) {
   float: left;
   width: 3.25rem;
   height: 3.75rem;
@@ -138,9 +126,10 @@ export default {
   margin: 0;
   color: #409eff;
   font-size: 1.167rem;
+  border-bottom: 2px solid transparent;
 }
 
-#app > div.main > ul > li:nth-child(n + 3):nth-child(-n + 9) {
+ul > li:nth-child(n + 3):nth-child(-n + 9) {
   float: left;
   width: 3.25rem;
   height: 3.75rem;
@@ -150,24 +139,24 @@ export default {
   font-size: 1.167rem;
 }
 
-#app > div.main > ul > li :hover {
+ul > li :hover {
   color: #252933;
 }
 
-#app > div.main > ul > li.el-menu-item.search {
+ul > li.el-menu-item.search {
   width: 38rem;
 }
 
-#app > div.main > ul > li.el-menu-item.search > div.input-with-select.el-input.el-input-group.el-input-group--append {
+ul > li.el-menu-item.search > div.input-with-select.el-input.el-input-group.el-input-group--append {
   width: 23rem;
   margin-left: 3rem;
 }
 
-#app > div.main > ul > li.el-menu-item.search > div.el-dropdown {
+ul > li.el-menu-item.search > div.el-dropdown {
   padding-left: 2rem;
 }
 
-#app > div.main > ul > li.el-menu-item.search > div.input-with-select.el-input.el-input-group.el-input-group--append :focus{
+ul > li.el-menu-item.search > div.input-with-select.el-input.el-input-group.el-input-group--append :focus{
   -webkit-animation-name: myfirst;
   -webkit-animation-duration: 0.5s;
   -webkit-animation-timing-function: linear;
@@ -188,15 +177,15 @@ ul > li.el-menu-item.search.is-active > div.input-with-select.el-input.el-input-
 }
 
 
-#app > div.main > ul > li:nth-child(12) {
+ul > li:nth-child(12) {
   width: 5rem;
 }
 
-#app > div.main > ul > li:nth-child(13) {
+ul > li:nth-child(13) {
   width: 3.75rem;
 }
 
-#app > div.main > ul > li:nth-child(14) {
+ul > li:nth-child(14) {
   width: 3.75rem;
 }
 </style>
