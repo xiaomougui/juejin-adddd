@@ -11,8 +11,7 @@
                 placement="top-start"
                 width="300"
                 trigger="hover"
-                visible-arrow="false"
-              >
+                visible-arrow="false">
                 <el-row>
                   <el-button type="primary" round size="mini">后端</el-button>
                   <el-button round size="mini">Java </el-button>
