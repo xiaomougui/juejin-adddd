@@ -1,5 +1,5 @@
 <template>
-    <div class="blo">
+    <div class="blo" @click="itemClick">
         <div class="line1">
             <div class="auther"> {{ passage.author }} </div>
             <div class="time">{{passage.time}}</div>
@@ -19,7 +19,9 @@
                 </div>
             </div>
             <div class="right">
-                <div class="image"></div>
+                <div class="image" v-show="passage.isimage">
+                    <img :src="passage.imgUrl">
+                </div>
             </div>
         </div>
         
@@ -36,13 +38,15 @@ export default{
                 return {};
             },
         },
-  },
+    },
     methods: {
         itemClick() {
             //路由跳转占位
-            this.$router.push();
+            //this.$router.push();
+           
         },
     },
+   
 }
 </script>
 
@@ -51,54 +55,53 @@ export default{
 @import '../../../assets/css/iconfont.css';
 
 .blo{
-    height: 200px;
-    border-top: 1px solid #BBB;
-    margin: 0 15%;
+    height: 140px;
+    border-top: 1px solid #000;
+    margin: 0 2%;
 }
 
 .line1{
-    height: 50px;
+    height: 25%;
     display: flex;
-    padding-left: 20px;
+    padding-left: 2px;
+    font-size: 13px;
 }
 
 .auther{
-    height: 20px;
-    line-height: 20px;
+    height: 16px;
+    line-height: 16px;
     margin-top: 15px;
-    padding-right: 20px;
+    padding-right: 8px;
     border-right: 1px solid #bbb;
 }
 
 .time{
-    height: 20px;
-    line-height: 20px;
+    height: 16px;
+    line-height: 16px;
     margin-top: 15px;
-    left: 20px;
-    padding-left: 20px;
+    padding-left: 8px;
     color:#bbb;
+    border-right: 1px solid #bbb;
+    padding-right: 8px;
 }
 
 .category{
-    height: 20px;
-    line-height: 20px;
+    height: 16px;
+    line-height: 16px;
     margin-top: 15px;
-    left: 20px;
     padding-left: 20px;
     color:#bbb;
+    padding-left: 8px;
 }
 
 .line2{
-    height: 150px;
+    height: 75%;
     display: flex;
-    
-    width: 100%;
 }
 
 .left{
     position: relative;
-    padding-left: 20px;
-    
+    padding-left: 0;
     height: 100%;
     flex-grow: 1;
 }
@@ -106,9 +109,10 @@ export default{
 .title{
     text-align: left;
     position: absolute;
-    font-size:20px;
+    font-size:16px;
     font-weight: 800;
     line-height: 40px;
+    left: 0px;
     height: 40px;
     width:100% ;
     white-space: nowrap;
@@ -118,32 +122,37 @@ export default{
 
 .text{
     position: absolute;
-    top: 60px;
+    top: 45px;
     height: 40px;
-    width:95% ;
+    width:100% ;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
+    font-size:12px;
+    color:#aaa;
 }
 
 .other{
     position: absolute;
-    bottom: 10%;
+    bottom: 15%;
+    font-size: 13px;
+    color:#444;
 }
 
 .right{
     height: 100%;
-    
-    
     padding-right: 10px;
     padding-left: 10px;
 }
 
 .image{
-    background-color:aquamarine;
-    width: 100px;
+    width: 100%;
     margin-top: 10%;
     height: 80%;
+}
+
+img{
+    width: 100%;
+    height: 100%;
 }
 </style>

@@ -20,7 +20,14 @@ VMdPreview.use(vuepressTheme, {
     // md为 markdown-it 实例，可以在此处进行修改配置,并使用 plugin 进行语法扩展
     // md.set(option).use(plugin);
   },
-});
+})
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+
+Vue.use(ElementUI);
+
+
+
 Vue.use(VMdPreview);
 
 Vue.config.productionTip = false
