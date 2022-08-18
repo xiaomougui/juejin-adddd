@@ -11,7 +11,6 @@
 </template>
 
 <script>
-
 import Header from './components/Header/Header.vue'
 import Nav from './views/home/childrenComps/Nav.vue';
 
@@ -21,12 +20,9 @@ export default {
   components: {
     Header,
     Nav
-},
+  },
 };
-
 </script>
-
-
 
 <style>
 #app {

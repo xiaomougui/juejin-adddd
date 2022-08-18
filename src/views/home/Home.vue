@@ -61,7 +61,6 @@
             </a>
           </div>
         </div>
-        <!-- <AuthorRank /> -->
       </div>
     </div>
     <button @click="test">click me</button>
@@ -71,7 +70,6 @@
 <script>
 import Passages from "./childrenComps/Passages.vue";
 import Top from "./childrenComps/Top.vue";
-// import AuthorRank from "./childrenComps/authorRank.vue";
 
 import { getHomeData } from "../../network/home";
 
@@ -86,7 +84,6 @@ export default {
   components: {
     Passages,
     Top,
-    // AuthorRank,
   },
 
   methods: {
@@ -168,10 +165,9 @@ export default {
 
 .right {
   position: absolute;
-  width: 240px;
-  height: 96px;
-  top: 128px;
-  left: 970px;
+  width: 16%;
+  top: 18%;
+  left: 65%;
   background-color: #fff;
 }
 
@@ -230,7 +226,6 @@ div.first-line > button {
 }
 
 .sidebar-block {
-  position: relative;
   margin-bottom: 1.5rem;
   border-radius: 2px;
 }
@@ -266,4 +261,5 @@ a {
   align-items: center;
   padding: 1rem;
 }
+
 </style>
