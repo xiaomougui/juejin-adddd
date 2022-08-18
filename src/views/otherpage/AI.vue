@@ -116,7 +116,7 @@ export default {
 }
 
 .tags {
-  width: 45%;
+  width: 50%;
   margin-left: 18%;
   background-color: #fff;
   margin-bottom: 10px;

@@ -91,13 +91,9 @@
 export default {
   name: "Header",
   data() {
-    return {
-      
-    }
+    return {};
   },
-  created(){
-    
-  },
+  created() {},
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
@@ -109,8 +105,6 @@ export default {
     changeDiv() {
       document.querySelector("li.center").style.visibility = "visible";
     },
-
-    
   },
 };
 </script>
@@ -189,7 +183,7 @@ ul > li:nth-child(14) {
 }
 
 @media screen and (max-width: 1535px) {
-  .APP{
+  .APP {
     display: none;
   }
   .chajian {
@@ -198,13 +192,13 @@ ul > li:nth-child(14) {
 }
 
 @media screen and (max-width: 1432px) {
-  .feidian{
+  .feidian {
     display: none;
   }
   .kecheng {
     display: none;
   }
-  .zhibo{
+  .zhibo {
     display: none;
   }
   .activity {
@@ -216,21 +210,35 @@ ul > li:nth-child(14) {
 }
 
 @media screen and (max-width: 1170px) {
-  .VIP{
+  .VIP {
     display: none;
   }
 }
 
 @media screen and (max-width: 1092px) {
-  .center{
+  .center {
     display: none;
   }
 }
 
 @media screen and (max-width: 915px) {
-  .search{
+  ul > li.el-menu-item.search {
+    width: 20rem;
+  }
+}
+
+@media screen and (max-width: 752px) {
+  .search {
     display: none;
   }
-} 
+}
+
+div.header > ul{
+  position: fixed;
+  width: 100%;
+  background-color: #fff;
+  z-index: 9999;
+}
+
 
 </style>

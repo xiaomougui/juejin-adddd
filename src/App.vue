@@ -14,7 +14,6 @@
 import Header from './components/Header/Header.vue'
 import Nav from './views/home/childrenComps/Nav.vue';
 
-
 export default {
   name: "App",
   components: {
@@ -38,7 +37,8 @@ export default {
 }
 
 .nav {
-  display: flex;
-  justify-content: center;
+  margin-left: 17%;
+  margin-top: 60px;
 }
+
 </style>

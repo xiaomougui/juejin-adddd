@@ -61,6 +61,9 @@
             </a>
           </div>
         </div>
+        <div class="message">
+          <i class="el-icon-edit">啊对对对对队</i>
+        </div>
       </div>
     </div>
     <button @click="test">click me</button>
@@ -155,7 +158,7 @@ export default {
 
 .left {
   width: 45%;
-  margin-left: 18%;
+  margin-left: 20%;
   background-color: #fff;
 }
 
@@ -166,8 +169,8 @@ export default {
 .right {
   position: absolute;
   width: 16%;
-  top: 18%;
-  left: 65%;
+  top: 20%;
+  left: 66%;
   background-color: #fff;
 }
 
@@ -262,4 +265,9 @@ a {
   padding: 1rem;
 }
 
+.message {
+  display: flex;
+  justify-content: center;
+  color: #1e80ff;
+}
 </style>
