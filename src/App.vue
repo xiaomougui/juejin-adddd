@@ -1,7 +1,11 @@
 <template>
   <div id="app">
-  <Header></Header>
-  <Nav></Nav>
+    <div class="header">
+      <Header />
+    </div>
+    <div class="Nav">
+      <Nav />
+    </div>
   <router-view></router-view>
   </div>
 </template>
@@ -25,17 +29,20 @@ export default {
 
 
 <style>
-
-
-
-
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+}
 
-  
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
 }
 </style>
