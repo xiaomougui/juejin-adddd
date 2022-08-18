@@ -32,7 +32,7 @@ export default {
       };
       xhr.open("POST", "http://127.0.0.1:3000/data/home", true);
       xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      xhr.send("category=" + "后端");
+      xhr.send("category=" + "综合" + "&tag=" + "hot" + "&time=7");
     },
     post() {
       let xhr = new XMLHttpRequest();

@@ -2,7 +2,7 @@
   <div id="app">
     <Header />
     <Nav />
-    <Home />
+    <Article />
   </div>
 </template>
 
