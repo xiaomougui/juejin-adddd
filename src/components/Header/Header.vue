@@ -105,8 +105,6 @@ export default {
     changeDiv() {
       document.querySelector("li.center").style.visibility = "visible";
     },
-<<<<<<< HEAD
-=======
     // changeHidde(){
     //   var scrollTop = document.documentElement.scrollTop
 
@@ -124,9 +122,9 @@ export default {
       console.log(scrollTop);
       //为了计算距离顶部的高度，当高度大于500隐藏
       if (that.scrollTop > 500) {
-        document.querySelector('div.header > ul').style.visibility = 'hidden'
-      }else {
-        document.querySelector('div.header > ul').style.visibility = 'visible'
+        document.querySelector("div.header > ul").style.visibility = "hidden";
+      } else {
+        document.querySelector("div.header > ul").style.visibility = "visible";
       }
     },
   },
@@ -135,7 +133,6 @@ export default {
   },
   destroyed() {
     window.removeEventListener("scroll", this.scrollToTop, true);
->>>>>>> 9ef21b0ca9361519343fe6b43d443ba2ec75d692
   },
 };
 </script>
@@ -253,21 +250,16 @@ ul > li:nth-child(14) {
 }
 
 @media screen and (max-width: 915px) {
-<<<<<<< HEAD
-=======
   ul > li.el-menu-item.search {
     width: 20rem;
   }
 }
 
 @media screen and (max-width: 752px) {
->>>>>>> 9ef21b0ca9361519343fe6b43d443ba2ec75d692
   .search {
     display: none;
   }
 }
-<<<<<<< HEAD
-=======
 
 div.header > ul {
   position: fixed;
@@ -275,5 +267,4 @@ div.header > ul {
   background-color: #fff;
   z-index: 9999;
 }
->>>>>>> 9ef21b0ca9361519343fe6b43d443ba2ec75d692
 </style>

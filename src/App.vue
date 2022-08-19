@@ -11,13 +11,8 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import Header from "./components/Header/Header.vue";
 import Nav from "./views/home/childrenComps/Nav.vue";
-=======
-import Header from './components/Header/Header.vue'
-import Nav from './views/home/childrenComps/Nav.vue';
->>>>>>> 9ef21b0ca9361519343fe6b43d443ba2ec75d692
 
 export default {
   name: "App",
@@ -25,9 +20,7 @@ export default {
     Header,
     Nav,
   },
-  methods: {
-    
-  }
+  methods: {},
 };
 </script>
 
@@ -48,5 +41,4 @@ export default {
   margin-left: 17%;
   margin-top: 60px;
 }
-
 </style>

@@ -16,7 +16,7 @@
           </div>
           <div class="second-line">点亮你在社区的每一天</div>
         </div>
-        <div class="sidebar-block banner-block" >
+        <div class="sidebar-block banner-block">
           <div class="banner banner">
             <a href="https://juejin.cn/pin/7131931795720765477" target="_blank">
               <img
@@ -114,7 +114,7 @@ export default {
       //为了计算距离顶部的高度，当高度大于500隐藏
       if (that.scrollTop > 700) {
         // document.querySelector('.signin-tip').btnFlag = true
-      }else {
+      } else {
         // document.querySelector('.signin-tip').style.visibility = 'visible'
       }
     },
@@ -159,7 +159,6 @@ export default {
     window.addEventListener("scroll", this.scrollToTop, true);
   },
 
-
   destroyed() {
     window.removeEventListener("scroll", this.scrollToTop, true);
   },
@@ -169,13 +168,12 @@ export default {
 <style scoped>
 .home {
   width: 100%;
-  height: 100%;
+  height: 200px;
 }
 
 .board {
   width: 100%;
   background-color: rgb(244, 245, 245);
-  padding-top: 10px;
 }
 
 .left {
