@@ -2,7 +2,7 @@
   <div class="home">
     <div class="board">
       <div class="tags">
-        <el-row>
+        <el-row class="buttons">
           <el-button type="primary" round size="mini">全部</el-button>
           <el-button round size="mini">Android</el-button>
           <el-button round size="mini">前端</el-button>
@@ -125,6 +125,12 @@ export default {
   margin-bottom: 10px;
 }
 
+/* #app > div.home > div > div.tags > div{
+  padding-top: 0%;
+} */
+.el-button--mini, .el-button--mini.is-round {
+    padding: 0px 15px;
+}
 .left {
   width: 45%;
   margin-left: 18%;

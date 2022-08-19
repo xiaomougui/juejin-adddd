@@ -2,14 +2,18 @@
   <div class="home">
     <div class="board">
       <div class="tags">
-        <el-row>
-          <el-button type="primary" round size="mini">全部</el-button>
-          <el-button round size="mini">前端</el-button>
-          <el-button round size="mini">JavaScript</el-button>
-          <el-button round size="mini">Vue.js</el-button>
-          <el-button round size="mini">React.js</el-button>
-          <el-button round size="mini">CSS</el-button>
-          <el-button round size="mini">面试</el-button>
+        <el-button type="primary" round size="mini">全部</el-button>
+        <el-button round size="mini">前端</el-button>
+        <el-button round size="mini">JavaScript</el-button>
+        <el-button round size="mini">Vue.js</el-button>
+        <el-button round size="mini">React.js</el-button>
+        <el-button round size="mini">CSS</el-button>
+        <el-button round size="mini">面试</el-button>
+        <el-button round size="mini" @click="show" class="showus">
+          展开
+          <i class="el-icon-caret-bottom"></i>
+        </el-button>
+        <div class="yincang">
           <el-button round size="mini">TypeScript</el-button>
           <el-button round size="mini">后端</el-button>
           <el-button round size="mini">Node.js</el-button>
@@ -19,7 +23,7 @@
           <el-button round size="mini">架构</el-button>
           <el-button round size="mini">微信小程序</el-button>
           <el-button round size="mini">Android</el-button>
-        </el-row>
+        </div>
       </div>
       <div class="left">
         <Top></Top>
@@ -49,10 +53,21 @@ export default {
     Passages,
     Nav,
     Top,
-    Top,
   },
 
   methods: {
+    show() {
+      var butt = document.querySelector(".yincang");
+      butt.style.visibility = "visible";
+      var yincang = document.querySelector(".showus");
+      yincang.style.display = "none";
+      // var butt = document.createElement('button')
+      // butt.classList.add("el-button")
+      // butt.classList.add("el-button--default")
+      // butt.classList.add("is-round")
+      // var buttons = document.querySelector('.tags')
+      // buttons.appendChild(butt)
+    },
     getData() {
       getFrontData().then((res) => {
         this.passages = res;
@@ -133,4 +148,10 @@ export default {
 .top {
   width: 100%;
 }
+
+.yincang {
+  visibility: hidden;
+  margin-top: 5px;
+}
+
 </style>

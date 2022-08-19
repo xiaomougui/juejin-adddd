@@ -5,7 +5,7 @@
         <Top></Top>
         <Passages :passages="passages"></Passages>
       </div>
-      <div class="right">
+      <div class="right" @click="backTop()">
         <div class="signin-tip">
           <div class="first-line">
             <div class="icon-text">
@@ -16,7 +16,7 @@
           </div>
           <div class="second-line">点亮你在社区的每一天</div>
         </div>
-        <div class="sidebar-block banner-block">
+        <div class="sidebar-block banner-block" >
           <div class="banner banner">
             <a href="https://juejin.cn/pin/7131931795720765477" target="_blank">
               <img
@@ -61,6 +61,9 @@
             </a>
           </div>
         </div>
+        <div class="message">
+          <i class="el-icon-edit">啊对对对对队</i>
+        </div>
       </div>
     </div>
     <button @click="test">click me</button>
@@ -98,6 +101,22 @@ export default {
       console.log(this.passages);
       console.log(this.passages[0]);
       console.log(this.passages[0].isimage);
+    },
+
+    scrollToTop() {
+      let that = this;
+      let scrollTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
+      that.scrollTop = scrollTop;
+
+      //为了计算距离顶部的高度，当高度大于500隐藏
+      if (that.scrollTop > 700) {
+        // document.querySelector('.signin-tip').btnFlag = true
+      }else {
+        // document.querySelector('.signin-tip').style.visibility = 'visible'
+      }
     },
   },
 
@@ -137,6 +156,12 @@ export default {
         });
       }
     });
+    window.addEventListener("scroll", this.scrollToTop, true);
+  },
+
+
+  destroyed() {
+    window.removeEventListener("scroll", this.scrollToTop, true);
   },
 };
 </script>
@@ -155,7 +180,7 @@ export default {
 
 .left {
   width: 45%;
-  margin-left: 18%;
+  margin-left: 20%;
   background-color: #fff;
 }
 
@@ -164,10 +189,11 @@ export default {
 }
 
 .right {
+  /* position: fixed; */
   position: absolute;
   width: 16%;
-  top: 18%;
-  left: 65%;
+  top: 20%;
+  left: 66.5%;
   background-color: #fff;
 }
 
@@ -203,10 +229,6 @@ div.first-line > button {
   color: #1e80ff;
 }
 
-.sidebar-block.banner-block .banner {
-  height: 200px;
-}
-
 .sidebar-block {
   background-color: #fff;
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
@@ -219,6 +241,8 @@ div.first-line > button {
 
 .sidebar-block.banner-block {
   overflow: hidden;
+  /* position: fixed;
+  left: 65%; */
 }
 
 .sidebar-block.banner-block .banner {
@@ -262,4 +286,9 @@ a {
   padding: 1rem;
 }
 
+.message {
+  display: flex;
+  justify-content: center;
+  color: #1e80ff;
+}
 </style>
