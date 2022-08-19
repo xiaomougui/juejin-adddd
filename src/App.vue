@@ -20,6 +20,9 @@ export default {
     Header,
     Nav
   },
+  methods: {
+    
+  }
 };
 </script>
 

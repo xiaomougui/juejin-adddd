@@ -13,7 +13,7 @@
           展开
           <i class="el-icon-caret-bottom"></i>
         </el-button>
-        <!-- <div class="yincang">
+        <div class="yincang">
           <el-button round size="mini">TypeScript</el-button>
           <el-button round size="mini">后端</el-button>
           <el-button round size="mini">Node.js</el-button>
@@ -23,7 +23,7 @@
           <el-button round size="mini">架构</el-button>
           <el-button round size="mini">微信小程序</el-button>
           <el-button round size="mini">Android</el-button>
-        </div> -->
+        </div>
       </div>
       <div class="left">
         <Top></Top>
@@ -57,16 +57,16 @@ export default {
 
   methods: {
     show() {
-      // var butt = document.querySelector(".yincang");
-      // butt.style.visibility = "visible";
+      var butt = document.querySelector(".yincang");
+      butt.style.visibility = "visible";
       var yincang = document.querySelector(".showus");
       yincang.style.display = "none";
-      var butt = document.createElement('button')
-      butt.classList.add("el-button")
-      butt.classList.add("el-button--default")
-      butt.classList.add("is-round")
-      var buttons = document.querySelector('.tags')
-      buttons.appendChild(butt)
+      // var butt = document.createElement('button')
+      // butt.classList.add("el-button")
+      // butt.classList.add("el-button--default")
+      // butt.classList.add("is-round")
+      // var buttons = document.querySelector('.tags')
+      // buttons.appendChild(butt)
     },
     getData() {
       getFrontData().then((res) => {

@@ -4,6 +4,7 @@
     class="el-menu-demo"
     mode="horizontal"
     @select="handleSelect"
+    @click="backTop()"
   >
     <el-menu-item>
       <el-image
@@ -39,7 +40,6 @@
     <el-menu-item index="9" style="margin-left: 70px" class="search">
       <el-input
         placeholder="探索稀土掘金"
-        v-model="input3"
         class="input-with-select"
         @focus="changeInput"
         @blur="changeDiv"
@@ -105,6 +105,34 @@ export default {
     changeDiv() {
       document.querySelector("li.center").style.visibility = "visible";
     },
+    // changeHidde(){
+    //   var scrollTop = document.documentElement.scrollTop
+
+    //   if (scrollTop > 300){
+    //     document.querySelector('div.header > ul').style.display = 'none'
+    //   }
+    // }
+    scrollToTop() {
+      let that = this;
+      let scrollTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
+      that.scrollTop = scrollTop;
+      console.log(scrollTop);
+      //为了计算距离顶部的高度，当高度大于500隐藏
+      if (that.scrollTop > 500) {
+        document.querySelector('div.header > ul').style.visibility = 'hidden'
+      }else {
+        document.querySelector('div.header > ul').style.visibility = 'visible'
+      }
+    },
+  },
+  mounted() {
+    window.addEventListener("scroll", this.scrollToTop, true);
+  },
+  destroyed() {
+    window.removeEventListener("scroll", this.scrollToTop, true);
   },
 };
 </script>
@@ -233,12 +261,10 @@ ul > li:nth-child(14) {
   }
 }
 
-div.header > ul{
+div.header > ul {
   position: fixed;
   width: 100%;
   background-color: #fff;
   z-index: 9999;
 }
-
-
 </style>
