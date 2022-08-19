@@ -124,7 +124,7 @@ export default {
 
       var changeDiv = document.querySelector(".slide");
 
-      if (that.scrollTop < 500) {
+      if (that.scrollTop < 560) {
         // firstDiv.style.display = 'block'
         changeDiv.style.position = "relative";
       } else {
