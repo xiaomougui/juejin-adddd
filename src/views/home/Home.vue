@@ -5,7 +5,7 @@
         <Top></Top>
         <Passages :passages="passages"></Passages>
       </div>
-      <div class="right" @click="backTop()">
+      <div class="right">
         <div class="signin-tip">
           <div class="first-line">
             <div class="icon-text">
@@ -16,49 +16,59 @@
           </div>
           <div class="second-line">点亮你在社区的每一天</div>
         </div>
-        <div class="sidebar-block banner-block" >
-          <div class="banner banner">
-            <a href="https://juejin.cn/pin/7131931795720765477" target="_blank">
-              <img
-                src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2c6575f7b7124236b0b0deffc2f6c663~tplv-k3u1fbpfcp-no-mark:480:400:0:0.awebp?"
-                width="240"
-                height="200"
-                class="banner-image"
-              />
-            </a>
-          </div>
-        </div>
-        <div class="sidebar-block banner-block">
-          <div class="banner banner">
-            <a
-              href="https://juejin.cn/post/7130964538433732644"
-              target="_blank"
-            >
-              <img
-                src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a44a1763fd4b4f63ac82735d6ce28142~tplv-k3u1fbpfcp-no-mark:480:400:0:0.awebp?"
-                width="240"
-                height="200"
-                class="banner-image"
-              />
-            </a>
-          </div>
-        </div>
-        <div
-          class="sidebar-block app-download-sidebar-block sidebar-block shadow"
-        >
-          <div class="block-body">
-            <a href="/app" class="" target="_blank">
-              <div class="app-link">
+        <div class="slide">
+          <div class="sidebar-block banner-block slide-one">
+            <div class="banner banner">
+              <a
+                href="https://juejin.cn/pin/7131931795720765477"
+                target="_blank"
+              >
                 <img
-                  src="//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/home.59780ae.png"
-                  class="qr-img"
+                  src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2c6575f7b7124236b0b0deffc2f6c663~tplv-k3u1fbpfcp-no-mark:480:400:0:0.awebp?"
+                  width="240"
+                  height="200"
+                  class="banner-image"
                 />
-                <div class="content-box">
-                  <div class="headline">下载稀土掘金APP</div>
-                  <div class="desc">一个帮助开发者成长的社区</div>
+              </a>
+            </div>
+          </div>
+          <div class="sidebar-block banner-block slide-two">
+            <div class="banner banner">
+              <a
+                href="https://juejin.cn/post/7130964538433732644"
+                target="_blank"
+              >
+                <img
+                  src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a44a1763fd4b4f63ac82735d6ce28142~tplv-k3u1fbpfcp-no-mark:480:400:0:0.awebp?"
+                  width="240"
+                  height="200"
+                  class="banner-image"
+                />
+              </a>
+            </div>
+          </div>
+          <div
+            class="
+              sidebar-block
+              app-download-sidebar-block
+              sidebar-block
+              shadow
+            "
+          >
+            <div class="block-body">
+              <a href="/app" class="" target="_blank">
+                <div class="app-link">
+                  <img
+                    src="//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/home.59780ae.png"
+                    class="qr-img"
+                  />
+                  <div class="content-box">
+                    <div class="headline">下载稀土掘金APP</div>
+                    <div class="desc">一个帮助开发者成长的社区</div>
+                  </div>
                 </div>
-              </div>
-            </a>
+              </a>
+            </div>
           </div>
         </div>
         <div class="message">
@@ -81,6 +91,7 @@ export default {
     return {
       passages: [],
       obj: [1, 2, 3],
+      // fixed :false,
     };
   },
 
@@ -111,19 +122,20 @@ export default {
         document.body.scrollTop;
       that.scrollTop = scrollTop;
 
-      //为了计算距离顶部的高度，当高度大于500隐藏
-      if (that.scrollTop > 700) {
-        // document.querySelector('.signin-tip').btnFlag = true
-      }else {
-        // document.querySelector('.signin-tip').style.visibility = 'visible'
+      var changeDiv = document.querySelector(".slide");
+
+      if (that.scrollTop < 500) {
+        // firstDiv.style.display = 'block'
+        changeDiv.style.position = "relative";
+      } else {
+        // firstDiv.style.display = 'none'
+        changeDiv.style.position = "fixed";
       }
     },
   },
-
   created() {
     this.getHomeData();
   },
-
   mounted() {
     const that = this;
     window.addEventListener("scroll", function () {
@@ -159,7 +171,6 @@ export default {
     window.addEventListener("scroll", this.scrollToTop, true);
   },
 
-
   destroyed() {
     window.removeEventListener("scroll", this.scrollToTop, true);
   },
@@ -189,10 +200,9 @@ export default {
 }
 
 .right {
-  /* position: fixed; */
   position: absolute;
   width: 16%;
-  top: 20%;
+  top: 18%;
   left: 66.5%;
   background-color: #fff;
 }
@@ -233,7 +243,7 @@ div.first-line > button {
   background-color: #fff;
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
   border-radius: 2px;
-  margin-bottom: 1.3rem;
+  /* margin-bottom: 1.3rem; */
   font-size: 1.16rem;
   line-height: 1.29;
   color: #333;
@@ -241,8 +251,6 @@ div.first-line > button {
 
 .sidebar-block.banner-block {
   overflow: hidden;
-  /* position: fixed;
-  left: 65%; */
 }
 
 .sidebar-block.banner-block .banner {
@@ -250,7 +258,7 @@ div.first-line > button {
 }
 
 .sidebar-block {
-  margin-bottom: 1.5rem;
+  /* margin-bottom: 1.5rem; */
   border-radius: 2px;
 }
 

@@ -4,7 +4,6 @@
     class="el-menu-demo"
     mode="horizontal"
     @select="handleSelect"
-    @click="backTop()"
   >
     <el-menu-item>
       <el-image
@@ -90,10 +89,6 @@
 <script>
 export default {
   name: "Header",
-  data() {
-    return {};
-  },
-  created() {},
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
@@ -105,13 +100,7 @@ export default {
     changeDiv() {
       document.querySelector("li.center").style.visibility = "visible";
     },
-    // changeHidde(){
-    //   var scrollTop = document.documentElement.scrollTop
-
-    //   if (scrollTop > 300){
-    //     document.querySelector('div.header > ul').style.display = 'none'
-    //   }
-    // }
+    
     scrollToTop() {
       let that = this;
       let scrollTop =
