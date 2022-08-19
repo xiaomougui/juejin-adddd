@@ -2,7 +2,17 @@
   <div class="home">
     <div class="board">
       <div class="tags">
-        <el-button type="primary" round size="mini">全部</el-button>
+        <button
+          class="button"
+          v-for="(p, index) of buttons"
+          :key="index"
+          @click="p == `展开` ? getMore() : sendCategory()"
+        >
+          {{ p }}
+          <i class="el-icon-caret-bottom" v-if="p == `展开`"></i>
+        </button>
+
+        <!-- <el-button type="primary" round size="mini">全部</el-button>
         <el-button round size="mini">前端</el-button>
         <el-button round size="mini">JavaScript</el-button>
         <el-button round size="mini">Vue.js</el-button>
@@ -22,8 +32,7 @@
           <el-button round size="mini">Webpack</el-button>
           <el-button round size="mini">架构</el-button>
           <el-button round size="mini">微信小程序</el-button>
-          <el-button round size="mini">Android</el-button>
-        </div>
+          <el-button round size="mini">Android</el-button> -->
       </div>
       <div class="left">
         <Top></Top>
@@ -44,6 +53,19 @@ import { getFrontData } from "../../network/home";
 export default {
   data() {
     return {
+      buttons: [
+        "前端",
+        "JavaScript",
+        "Vue.js",
+        "React.js",
+        "CSS",
+        "面试",
+        "TypeScript",
+        "Node.js",
+        "后端",
+        "展开",
+      ],
+      otherButtons: ["算法", "架构", "前端框架", "Webpack", "微信小程序"],
       passages: [],
       obj: [1, 2, 3],
     };
@@ -56,6 +78,7 @@ export default {
   },
 
   methods: {
+    sendCategory() {},
     show() {
       var butt = document.querySelector(".yincang");
       butt.style.visibility = "visible";
@@ -72,6 +95,13 @@ export default {
       getFrontData().then((res) => {
         this.passages = res;
       });
+    },
+    getMore() {
+      let i = this.buttons.length - 1;
+      for (let j = 0; j < this.otherButtons.length; j++) {
+        this.buttons[i] = this.otherButtons[j];
+        i++;
+      }
     },
   },
 
@@ -154,4 +184,11 @@ export default {
   margin-top: 5px;
 }
 
+.button {
+  background-color: white;
+  padding: 4px 6px;
+  border-radius: 15px;
+  border: black 1px solid;
+  cursor: pointer;
+}
 </style>

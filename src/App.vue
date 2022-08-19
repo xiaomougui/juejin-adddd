@@ -6,23 +6,21 @@
     <div class="Nav">
       <Nav />
     </div>
-  <router-view></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Header from './components/Header/Header.vue'
-import Nav from './views/home/childrenComps/Nav.vue';
+import Header from "./components/Header/Header.vue";
+import Nav from "./views/home/childrenComps/Nav.vue";
 
 export default {
   name: "App",
   components: {
     Header,
-    Nav
+    Nav,
   },
-  methods: {
-    
-  }
+  methods: {},
 };
 </script>
 
@@ -43,5 +41,4 @@ export default {
   margin-left: 17%;
   margin-top: 60px;
 }
-
 </style>

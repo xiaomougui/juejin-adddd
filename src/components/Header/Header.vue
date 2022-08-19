@@ -111,9 +111,9 @@ export default {
       console.log(scrollTop);
       //为了计算距离顶部的高度，当高度大于500隐藏
       if (that.scrollTop > 500) {
-        document.querySelector('div.header > ul').style.visibility = 'hidden'
-      }else {
-        document.querySelector('div.header > ul').style.visibility = 'visible'
+        document.querySelector("div.header > ul").style.visibility = "hidden";
+      } else {
+        document.querySelector("div.header > ul").style.visibility = "visible";
       }
     },
   },
