@@ -1,10 +1,15 @@
 <template>
   <div class="home">
     <div class="board">
-      <div class="tags" >
-        <button class="button" v-for="(p,index) of buttons" :key=index @click="(p==`展开`)?getMore():sendCategory()">
-          {{p}}
-          <i class="el-icon-caret-bottom" v-if="p==`展开`"></i>
+      <div class="tags">
+        <button
+          class="button"
+          v-for="(p, index) of buttons"
+          :key="index"
+          @click="p == `展开` ? getMore() : sendCategory()"
+        >
+          {{ p }}
+          <i class="el-icon-caret-bottom" v-if="p == `展开`"></i>
         </button>
 
         <!-- <el-button type="primary" round size="mini">全部</el-button>
@@ -28,7 +33,6 @@
           <el-button round size="mini">架构</el-button>
           <el-button round size="mini">微信小程序</el-button>
           <el-button round size="mini">Android</el-button> -->
-        </div>
       </div>
       <div class="left">
         <Top></Top>
