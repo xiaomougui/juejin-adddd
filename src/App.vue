@@ -1,36 +1,43 @@
 <template>
   <div id="app">
-    <Header />
-    <Nav />
-    <Article />
+    <div class="header">
+      <Header />
+    </div>
+    <div class="Nav">
+      <Nav />
+    </div>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import md from "./components/test/md.vue";
-import Nav from "./components/Nav/index.vue";
-import Header from "./components/Header/index.vue";
-import Article from "./components/Article.vue";
-import Home from "./views/home/Home.vue";
+import Header from "./components/Header/Header.vue";
+import Nav from "./views/home/childrenComps/Nav.vue";
 
 export default {
   name: "App",
   components: {
-    md,
-    Nav,
     Header,
-    Article,
-    Home,
+    Nav,
   },
 };
 </script>
 
 <style>
-@import "./style/style.css";
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
 }
 </style>

@@ -10,12 +10,12 @@
                 <div class="title">{{ passage.title }}</div>
                 <div class="text">{{ passage.goodtext }}</div>
                 <div class="other">
-                    <i class="iconfont icon-liulanliang"></i>
-                    {{passage.browse}}  
-                    <i class="iconfont icon-dianzan"></i>
-                    {{passage.like}}   
-                    <i class="iconfont icon-pinglun"></i>
-                    {{passage.comments}} 
+                    <div class="browse"><i class="iconfont icon-liulanliang"></i>
+                    {{passage.browse}}  </div>
+                    <div class="like"><i class="iconfont icon-dianzan"></i>
+                    {{passage.like}}</div>   
+                    <div class="comments"><i class="iconfont icon-pinglun"></i>
+                    {{passage.comments}} </div>
                 </div>
             </div>
             <div class="right">
@@ -42,7 +42,9 @@ export default{
     methods: {
         itemClick() {
             //路由跳转占位
-            //this.$router.push();
+            console.log('打开新页面')
+           const newpage = this.$router.resolve({name:'/home',params:{}})
+           window.open(newpage.href,'_blank')
            
         },
     },
@@ -58,6 +60,7 @@ export default{
     height: 140px;
     border-top: 1px solid #000;
     margin: 0 2%;
+    cursor: pointer;
 }
 
 .line1{
@@ -73,6 +76,10 @@ export default{
     margin-top: 15px;
     padding-right: 8px;
     border-right: 1px solid #bbb;
+}
+
+.auther:hover,.category:hover,.like:hover,.comments:hover{
+    color:rgb(0, 127, 255);
 }
 
 .time{
@@ -137,6 +144,11 @@ export default{
     bottom: 15%;
     font-size: 13px;
     color:#444;
+    display: flex;
+}
+
+.browse,.like,.comments{
+    margin-right: 20px;
 }
 
 .right{

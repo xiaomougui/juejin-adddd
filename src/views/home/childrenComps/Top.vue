@@ -22,11 +22,16 @@ export default{
     height: 20px;
     line-height: 20px;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .left{
     padding-right: 20px;
     border-right: 1px solid #eee;
+}
+
+.left:hover,.middle:hover,.right:hover{
+    color:rgb(0, 127, 255);
 }
 
 .middle{
