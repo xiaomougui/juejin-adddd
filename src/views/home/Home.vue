@@ -1,124 +1,197 @@
 <template>
-    <div class="home">
-        <div class="board">
-            <div class="left">
-                <Top></Top>
-                <Passages :passages="passages"></Passages>
-            </div>   
+
+  <div class="home">
+    <div class="board">
+      <div class="content">
+        <div class="left">
+        <Top :index="1+''" upper="/home"></Top>
+        <Passages :passages="passages"></Passages>
         </div>
-        <!-- <button @click="test">click me</button> -->
+        <div class="right">
+          <Signin></Signin>
+        </div>
+      </div>
+      
     </div>
+  </div>
 </template>
 
 <script>
-import Passages from "./childrenComps/Passages.vue"
-import Nav from "./childrenComps/Nav.vue";
+
+
+import Passages from "./childrenComps/Passages.vue";
+import Signin from "../../components/Signin.vue";
 import Top from "./childrenComps/Top.vue";
 
-import { getHomeData} from "../../network/home";
+import { getHomeData } from "../../network/home";
 
 
+export default {
+  data() {
+    return {
+      passages: [],
+    };
+  },
 
-export default{
-    data(){
-        return{
-            passages:[],
-            obj:[1,2,3]
-        }
-    },
-
-    components:{
+  components: {
     Passages,
-    Nav,
     Top,
-    Top
+    Signin,
+    Signin
 },
 
-    methods:{
-        getHomeData(){
-            getHomeData().then((res)=>{
-                this.passages = res
-            });
-        },
-        
-			
-
-        test(){
-            this.getHomeData()
-            console.log(this.passages)
-            console.log(this.passages[0])
-            console.log(this.passages[0].isimage)
-            
-        },
-
-        backHome(){
-            this.getHomeData()
-        }
-
-        
+  methods: {
+    getHomeData() {
+      getHomeData().then((res) => {
+        this.passages = res;
+      });
     },
 
-    created(){
-        this.getHomeData()
+    scrollToTop() {
+      let that = this;
+      let scrollTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
+      that.scrollTop = scrollTop;
+
+      var changeDiv = document.querySelector(".slide");
+
+      if (that.scrollTop < 560) {
+        // firstDiv.style.display = 'block'
+        changeDiv.style.position = "relative";
+      } else {
+        // firstDiv.style.display = 'none'
+        changeDiv.style.position = "fixed";
+      }
     },
+  },
 
-    
-    mounted () {
-        const that = this;
-        window.addEventListener('scroll',function(){
-        // 滚动视口高度(也就是当前元素的真实高度)
-        let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
-        //console.log(scrollHeight)
-        
-        // 可见区域高度
-        let clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-        // 滚动条顶部到浏览器顶部高度
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-        //console.log(clientHeight)
-        //console.log(scrollTop)
-        //console.log("和："+clientHeight + scrollTop)
-        if(clientHeight + scrollTop + 1 >= scrollHeight){
-            const data = []
-            getHomeData().then((res)=>{
-                //console.log(res)
-                for(let i = 0;i<15;i++){
-                    data.push(res[i])
-                }
-                this.setTimeout(function(){
-                    that.passages = that.passages.concat(data)
-                },1000)
-                
-                console.log(data)
-                console.log(that.passages)
-            });
+  created() {
+    this.getHomeData();
+  },
+
+  mounted() {
+    const that = this;
+    window.addEventListener("scroll", function () {
+      // 滚动视口高度(也就是当前元素的真实高度)
+      let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+      // 可见区域高度
+      let clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+      // 滚动条顶部到浏览器顶部高度
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (clientHeight + scrollTop +1 >= scrollHeight) {
+        //获取更多数据函数
+        function getMore(){
+          //console.log(that.passages)
+          const data = []
+          getHomeData().then((res)=>{
+            for(let i = 0;i<15;i++){
+              data.push(res[i])
+            }
+            that.passages = that.passages.concat(data)
+          });
         }
-        })
-    }
+        //节流函数
+        function throttled(fn, delay) {
+          let timer = null
+          let starttime = Date.now()
+          return function () {
+            let curTime = Date.now() // 当前时间
+            let remaining = delay - (curTime - starttime)  // 从上一次到现在，还剩下多少多余时间
+            let context = this
+            let args = arguments
+            clearTimeout(timer)
+            if (remaining <= 0) {
+              fn.apply(context, args)
+              starttime = Date.now()
+            } else {
+              timer = setTimeout(fn, remaining);
+            }
+          }
+        }
+        //调用节流后的获取更多函数
+        throttled(getMore,2000)()
+      }
 
+    });
 
-}
+    window.addEventListener("scroll", this.scrollToTop, true);
+  },
+
+  destroyed() {
+    window.removeEventListener("scroll", this.scrollToTop, true);
+  },
+};
 </script>
 
 <style scoped>
-.home{
-    width: 100%;
-    height: 100%;
+.home {
+  width: 100%;
+  height: 100%;
 }
 
-.board{
-    width: 100%;
-    background-color:rgb(244,245,245);
-    padding-top: 10px;
+.board {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(244, 245, 245);
+  padding-top: 20px;
+  position: relative;
+}
+
+
+@media screen and (max-width:1050px) {
+  .content{
+    background-color: rgb(244, 245, 245);
+   width: 100%;
     
-}
+  }
 
-.left{
-    width: 45%;
-    margin-left: 18%;
-    background-color: #fff;
-}
+  .right{
+    display: none;
+  }
 
-.top{
+  .left{
+    margin-top: 10px;
     width: 100%;
+    background-color: #fff;
+    position: relative;
+  }
+
+
 }
+
+@media screen and (min-width:1050px) {
+  .content{
+    background-color: rgb(244, 245, 245);
+    
+    margin-left: calc(50% - 500px);
+    width: 1000px;
+    position: relative;
+    
+  }
+
+  .left {
+    padding-top: 10px;
+    width: 700px;
+    background-color: #fff;
+    position: relative;
+  }
+
+  .right {
+    position: absolute;
+    width: 250px;
+    top: 0%;
+    right:0px;
+    background-color: #fff;
+  }
+
+
+
+  Top {
+    width: 100%;
+  }
+
+}
+
 </style>

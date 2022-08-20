@@ -5,7 +5,7 @@
         <li><a href="javascript:;" @click="goHome">综合</a></li>
         <li><a href="javascript:;" @click="follow">关注</a></li>
         <li>
-            <a href="javascript:;" @click="goFront">
+            <a href="javascript:;" @click="goBack">
               <el-popover
                 placement="top-start"
                 width="300"
@@ -130,7 +130,7 @@
             >
           </li>
         <li>
-            <a href="#">
+            <a href="javascript:;" @click="goTools">
               <el-popover placement="top-start" width="300" trigger="hover">
                 <el-row>
                   <el-button round size="mini">后端</el-button>
@@ -202,38 +202,9 @@
             >
           </li>
         
-        <li style="margin-left: 200px"><a href="#">标签管理</a></li>
-      </ul>
-
-      
+        <li style="margin-left: 305px"><a href="#">标签管理</a></li>
+      </ul>   
     </div>
-    <!-- <div class="biaoqian">
-      <div class="xifen">
-        <el-row style="display: inline">
-          <el-button type="primary" round size="mini">后端</el-button>
-          <el-button round size="mini">Java </el-button>
-          <el-button round size="mini">Go </el-button>
-          <el-button round size="mini">算法 </el-button>
-          <el-button round size="mini">Python </el-button>
-          <el-button round size="mini">Spring Boot</el-button>
-          <el-button round size="mini">数据库 </el-button>
-          <el-button round size="mini">面试 </el-button>
-          <el-button round size="mini">MySQL </el-button>
-          <el-button round size="mini">LeetCode </el-button>
-          <el-button round size="mini">架构 </el-button>
-          <el-button round size="mini">Redis </el-button>
-          <el-button round size="mini">Spring </el-button>
-          <el-button round size="mini">前端 </el-button>
-          <el-button round size="mini">大数据 </el-button>
-        </el-row>
-      </div>
-
-      <el-row>
-        <el-button v-for="item in houduan" :key="item" size="mini">{{
-          houduan
-        }}</el-button>
-      </el-row> 
-  </div> -->
   </div>
 
   
@@ -254,6 +225,9 @@ export default {
     follow(){
       this.$router.push('/following');
     },
+    goBack(){
+      this.$router.push('/backend');
+    },
     goFront(){
       this.$router.push('/frontend');
     },
@@ -269,6 +243,9 @@ export default {
     goCode(){
       this.$router.push('/code');
     },
+    goTools(){
+      this.$router.push('/tools');
+    },
     goReading(){
       this.$router.push('/reading');
     },
@@ -278,30 +255,33 @@ export default {
 
 <style scoped>
 .nav {
-  height: 50px;
-  /* width:100%; */
+  height: 40px;
+  width:100%;
   background-color: #fff;
 }
 a {
   text-decoration: none;
 }
-.zuo {
-  padding-bottom: 50px;
+.zuo{
+  margin-left: 0px;
 }
+/* .zuo {
+  padding-bottom: 50px;
+} */
 .leimu {
   float: left;
-  margin-left: 200px;
+  /* margin-left: 200px; */
 }
 .nav ul li {
   float: left;
   display: list-item;
-  padding: 0 10px;
+  padding: 0px 20px 20px 0px;
   text-align: center;
   list-style: none;
 }
 .nav ul li a {
   display: block;
-  height: 42px;
+  height: 30px;
   font-size: 13.92px;
   color: #71777c;
   text-decoration: none;
@@ -323,16 +303,3 @@ a {
 
          
       
-    <!-- 
-
-      <el-row>
-        <el-button v-for="item in houduan" :key="item" size="mini">{{
-          houduan
-        }}</el-button>
-      </el-row>
-    </div> -->
-  <!-- </div>
-</template> -->
-
-
-

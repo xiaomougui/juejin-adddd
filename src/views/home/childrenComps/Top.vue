@@ -1,28 +1,60 @@
 <template>
     <div class="top">
-        <div class="left">推荐</div>
-        <div class="middle">最新</div>
-        <div class="right">热榜</div>
+        <div class="left" :style="activeStyle1" @click="toLeft">推荐</div>
+        <div class="middle" :style="activeStyle2" @click="toMiddle" >最新</div>
+        <div class="right" :style="activeStyle3" @click="toRight">热榜</div>
     </div>
 </template>
 
 <script>
+import Menu from "../../../components/Menu.vue";
 export default{
-
+    props: {
+        index: {
+            type: String,
+            default: "1",
+        },
+        upper: String,
+    },
+    computed: {
+        activeStyle1() {
+            return this.index == "1" ? { color: "rgb(0,127,255)" } : {};
+        },
+        activeStyle2() {
+            return this.index == "2" ? { color: "rgb(0,127,255)" } : {};
+        },
+        activeStyle3() {
+            return this.index == "3" ? { color: "rgb(0,127,255)" } : {};
+        },
+    },
+    methods: {
+        toMiddle() {
+            this.$router.push(this.upper + "/" + "newest");
+        },
+        toLeft() {
+            this.$router.push(this.upper + "/" + "recommend");
+        },
+        toRight() {
+            this.$router.push(this.upper + "/" + "hot");
+        },
+    },
+    components: { Menu }
 }
 </script>
 
 
 <style scoped>
 .top{
+    margin-top: 0px;
     display: flex;
     font-size: 14px;
     color:#999;
-    margin-left: 20px;
+    padding-left: 20px;
     height: 20px;
     line-height: 20px;
-    margin-bottom: 10px;
+    padding-bottom: 10px;
     cursor: pointer;
+    border-bottom:1px solid #eee;
 }
 
 .left{

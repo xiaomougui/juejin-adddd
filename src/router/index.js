@@ -4,8 +4,17 @@ import VueRouter from 'vue-router'
 const Home = () =>
     import('../views/home/Home')
 
+const Newest = () =>
+    import('../views/home/Newest')
+
+const Hot = () =>
+    import('../views/home/Hot')
+
 const Follow = () =>
     import('../views/otherpage/Follow')
+
+const Backend = () =>
+    import('../views/otherpage/Backend')
 
 const Frontend = () =>
     import('../views/otherpage/Frontend')
@@ -21,6 +30,9 @@ const AI = () =>
 
 const Code = () =>
     import('../views/otherpage/Code')
+
+const Tool = () =>
+    import('../views/otherpage/Tool')
 
 const Reading = () =>
     import('../views/otherpage/Reading')
@@ -40,8 +52,20 @@ const routes = [
         component: Home
     },
     {
+        path: '/home/recommend',
+        component: Home
+    },
+    {
+        path: '/home/hot',
+        component: Hot
+    },
+    {
         path: '/following',
         component: Follow
+    },
+    {
+        path:'/backend',
+        component:Backend
     },
     {
         path: '/frontend',
@@ -65,8 +89,16 @@ const routes = [
         component: Code
     },
     {
+        path:'/tools',
+        component:Tool
+    },
+    {
         path: '/reading',
         component: Reading
+    },
+    {
+        path:'/home/newest',
+        component:Newest
     },
 
 ]

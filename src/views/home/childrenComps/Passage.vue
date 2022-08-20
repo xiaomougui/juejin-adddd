@@ -58,7 +58,7 @@ export default{
 
 .blo{
     height: 140px;
-    border-top: 1px solid #000;
+    border-bottom: 1px solid #ddd;
     margin: 0 2%;
     cursor: pointer;
 }
