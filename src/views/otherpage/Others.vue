@@ -61,7 +61,7 @@ export default {
       if(cat == "frontend")
         return ["全部","前端","JavaScript","Vue.js","React.js","CSS","面试","TypeScript","Node.js", "后端","展开",]
       else if(cat == "backend")
-        return ["全部","Java","GO","算法","Python","Spring Boot","数据库","面试","MySQL","展开",]
+        return ["全部","Java","GO","算法","Python","Spring Boot","数据库","面试","MySQL","LeetCode","展开",]
       else if(cat == "ai")
         return ["全部","人工智能","深度学习","算法","机器学习","Python","计算机视觉","后端","PyTorch","NLP","展开",]
       else if(cat == "android")
@@ -84,7 +84,7 @@ export default {
       if(cat == "frontend")
         return ["算法", "架构", "前端框架", "Webpack", "微信小程序"]
       else if(cat == "backend")
-        return ["LeetCode","架构","Redis","Spring","前端","大数据"]
+        return ["架构","Redis","Spring","前端","大数据"]
       else if(cat == "ai")
         return ["神经网络","数据分析","TensorFlow","程序员","强化学习","自动驾驶"]
       else if(cat == "android")
@@ -166,7 +166,7 @@ export default {
     $route: {
 		  handler(newVal,oldVal){
 			//判断newVal有没有值监听路由变化
-      
+        //this.getMore()
         this.getdata()
 	    },
 	  deep: true

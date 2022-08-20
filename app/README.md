@@ -3,7 +3,11 @@
 ### /data/home接口（POST请求）
 
 发送参数：
-	category(分类)，例如category=前端
+	category(分类)，例如category=前端（必须）
+
+​	tag：recommend（推荐）、newest（最新）、hot（热门）（必须）
+
+​	time：当tag=hot时（必须），3（3天内），7，30，all（全部）
 
 传回参数为以下JSON格式的对象数组：
 

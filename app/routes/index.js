@@ -4,7 +4,9 @@ var fs = require('fs');
 var bodyParser = require('body-parser');
 var randtime = require('../public/javascripts/randtime');
 const { time } = require('console');
+var home = require("../public/javascripts/home");
 
+let catg = new home();
 let timemini = new randtime();
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
@@ -14,64 +16,30 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+//使用对象传值
+let control = new Object();
 //控制/home接口次数变量
-let count = 0;
+control.count = 0;
 //控制图片的下标
-let imgIndex = 10;
+control.imgIndex = 10;
 router.post('/data/home', urlencodedParser, function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
-  console.log(count);
+  //分类
   let category = req.body.category;
-  let reason = {
-    "error": "未能提供所给参数或参数错误"
-  }
-  if (category == '' || category == undefined || category == null) {
-    res.statusCode = 400;
-    res.send(reason);
-    res.end();
-  } else {
-    fs.readFile('./public/text/home.json', function (err, data) {
-      count += 1;
-      if (err) {
-        throw err;
-      } else {
-        let data1 = JSON.parse(data);
-        let part = [];
-        console.log(count);
-        let index = 15 * (count - 1);
-        let sum = 15 * count;
-        //循环出15个数据
-        for (; index < sum; index++) {
-          console.log(index);
-          data1[index].category = category;
-          if (index < 15) {
-            part[index] = data1[index];
-            //标明imgUrl
-            if (part[index].isimage === true) {
-              part[index].imgUrl = "http://127.0.0.1:3000/images/" + imgIndex + ".png";
-              imgIndex++;
-            }
-          } else {
-            part[index - 15] = data1[index];
-            //标明imgUrl
-            if (part[index - 15].isimage === true) {
-              part[index - 15].imgUrl = "http://127.0.0.1:3000/images/" + imgIndex + ".png";
-              imgIndex++;
-            }
-          }
-          if (imgIndex == 25) {
-            imgIndex = 10;
-          }
-        }
-        res.send(JSON.stringify(part));
-        //防止出现第三次数据读取
-        if (count == 2) {
-          count = 0;
-        }
+  //标签
+  let tag = req.body.tag;
+  //如果给出时间
+  let time = req.body.time;
+  //判断参数是否正确
 
-      }
-    })
+  if (category && tag) {
+    catg.getCategory(control, res, req);
+  } else {
+    catg.isErr(res);
   }
+  //recommend,newest,hot(time)
+
+
 
 });
 
