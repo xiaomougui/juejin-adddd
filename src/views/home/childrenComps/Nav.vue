@@ -219,13 +219,13 @@ export default {
   },
   methods:{
     goHome(){
-      this.$emit('backhome')
       this.$router.push('/home');
     },
     follow(){
       this.$router.push('/following');
     },
     goBack(){
+      this.$emit('back')
       this.$router.push('/backend');
     },
     goFront(){
@@ -270,6 +270,7 @@ a {
 } */
 .leimu {
   float: left;
+  height: 40px;
   /* margin-left: 200px; */
 }
 .nav ul li {
@@ -289,11 +290,7 @@ a {
 .nav ul li a:hover {
   color: #007fff;
 }
-.biaoqian {
-  position: relative;
-  height: 70px;
-  background-color: red;
-}
+
 
 </style>
 

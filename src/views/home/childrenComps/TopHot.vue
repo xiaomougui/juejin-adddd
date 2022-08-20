@@ -3,7 +3,7 @@
         <div class="left" :style="activeStyle1" @click="toLeft">推荐</div>
         <div class="middle" :style="activeStyle2" @click="toMiddle" >最新</div>
         <div class="right" :style="activeStyle3" @click="toRight">热榜</div>
-        <Menu @goto="goto"></Menu>    
+        <Menu @goto="goto" ></Menu>    
     </div>
 </template>
 
@@ -33,13 +33,13 @@ export default{
     },
     methods: {
         toMiddle() {
-            this.$router.push(this.upper + "/" + "newest");
+            this.$router.push("/"+this.upper + "/" + "newest");
         },
         toLeft() {
-            this.$router.push(this.upper + "/" + "recommend");
+            this.$router.push("/"+this.upper + "/" + "recommend");
         },
         toRight() {
-            this.$router.push(this.upper + "/" + "hot");
+            this.$router.push("/"+this.upper + "/" + "hot");
         },
         goto(command){
             this.$emit('goto',command)

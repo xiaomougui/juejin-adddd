@@ -2,9 +2,20 @@
 
   <div class="home">
     <div class="board">
+    <div class="tags">
+        <button
+          class="button"
+          v-for="(p, index) of buttons"
+          :key="index"
+          @click="p == `展开` ? getMore() : sendCategory()"
+        >
+          {{ p }}
+          <i class="el-icon-caret-bottom" v-if="p == `展开`"></i>
+        </button>
+      </div>
       <div class="content">
         <div class="left">
-        <TopHot :index="3+''" upper="home" @goto="goto" ></TopHot>
+        <TopHot :index="3+''" :upper="this.upper" @goto="goto" ></TopHot>
         <Passages :passages="passages"></Passages>
         </div>
         <div class="right">
@@ -17,13 +28,10 @@
 </template>
 
 <script>
-
-
-import Passages from "./childrenComps/Passages.vue";
+import Passages from "../home/childrenComps/Passages.vue";
+import TopHot from "../home/childrenComps/TopHot.vue";
 import Signin from "../../components/Signin.vue";
-import TopHot from "./childrenComps/TopHot.vue";
 
-import { getHomeDataH } from "../../network/home";
 import {request} from "../../network/request"
 
 
@@ -31,11 +39,33 @@ import {request} from "../../network/request"
 export default {
   data() {
     return {
+      buttons: [
+        "全部",
+        "前端",
+        "JavaScript",
+        "Vue.js",
+        "React.js",
+        "CSS",
+        "面试",
+        "TypeScript",
+        "Node.js",
+        "后端",
+        "展开",
+      ],
+      otherButtons: ["算法", "架构", "前端框架", "Webpack", "微信小程序"],
       passages: [],
       time:3,
-      // fixed :false,
     };
   },
+
+  computed:{
+        upper(){
+            let str = this.$route.path
+            let categorys = str.split('/')
+            let cat = categorys[1]
+            return cat
+        }
+    },
 
   components: {
     Passages,
@@ -44,20 +74,23 @@ export default {
   },
 
   methods: {
-    getHomeData() {
-      getHomeDataH().then((res) => {
-        this.passages = res;
-      });
-    },
-
-    getDataH(){
+    getdata(time){
+      let str = this.$route.path
+      let categorys = str.split('/')
+      let cat = categorys[1]
+      let ta = categorys[2]
+      let tim = time
       request({
         url: '/data/home',
-        data:`category=后端&tag=hot&time=7`
+        data:`category=${cat}&tag=${ta}&time=${tim}`
       }).then((res)=>{
         this.passages = res
       });
     },
+
+    
+
+
 
     goto(command){
       //console.log(command)
@@ -65,30 +98,13 @@ export default {
         this.time = command
         console.log(this.time)
         if(command == '3天内'){
-          getHomeDataH().then((res) => {
-            this.passages = res;
-          });
+          this.getdata(3)
         }else if(command == '7天内'){
-          request({
-            url: '/data/home',
-            data:`category=后端&tag=hot&time=7`
-          }).then((res)=>{
-            this.passages = res
-          });
+          this.getdata(7)
         }else if(command == '30天内'){
-          request({
-            url: '/data/home',
-            data:`category=后端&tag=hot&time=30`
-          }).then((res)=>{
-            this.passages = res
-          });
+          this.getdata(30)
         }else{
-          request({
-            url: '/data/home',
-            data:`category=后端&tag=hot&time=all`
-          }).then((res)=>{
-            this.passages = res
-          });
+          this.getdata("all")
         }
       }
       
@@ -116,7 +132,7 @@ export default {
   },
 
   created() {
-    this.getHomeData();
+    this.getdata(3);
   },
 
   mounted() {
@@ -125,7 +141,6 @@ export default {
       // 滚动视口高度(也就是当前元素的真实高度)
       let scrollHeight =
         document.documentElement.scrollHeight || document.body.scrollHeight;
-      //console.log(scrollHeight)
 
       // 可见区域高度
       let clientHeight =
@@ -137,46 +152,31 @@ export default {
         window.pageYOffset ||
         document.documentElement.scrollTop ||
         document.body.scrollTop;
-      //console.log(clientHeight)
-      //console.log(scrollTop)
-      //console.log("和："+clientHeight + scrollTop)
       if (clientHeight + scrollTop +1 >= scrollHeight) {
-
-        function getMore(){
-          const data = []
-
+        
+          let str = that.$route.path
+          let categorys = str.split('/')
+          let cat = categorys[1]
+          let ta = categorys[2]
+          let tim = ''
           if(that.time == '3天内'){
-            getHomeDataH().then((res)=>{
-              for(let i = 0;i<15;i++){
-                data.push(res[i])
-              }
-              that.passages = that.passages.concat(data)
-            });
+            tim = '3'
           }else if(that.time == '7天内'){
-            request({
-              url: '/data/home',
-              data:`category=后端&tag=hot&time=7`
-            }).then((res)=>{
-              for(let i = 0;i<15;i++){
-                data.push(res[i])
-              }
-              that.passages = that.passages.concat(data)
-            });
+            tim = '7'
           }else if(that.time == '30天内'){
-            request({
-              url: '/data/home',
-              data:`category=后端&tag=hot&time=30`
-            }).then((res)=>{
-              for(let i = 0;i<15;i++){
-                data.push(res[i])
-              }
-              that.passages = that.passages.concat(data)
-            });
+            tim = '30'
           }else{
-            request({
-              url: '/data/home',
-              data:`category=后端&tag=hot&time=all`
-            }).then((res)=>{
+            tim = 'all'
+          }
+          
+        
+
+        const data = []
+        function getMore(){
+          request({
+            url: '/data/home',
+            data:`category=${cat}&tag=${ta}&time=${tim}`
+          }).then((res)=>{
               for(let i = 0;i<15;i++){
                 data.push(res[i])
               }
@@ -184,7 +184,7 @@ export default {
             });
           }
           
-        }
+        
 
         //节流
         function throttled(fn, delay) {
@@ -233,6 +233,34 @@ export default {
   position: relative;
 }
 
+.tags {
+  width: 48%;
+  margin-left: 17%;
+  /* background-color: #fff; */
+  margin-bottom: 5px;
+  background-color: rgb(244, 245, 245, 0.4);
+}
+
+.yincang {
+  visibility: hidden;
+  margin-top: 5px;
+}
+
+.button {
+  background-color: #fff;
+  color: #71777c;
+  padding: 3px 6px;
+  border-radius: 17px;
+  border: 2px solid #e7e7e7;
+  cursor: pointer;
+  margin-right: 13px;
+  font-size: 10px;
+  margin-bottom:3px;
+}
+
+.button:hover {
+  color: #007fff;
+}
 
 @media screen and (max-width:1050px) {
   .content{

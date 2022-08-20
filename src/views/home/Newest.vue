@@ -4,7 +4,7 @@
     <div class="board">
       <div class="content">
         <div class="left">
-        <Top :index="2+''" upper="/home"></Top>
+        <Top :index="2+''" upper="home"></Top>
         <Passages :passages="passages"></Passages>
         </div>
         <div class="right">
@@ -30,8 +30,6 @@ export default {
   data() {
     return {
       passages: [],
-      obj: [1, 2, 3],
-      // fixed :false,
     };
   },
 
@@ -69,6 +67,7 @@ export default {
       }
     },
   },
+  
   created() {
     this.getHomeData();
     
@@ -98,7 +97,7 @@ export default {
       if (clientHeight + scrollTop +1 >= scrollHeight) {
 
         function getMore(){
-          console.log(that.passages)
+          //console.log(that.passages)
           const data = []
           getHomeDataN().then((res)=>{
             for(let i = 0;i<15;i++){

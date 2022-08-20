@@ -29,13 +29,16 @@ export default{
     },
     methods: {
         toMiddle() {
-            this.$router.push(this.upper + "/" + "newest");
+            console.log(this.upper)
+            this.$router.push("/"+this.upper + "/" + "newest");
         },
         toLeft() {
-            this.$router.push(this.upper + "/" + "recommend");
+            console.log(this.upper)
+            this.$router.push("/"+this.upper + "/" + "recommend");
         },
         toRight() {
-            this.$router.push(this.upper + "/" + "hot");
+            console.log(this.upper)
+            this.$router.push("/"+this.upper + "/" + "hot");
         },
     },
     components: { Menu }

@@ -7,6 +7,18 @@ export function getHomeData() {
     })
 }
 
+
+
+
+export function getData() {
+    return request({
+        url: '/data/home',
+        data:`category=后端&tag=recommend`
+    })
+}
+
+
+
 export function getHomeDataN() {
     return request({
         url: '/data/home',
@@ -24,42 +36,49 @@ export function getHomeDataH() {
 export function getFrontData() {
     return request({
         url: '/data/home',
-        data:`category=前端`
+        data:`category=前端&tag=recommend`
+    })
+}
+
+export function getBackData() {
+    return request({
+        url: '/data/home',
+        data:`category=后端&tag=recommend`
     })
 }
 
 export function getAndroidData() {
     return request({
         url: '/data/home',
-        data:`category=Android`
+        data:`category=Android&tag=recommend`
     })
 }
 
 export function getIOSData() {
     return request({
         url: '/data/home',
-        data:`category=IOS`
+        data:`category=IOS&tag=recommend`
     })
 }
 
 export function getAIData() {
     return request({
         url: '/data/home',
-        data:`category=人工智能`
+        data:`category=人工智能&tag=recommend`
     })
 }
 
 export function getCodeData() {
     return request({
         url: '/data/home',
-        data:`category=代码`
+        data:`category=代码&tag=recommend`
     })
 }
 
 export function getReadingData() {
     return request({
         url: '/data/home',
-        data:`category=阅读`
+        data:`category=阅读&tag=recommend`
     })
 }
 

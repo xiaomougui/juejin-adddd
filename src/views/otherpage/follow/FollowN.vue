@@ -4,7 +4,7 @@
     <div class="board">
       <div class="content">
         <div class="left">
-        <Top :index="1+''" upper="home"></Top>
+        <Top :index="2+''" upper="following"></Top>
         <Passages :passages="passages"></Passages>
         </div>
         <div class="right">
@@ -16,15 +16,15 @@
   </div>
 </template>
 
+
+
+
 <script>
+import Passages from "../../home/childrenComps/Passages.vue";
+import Top from "../../home/childrenComps/Top.vue";
+import Signin from "../../../components/Signin.vue";
 
-
-import Passages from "./childrenComps/Passages.vue";
-import Signin from "../../components/Signin.vue";
-import Top from "./childrenComps/Top.vue";
-
-import { getHomeData } from "../../network/home";
-
+import {request} from "../../../network/request"
 
 export default {
   data() {
@@ -41,9 +41,12 @@ export default {
 },
 
   methods: {
-    getHomeData() {
-      getHomeData().then((res) => {
-        this.passages = res;
+    getdata(){
+      request({
+        url: '/data/home',
+        data:`category=前端&tag=newest`
+      }).then((res)=>{
+        this.passages = res
       });
     },
 
@@ -68,7 +71,7 @@ export default {
   },
 
   created() {
-    this.getHomeData();
+    this.getdata();
   },
 
   mounted() {
@@ -82,10 +85,12 @@ export default {
       let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
       if (clientHeight + scrollTop +1 >= scrollHeight) {
         //获取更多数据函数
+        const data = []
         function getMore(){
-          console.log(that.passages)
-          const data = []
-          getHomeData().then((res)=>{
+          request({
+            url: '/data/home',
+            data:`category=前端&tag=newest`
+          }).then((res)=>{
             for(let i = 0;i<15;i++){
               data.push(res[i])
             }

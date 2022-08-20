@@ -4,7 +4,7 @@
     <div class="board">
       <div class="content">
         <div class="left">
-        <Top :index="1+''" upper="home"></Top>
+        <TopHot :index="3+''" upper="following" @goto="goto" ></TopHot>
         <Passages :passages="passages"></Passages>
         </div>
         <div class="right">
@@ -17,34 +17,54 @@
 </template>
 
 <script>
+import Passages from "../../home/childrenComps/Passages.vue";
+import TopHot from "../../home/childrenComps/TopHot.vue";
+import Signin from "../../../components/Signin.vue";
 
+import {request} from "../../../network/request"
 
-import Passages from "./childrenComps/Passages.vue";
-import Signin from "../../components/Signin.vue";
-import Top from "./childrenComps/Top.vue";
-
-import { getHomeData } from "../../network/home";
 
 
 export default {
   data() {
     return {
       passages: [],
+      time:3,
     };
   },
 
   components: {
     Passages,
-    Top,
+    TopHot,
     Signin,
-    Signin
-},
+  },
 
   methods: {
-    getHomeData() {
-      getHomeData().then((res) => {
-        this.passages = res;
+    getdata(time){
+      let tim = time
+      request({
+        url: '/data/home',
+        data:`category=前端&tag=hot&time=${tim}`
+      }).then((res)=>{
+        this.passages = res
       });
+    },
+
+    goto(command){
+      if(command != this.time){
+        this.time = command
+        console.log(this.time)
+        if(command == '3天内'){
+          this.getdata(3)
+        }else if(command == '7天内'){
+          this.getdata(7)
+        }else if(command == '30天内'){
+          this.getdata(30)
+        }else{
+          this.getdata("all")
+        }
+      }
+      
     },
 
     scrollToTop() {
@@ -68,31 +88,56 @@ export default {
   },
 
   created() {
-    this.getHomeData();
+    this.getdata(3);
   },
 
   mounted() {
     const that = this;
     window.addEventListener("scroll", function () {
       // 滚动视口高度(也就是当前元素的真实高度)
-      let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+      let scrollHeight =
+        document.documentElement.scrollHeight || document.body.scrollHeight;
+
       // 可见区域高度
-      let clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+      let clientHeight =
+        window.innerHeight ||
+        document.documentElement.clientHeight ||
+        document.body.clientHeight;
       // 滚动条顶部到浏览器顶部高度
-      let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      let scrollTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
       if (clientHeight + scrollTop +1 >= scrollHeight) {
-        //获取更多数据函数
+        
+          let tim = ''
+          if(that.time == '3天内'){
+            tim = '3'
+          }else if(that.time == '7天内'){
+            tim = '7'
+          }else if(that.time == '30天内'){
+            tim = '30'
+          }else{
+            tim = 'all'
+          }
+          
+        
+        const data = []
         function getMore(){
-          console.log(that.passages)
-          const data = []
-          getHomeData().then((res)=>{
-            for(let i = 0;i<15;i++){
-              data.push(res[i])
-            }
-            that.passages = that.passages.concat(data)
-          });
-        }
-        //节流函数
+          request({
+            url: '/data/home',
+            data:`category=前端&tag=hot&time=${tim}`
+          }).then((res)=>{
+              for(let i = 0;i<15;i++){
+                data.push(res[i])
+              }
+              that.passages = that.passages.concat(data)
+            });
+          }
+          
+        
+
+        //节流
         function throttled(fn, delay) {
           let timer = null
           let starttime = Date.now()
@@ -110,7 +155,7 @@ export default {
             }
           }
         }
-        //调用节流后的获取更多函数
+
         throttled(getMore,2000)()
       }
 

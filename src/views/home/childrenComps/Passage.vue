@@ -43,9 +43,8 @@ export default{
         itemClick() {
             //路由跳转占位
             console.log('打开新页面')
-           const newpage = this.$router.resolve({name:'/home',params:{}})
+           const newpage = this.$router.resolve({name:'/article',params:{index:this.passage.index}});
            window.open(newpage.href,'_blank')
-           
         },
     },
    
