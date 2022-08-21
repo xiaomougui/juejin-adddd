@@ -80,7 +80,7 @@ export default {
       let clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
       // 滚动条顶部到浏览器顶部高度
       let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-      if (clientHeight + scrollTop +1 >= scrollHeight) {
+      if (clientHeight + scrollTop >= scrollHeight) {
         //获取更多数据函数
         function getMore(){
           console.log(that.passages)
