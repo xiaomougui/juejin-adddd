@@ -1,8 +1,7 @@
 <template>
-
   <div class="home">
     <div class="board">
-    <div class="tags">
+      <div class="tags">
         <button
           class="button"
           v-for="(p, index) of buttons"
@@ -15,14 +14,13 @@
       </div>
       <div class="content">
         <div class="left">
-        <TopHot :index="3+''" :upper="this.upper" @goto="goto" ></TopHot>
-        <Passages :passages="passages"></Passages>
+          <TopHot :index="3 + ''" :upper="this.upper" @goto="goto"></TopHot>
+          <Passages :passages="passages"></Passages>
         </div>
         <div class="right">
           <Signin></Signin>
         </div>
       </div>
-      
     </div>
   </div>
 </template>
@@ -32,9 +30,7 @@ import Passages from "../home/childrenComps/Passages.vue";
 import TopHot from "../home/childrenComps/TopHot.vue";
 import Signin from "../../components/Signin.vue";
 
-import {request} from "../../network/request"
-
-
+import { request } from "../../network/request";
 
 export default {
   data() {
@@ -54,18 +50,18 @@ export default {
       ],
       otherButtons: ["算法", "架构", "前端框架", "Webpack", "微信小程序"],
       passages: [],
-      time:3,
+      time: 3,
     };
   },
 
-  computed:{
-        upper(){
-            let str = this.$route.path
-            let categorys = str.split('/')
-            let cat = categorys[1]
-            return cat
-        }
+  computed: {
+    upper() {
+      let str = this.$route.path;
+      let categorys = str.split("/");
+      let cat = categorys[1];
+      return cat;
     },
+  },
 
   components: {
     Passages,
@@ -74,42 +70,36 @@ export default {
   },
 
   methods: {
-    getdata(time){
-      let str = this.$route.path
-      let categorys = str.split('/')
-      let cat = categorys[1]
-      let ta = categorys[2]
-      let tim = time
+    getdata(time) {
+      let str = this.$route.path;
+      let categorys = str.split("/");
+      let cat = categorys[1];
+      let ta = categorys[2];
+      let tim = time;
       request({
-        url: '/data/home',
-        data:`category=${cat}&tag=${ta}&time=${tim}`
-      }).then((res)=>{
-        this.passages = res
+        url: "/data/home",
+        data: `category=${cat}&tag=${ta}&time=${tim}`,
+      }).then((res) => {
+        this.passages = res;
       });
     },
 
-    
-
-
-
-    goto(command){
+    goto(command) {
       //console.log(command)
-      if(command != this.time){
-        this.time = command
-        console.log(this.time)
-        if(command == '3天内'){
-          this.getdata(3)
-        }else if(command == '7天内'){
-          this.getdata(7)
-        }else if(command == '30天内'){
-          this.getdata(30)
-        }else{
-          this.getdata("all")
+      if (command != this.time) {
+        this.time = command;
+        console.log(this.time);
+        if (command == "3天内") {
+          this.getdata(3);
+        } else if (command == "7天内") {
+          this.getdata(7);
+        } else if (command == "30天内") {
+          this.getdata(30);
+        } else {
+          this.getdata("all");
         }
       }
-      
     },
-
 
     scrollToTop() {
       let that = this;
@@ -152,62 +142,56 @@ export default {
         window.pageYOffset ||
         document.documentElement.scrollTop ||
         document.body.scrollTop;
-      if (clientHeight + scrollTop +1 >= scrollHeight) {
-        
-          let str = that.$route.path
-          let categorys = str.split('/')
-          let cat = categorys[1]
-          let ta = categorys[2]
-          let tim = ''
-          if(that.time == '3天内'){
-            tim = '3'
-          }else if(that.time == '7天内'){
-            tim = '7'
-          }else if(that.time == '30天内'){
-            tim = '30'
-          }else{
-            tim = 'all'
-          }
-          
-        
+      if (clientHeight + scrollTop + 1 >= scrollHeight) {
+        let str = that.$route.path;
+        let categorys = str.split("/");
+        let cat = categorys[1];
+        let ta = categorys[2];
+        let tim = "";
+        if (that.time == "3天内") {
+          tim = "3";
+        } else if (that.time == "7天内") {
+          tim = "7";
+        } else if (that.time == "30天内") {
+          tim = "30";
+        } else {
+          tim = "all";
+        }
 
-        const data = []
-        function getMore(){
+        const data = [];
+        function getMore() {
           request({
-            url: '/data/home',
-            data:`category=${cat}&tag=${ta}&time=${tim}`
-          }).then((res)=>{
-              for(let i = 0;i<15;i++){
-                data.push(res[i])
-              }
-              that.passages = that.passages.concat(data)
-            });
-          }
-          
-        
+            url: "/data/home",
+            data: `category=${cat}&tag=${ta}&time=${tim}`,
+          }).then((res) => {
+            for (let i = 0; i < 15; i++) {
+              data.push(res[i]);
+            }
+            that.passages = that.passages.concat(data);
+          });
+        }
 
         //节流
         function throttled(fn, delay) {
-          let timer = null
-          let starttime = Date.now()
+          let timer = null;
+          let starttime = Date.now();
           return function () {
-            let curTime = Date.now() // 当前时间
-            let remaining = delay - (curTime - starttime)  // 从上一次到现在，还剩下多少多余时间
-            let context = this
-            let args = arguments
-            clearTimeout(timer)
+            let curTime = Date.now(); // 当前时间
+            let remaining = delay - (curTime - starttime); // 从上一次到现在，还剩下多少多余时间
+            let context = this;
+            let args = arguments;
+            clearTimeout(timer);
             if (remaining <= 0) {
-              fn.apply(context, args)
-              starttime = Date.now()
+              fn.apply(context, args);
+              starttime = Date.now();
             } else {
               timer = setTimeout(fn, remaining);
             }
-          }
+          };
         }
 
-        throttled(getMore,2000)()
+        throttled(getMore, 2000)();
       }
-
     });
 
     window.addEventListener("scroll", this.scrollToTop, true);
@@ -226,16 +210,16 @@ export default {
 }
 
 .board {
-  height: 100%;
   width: 100%;
   background-color: rgb(244, 245, 245);
-  padding-top: 20px;
-  position: relative;
+  padding-top: 10px;
 }
 
 .tags {
-  width: 48%;
-  margin-left: 17%;
+  width: 1000px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
   /* background-color: #fff; */
   margin-bottom: 5px;
   background-color: rgb(244, 245, 245, 0.4);
@@ -244,6 +228,13 @@ export default {
 .yincang {
   visibility: hidden;
   margin-top: 5px;
+}
+
+.content {
+  display: inline-block;
+  background-color: rgb(244, 245, 245);
+  width: 100%;
+  height: auto;
 }
 
 .button {
@@ -255,45 +246,43 @@ export default {
   cursor: pointer;
   margin-right: 13px;
   font-size: 10px;
-  margin-bottom:3px;
+  margin-bottom: 3px;
 }
 
 .button:hover {
   color: #007fff;
 }
 
-@media screen and (max-width:1050px) {
-  .content{
+@media screen and (max-width: 1050px) {
+  .content {
+    display: inline-block;
     background-color: rgb(244, 245, 245);
-   width: 100%;
-    
+    width: 100%;
   }
 
-  .right{
+  .right {
     display: none;
   }
 
-  .left{
+  .left {
     margin-top: 10px;
     width: 100%;
     background-color: #fff;
     position: relative;
   }
-
-
 }
 
-@media screen and (min-width:1050px) {
-  .content{
+@media screen and (min-width: 1050px) {
+  .content {
     background-color: rgb(244, 245, 245);
-    
     margin-left: calc(50% - 500px);
     width: 1000px;
     position: relative;
-    
+    display: flex;
   }
 
   .left {
+    margin-right: 13px;
     padding-top: 10px;
     width: 700px;
     background-color: #fff;
@@ -301,19 +290,15 @@ export default {
   }
 
   .right {
-    position: absolute;
-    width: 250px;
+    margin-right: 13px;
+    width: 240px;
     top: 0%;
-    right:0px;
-    background-color: #fff;
+    right: 0px;
+    background-color: rgb(244, 245, 245);
   }
-
-
 
   Top {
     width: 100%;
   }
-
 }
-
 </style>

@@ -14,8 +14,8 @@
       </div>
       <div class="content">
         <div class="left">
-        <Top :index="2+''" :upper="this.upper"></Top>
-        <Passages :passages="passages"></Passages>
+          <Top :index="2 + ''" :upper="this.upper"></Top>
+          <Passages :passages="passages"></Passages>
         </div>
         <div class="right">
           <Signin></Signin>
@@ -30,7 +30,7 @@ import Passages from "../home/childrenComps/Passages.vue";
 import Top from "../home/childrenComps/Top.vue";
 import Signin from "../../components/Signin.vue";
 
-import {request} from "../../network/request"
+import { request } from "../../network/request";
 
 export default {
   data() {
@@ -57,30 +57,30 @@ export default {
     Passages,
     Top,
     Signin,
-    Signin
-    },
+    Signin,
+  },
 
-    computed:{
-        upper(){
-            let str = this.$route.path
-            let categorys = str.split('/')
-            let cat = categorys[1]
-            return cat
-        }
+  computed: {
+    upper() {
+      let str = this.$route.path;
+      let categorys = str.split("/");
+      let cat = categorys[1];
+      return cat;
     },
+  },
 
   methods: {
-    getdata(){
-      let str = this.$route.path
-      let categorys = str.split('/')
-      let cat = categorys[1]
-      let ta = categorys[2]
+    getdata() {
+      let str = this.$route.path;
+      let categorys = str.split("/");
+      let cat = categorys[1];
+      let ta = categorys[2];
       request({
-        url: '/data/home',
-        data:`category=${cat}&tag=${ta}`
-      }).then((res)=>{
-        console.log(`category=${cat}&tag=${ta}`)
-        this.passages = res
+        url: "/data/home",
+        data: `category=${cat}&tag=${ta}`,
+      }).then((res) => {
+        console.log(`category=${cat}&tag=${ta}`);
+        this.passages = res;
       });
     },
 
@@ -104,7 +104,7 @@ export default {
     },
 
     getMore() {
-      let i = this.buttons.length -1;
+      let i = this.buttons.length - 1;
       var buttons = document.querySelector(".tags");
       var zhankai = document.querySelector("div.tags > button:nth-child(11)");
       zhankai.style.display = "none";
@@ -126,77 +126,83 @@ export default {
     },
   },
 
-    // 监听,当路由发生变化的时候执行
-  watch:{
+  // 监听,当路由发生变化的时候执行
+  watch: {
     $route: {
-		  handler(newVal,oldVal){
-			//判断newVal有没有值监听路由变化
-        this.getdata()
-	    },
-	  deep: true
+      handler(newVal, oldVal) {
+        //判断newVal有没有值监听路由变化
+        this.getdata();
+      },
+      deep: true,
+    },
   },
-},
 
   created() {
     this.getdata();
-    
-    console.log(this.$route.path)
+
+    console.log(this.$route.path);
   },
 
   mounted() {
     const that = this;
     window.addEventListener("scroll", function () {
       // 滚动视口高度(也就是当前元素的真实高度)
-      let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+      let scrollHeight =
+        document.documentElement.scrollHeight || document.body.scrollHeight;
       // 可见区域高度
-      let clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+      let clientHeight =
+        window.innerHeight ||
+        document.documentElement.clientHeight ||
+        document.body.clientHeight;
       // 滚动条顶部到浏览器顶部高度
-      let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-      if (clientHeight + scrollTop +1 >= scrollHeight) {
+      let scrollTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
+      if (clientHeight + scrollTop + 1 >= scrollHeight) {
         //获取更多数据函数
-        let str = that.$route.path
-        let categorys = str.split('/')
-        let cat = categorys[1]
-        let ta = categorys[2]
-        const data = []
-        function getMore(){
+        let str = that.$route.path;
+        let categorys = str.split("/");
+        let cat = categorys[1];
+        let ta = categorys[2];
+        const data = [];
+        function getMore() {
           request({
-            url: '/data/home',
-            data:`category=${cat}&tag=${ta}`
-          }).then((res)=>{
-            for(let i = 0;i<15;i++){
-              data.push(res[i])
+            url: "/data/home",
+            data: `category=${cat}&tag=${ta}`,
+          }).then((res) => {
+            for (let i = 0; i < 15; i++) {
+              data.push(res[i]);
             }
-            that.passages = that.passages.concat(data)
+            that.passages = that.passages.concat(data);
           });
         }
         //节流函数
         function throttled(fn, delay) {
-          let timer = null
-          let starttime = Date.now()
+          let timer = null;
+          let starttime = Date.now();
           return function () {
-            let curTime = Date.now() // 当前时间
-            let remaining = delay - (curTime - starttime)  // 从上一次到现在，还剩下多少多余时间
-            let context = this
-            let args = arguments
-            clearTimeout(timer)
+            let curTime = Date.now(); // 当前时间
+            let remaining = delay - (curTime - starttime); // 从上一次到现在，还剩下多少多余时间
+            let context = this;
+            let args = arguments;
+            clearTimeout(timer);
             if (remaining <= 0) {
-              fn.apply(context, args)
-              starttime = Date.now()
+              fn.apply(context, args);
+              starttime = Date.now();
             } else {
               timer = setTimeout(fn, remaining);
             }
-          }
+          };
         }
         //调用节流后的获取更多函数
-        throttled(getMore,2000)()
+        throttled(getMore, 2000)();
       }
-
     });
 
     window.addEventListener("scroll", this.scrollToTop, true);
   },
-  
+
   destroyed() {
     window.removeEventListener("scroll", this.scrollToTop, true);
   },
@@ -216,8 +222,10 @@ export default {
 }
 
 .tags {
-  width: 48%;
-  margin-left: 17%;
+  width: 1000px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
   /* background-color: #fff; */
   margin-bottom: 5px;
   background-color: rgb(244, 245, 245, 0.4);
@@ -237,42 +245,38 @@ export default {
   cursor: pointer;
   margin-right: 13px;
   font-size: 10px;
-  margin-bottom:3px;
+  margin-bottom: 3px;
 }
 
 .button:hover {
   color: #007fff;
 }
 
-@media screen and (max-width:1050px) {
-  .content{
+@media screen and (max-width: 1050px) {
+  .content {
     background-color: rgb(244, 245, 245);
-   width: 100%;
-    
+    width: 100%;
   }
 
-  .right{
+  .right {
     display: none;
   }
 
-  .left{
+  .left {
     margin-top: 10px;
     width: 100%;
     background-color: #fff;
     position: relative;
   }
-
-
 }
 
-@media screen and (min-width:1050px) {
-  .content{
+@media screen and (min-width: 1050px) {
+  .content {
     background-color: rgb(244, 245, 245);
-    
+
     margin-left: calc(50% - 500px);
     width: 1000px;
     position: relative;
-    
   }
 
   .left {
@@ -284,17 +288,14 @@ export default {
 
   .right {
     position: absolute;
-    width: 250px;
+    width: 240px;
     top: 0%;
-    right:0px;
+    right: 0px;
     background-color: #fff;
   }
-
-
 
   Top {
     width: 100%;
   }
-
 }
 </style>

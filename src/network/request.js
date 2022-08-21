@@ -3,9 +3,9 @@ import axios from 'axios';
 
 export function request(config) {
     const instance = axios.create({
-        method:'post',
+        method: 'post',
         //data/home
-        baseURL: 'http://127.0.0.1:3000', //默认路径
+        baseURL: 'http://47.92.2.163:80', //默认路径
         timeout: 5000
     });
 

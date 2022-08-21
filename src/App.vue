@@ -11,10 +11,8 @@
 </template>
 
 <script>
-
 import Header from "./components/Header/Header.vue";
 import Nav from "./views/home/childrenComps/Nav.vue";
-
 
 export default {
   name: "App",
@@ -23,9 +21,7 @@ export default {
     Nav,
   },
   methods: {},
-
 };
-
 </script>
 
 
@@ -39,13 +35,8 @@ export default {
 }
 
 .header {
-  
+  height: 60px;
   display: flex;
   justify-content: center;
-}
-
-.nav {
-  margin-left: 17%;
-  margin-top: 60px;
 }
 </style>
