@@ -69,7 +69,6 @@
   height: 96px;
   background-color: white;
 }
-
 .first-line {
   padding-top: 15px;
   display: flex;
@@ -77,7 +76,6 @@
   margin-bottom: 8px;
   margin-top: 8px;
 }
-
 .second-line {
   margin-bottom: 2px;
   margin-left: 36px;
@@ -87,17 +85,14 @@
   display: flex;
   align-items: center;
 }
-
 .icon-text {
   display: flex;
   align-items: center;
 }
-
 div.first-line > button {
   border-color: #1e80ff;
   color: #1e80ff;
 }
-
 .sidebar-block {
   background-color: rgb(244, 245, 245);
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
@@ -112,58 +107,48 @@ div.first-line > button {
   margin-top: 15px;
   background-color: white;
 }
-
 .sidebar-block.banner-block {
   overflow: hidden;
 }
-
 .sidebar-block.banner-block .banner {
   height: 200px;
 }
-
 .sidebar-block {
   /* margin-bottom: 1.5rem; */
   border-radius: 2px;
 }
-
 .qr-img {
   margin-right: 16px;
   width: 4.167rem;
   height: 4.167rem;
 }
-
 .headline {
   font-weight: 500;
   font-size: 14px;
   line-height: 22px;
   color: #1d2129;
 }
-
 .desc {
   margin-top: 0.5rem;
   font-size: 12px;
   line-height: 20px;
   color: #86909c;
 }
-
 a {
   text-decoration: none;
   cursor: pointer;
   color: #909090;
 }
-
 .app-link {
   display: flex;
   align-items: center;
   padding: 1rem;
 }
-
 .message {
   display: flex;
   justify-content: center;
   color: #1e80ff;
 }
-
 .slide {
   top: 17%;
   width: 240px;

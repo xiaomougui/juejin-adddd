@@ -226,18 +226,20 @@ export default {
 }
 
 .board {
-  height: 100%;
   width: 100%;
   background-color: rgb(244, 245, 245);
   padding-top: 20px;
-  position: relative;
 }
 
 
 @media screen and (max-width:1050px) {
+  .board {
+    padding-top: 10px;
+  }
+
   .content{
     background-color: rgb(244, 245, 245);
-   width: 100%;
+    width: 100%;
     
   }
 
@@ -247,6 +249,7 @@ export default {
 
   .left{
     margin-top: 10px;
+        padding-top: 10px;
     width: 100%;
     background-color: #fff;
     position: relative;
@@ -258,7 +261,6 @@ export default {
 @media screen and (min-width:1050px) {
   .content{
     background-color: rgb(244, 245, 245);
-    
     margin-left: calc(50% - 500px);
     width: 1000px;
     position: relative;
