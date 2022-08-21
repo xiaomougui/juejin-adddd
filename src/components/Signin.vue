@@ -64,6 +64,9 @@
 </script>
 
 <style scoped>
+.signin {
+  width: 240px;
+}
 .signin-tip {
   width: 240px;
   height: 96px;

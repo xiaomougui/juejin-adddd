@@ -149,6 +149,10 @@ export default {
   position: relative;
 }
 
+.right {
+  width: 240px;
+}
+
 @media screen and (max-width: 1050px) {
   .content {
     background-color: rgb(244, 245, 245);
@@ -185,7 +189,6 @@ export default {
 
   .right {
     position: absolute;
-    width: 240px;
     top: 0%;
     right: 0px;
     background-color: #fff;

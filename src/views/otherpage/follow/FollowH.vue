@@ -166,6 +166,10 @@ export default {
   height: 100%;
 }
 
+.right {
+  width: 240px;
+}
+
 .board {
   height: 100%;
   width: 100%;
@@ -210,7 +214,7 @@ export default {
 
   .right {
     position: absolute;
-    width: 240px;
+
     top: 0%;
     right: 0px;
     background-color: #fff;

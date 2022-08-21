@@ -32,6 +32,7 @@ export default {
     Passages,
     Top,
     Signin,
+    Signin,
   },
 
   methods: {
@@ -81,7 +82,7 @@ export default {
         window.pageYOffset ||
         document.documentElement.scrollTop ||
         document.body.scrollTop;
-      if (clientHeight + scrollTop >= scrollHeight) {
+      if (clientHeight + scrollTop + 1 >= scrollHeight) {
         //获取更多数据函数
         function getMore() {
           console.log(that.passages);
@@ -178,7 +179,7 @@ export default {
 
   .right {
     position: absolute;
-    width: 240px;
+    width: 250px;
     top: 0%;
     right: 0px;
     background-color: #fff;
@@ -189,8 +190,3 @@ export default {
   }
 }
 </style>
-
-
-
-
-

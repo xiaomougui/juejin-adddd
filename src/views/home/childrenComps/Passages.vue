@@ -9,8 +9,8 @@ import Passage from "./Passage.vue";
 
 export default {
   components: {
-    Passage
-},
+    Passage,
+  },
   props: {
     passages: {
       type: Array,
@@ -24,4 +24,7 @@ export default {
 </script>
 
 <style scoped>
+.passages {
+  margin-top: 10px;
+}
 </style>
