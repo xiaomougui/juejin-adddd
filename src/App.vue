@@ -73,6 +73,7 @@ export default {
   top: 10px;
 }
 .fixedNav {
+  background-color: #fff;
   position: fixed;
   width: 100%;
   z-index: 2032;
