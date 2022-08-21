@@ -129,7 +129,7 @@ export default {
       let cate = this.$el.querySelector(".box_categories");
       if (scrollY > 1000) {
         cate.style.position = "fixed";
-        cate.style.marginTop = "-1000px";
+        cate.style.marginTop = "-1050px";
       } else {
         cate.style.position = "relative";
         cate.style.marginTop = "0px";
@@ -160,6 +160,9 @@ export default {
       data: `index=${index}`
   })
     },
+    getRouterData(){
+      this.index = this.$route.query.index
+    },
 
     // 监听滚轮
     CatalogueScroll() {
@@ -188,12 +191,15 @@ export default {
     },
   },
     created() {
-    // this.getRouterData()
+    this.getRouterData()
+    console.log("index:",this.index);
   },
   mounted() {
     // 获取md文件getTiltleData({})
     // this.getData(this.$route.params.index).then((res) => {
     this.getData(this.index).then((res) => {
+      console.log(this);
+      // console.log(this.$route.params.index);
       this.text = res.essay;
       this.titleInfo = res
       this.$nextTick(() => {
@@ -232,14 +238,14 @@ export default {
     })
     // 获取相关文章信息
     getRelativeInfo({}).then((res)=>{
-      console.log(res);
+      // console.log(res);
       this.relativeInfo = res.data
     })
     // 获取标题相关信息
-    getTitleData().then((res)=>{
-      // console.log(res);
-      // this.titleInfo = res
-    })
+    // getTitleData().then((res)=>{
+    //   // console.log(res);
+    //   // this.titleInfo = res
+    // })
     
     // 响应式布局
     //获取屏幕尺寸

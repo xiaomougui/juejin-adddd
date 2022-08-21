@@ -11,8 +11,7 @@
         <img src="https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/lv-4.a78c420.png">  
         </span>
         <!-- <div class="time">{{getNowDate()}}</div> -->
-        <div class="time">{{titleInfo.timemini.years + "年"+ titleInfo.timemini.mouths + "月" 
-        + titleInfo.timemini.days+"日 " + titleInfo.timemini.hours + ":" + titleInfo.timemini.minutes}}
+        <div class="time">{{titleInfo.timemini.years}}年{{titleInfo.timemini.mouths}}月{{titleInfo.timemini.days}}日 {{titleInfo.timemini.hours}}:{{titleInfo.timemini.minutes}}
         · 阅读 {{titleInfo.information.browse}}
         </div>
       </div>
