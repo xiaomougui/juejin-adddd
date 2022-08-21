@@ -6,7 +6,7 @@
           class="button"
           v-for="(p, index) of buttons"
           :key="index"
-          @click="p == `展开` ? getMore() : sendCategory()"
+          @click="p == `展开` ? getMore() : sendCategory(p)"
         >
           {{ p }}
           <i class="el-icon-caret-bottom" v-if="p == `展开`"></i>
@@ -77,6 +77,7 @@ export default {
       else 
         return ["全部","前端","JavaScript","Vue.js","React.js","CSS","面试","TypeScript","Node.js", "后端","展开",]
     },
+
     otherButtons(){
       let str = this.$route.path
       let categorys = str.split('/')
@@ -138,26 +139,31 @@ export default {
     },
 
     getMore() {
-      let i = this.buttons.length -1;
-      var buttons = document.querySelector(".tags");
-      var zhankai = document.querySelector("div.tags > button:nth-child(11)");
-      zhankai.style.display = "none";
+      // let i = this.buttons.length -1;
+      // var buttons = document.querySelector(".tags");
+      // var zhankai = document.querySelector("div.tags > button:nth-child(11)");
+      // zhankai.style.display = "none";
 
-      for (let j = 0; j < this.otherButtons.length; j++) {
-        this.buttons[i] = this.otherButtons[j];
-        i++;
+      // for (let j = 0; j < this.otherButtons.length; j++) {
+      //   this.buttons[i] = this.otherButtons[j];
+      //   i++;
+      //   buttons.innerHTML +=
+      //     '<button id="abc" style="  background-color: #fff; color: #71777c;padding: 3px 6px;border-radius: 17px;border: 2px solid #e7e7e7;cursor: pointer;margin-right: 13px;font-size: 10px;">' +
+      //     this.otherButtons[j] +
+      //     "</button>";
+      // }
 
-        // var butt = document.createElement('button')
-        // butt.className = "abc"
-        // // buttons.appendChild(butt)
-        buttons.innerHTML +=
+      this.buttons = this.otherButtons
+      buttons.innerHTML =
           '<button id="abc" style="  background-color: #fff; color: #71777c;padding: 3px 6px;border-radius: 17px;border: 2px solid #e7e7e7;cursor: pointer;margin-right: 13px;font-size: 10px;">' +
-          this.otherButtons[j] +
+          this.otherButtons +
           "</button>";
-        // butt.className=`button`
-        // buttons.innerHTML += '<button id="abc">'+ this.otherButtons[j] + '</button>'
-      }
     },
+
+    sendCategory(p){
+      console.log(p)
+      this.$router.push('/'+p+'/recommend')
+    }
   },
 
     // 监听,当路由发生变化的时候执行
@@ -250,19 +256,26 @@ export default {
   padding-top: 10px;
 }
 
+
 .tags {
-  width: 50%;
-  margin-left: 17%;
+  width: 1000px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
   /* background-color: #fff; */
   margin-bottom: 5px;
   background-color: rgb(244, 245, 245, 0.4);
 }
-
 .yincang {
   visibility: hidden;
   margin-top: 5px;
 }
-
+.content {
+  display: inline-block;
+  background-color: rgb(244, 245, 245);
+  width: 100%;
+  height: auto;
+}
 .button {
   background-color: #fff;
   color: #71777c;
@@ -272,64 +285,53 @@ export default {
   cursor: pointer;
   margin-right: 13px;
   font-size: 10px;
-  margin-bottom:3px;
+  margin-bottom: 3px;
 }
-
 .button:hover {
   color: #007fff;
 }
 
-@media screen and (max-width:1050px) {
-  .content{
+@media screen and (max-width: 1050px) {
+  .content {
+    display: inline-block;
     background-color: rgb(244, 245, 245);
-   width: 100%;
-    
+    width: 100%;
   }
-
-  .right{
+  .right {
     display: none;
   }
-
-  .left{
-    margin-top: 10px;
+  .left {
+    padding-top: 10px;
     width: 100%;
     background-color: #fff;
     position: relative;
   }
-
-
 }
 
-@media screen and (min-width:1050px) {
-  .content{
+@media screen and (min-width: 1050px) {
+  .content {
     background-color: rgb(244, 245, 245);
-    
     margin-left: calc(50% - 500px);
     width: 1000px;
     position: relative;
-    
+    display: flex;
   }
-
   .left {
+    margin-right: 13px;
     padding-top: 10px;
     width: 700px;
     background-color: #fff;
     position: relative;
   }
-
   .right {
-    position: absolute;
-    width: 250px;
+    margin-right: 13px;
+    width: 240px;
     top: 0%;
-    right:0px;
-    background-color: #fff;
+    right: 0px;
+    background-color: rgb(244, 245, 245);
   }
-
-
-
   Top {
     width: 100%;
   }
-
 }
 </style>

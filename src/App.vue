@@ -30,6 +30,11 @@ export default {
 
 
 
+
+
+
+
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -37,15 +42,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
-
 .header {
-  
+  height: 60px;
   display: flex;
   justify-content: center;
-}
-
-.nav {
-  margin-left: 17%;
-  margin-top: 60px;
 }
 </style>
