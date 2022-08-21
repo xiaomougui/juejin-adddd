@@ -1,45 +1,70 @@
 <template>
+
   <div class="home">
     <div class="board">
       <div class="content">
         <div class="left">
-          <Top :index="1 + ''" upper="home"></Top>
-          <Passages :passages="passages"></Passages>
+        <TopHot :index="3+''" upper="following" @goto="goto" ></TopHot>
+        <Passages :passages="passages"></Passages>
         </div>
         <div class="right">
           <Signin></Signin>
         </div>
       </div>
+      
     </div>
   </div>
 </template>
 
 <script>
-import Passages from "./childrenComps/Passages.vue";
-import Signin from "../../components/Signin.vue";
-import Top from "./childrenComps/Top.vue";
+import Passages from "../../home/childrenComps/Passages.vue";
+import TopHot from "../../home/childrenComps/TopHot.vue";
+import Signin from "../../../components/Signin.vue";
 
-import { getHomeData } from "../../network/home";
+import {request} from "../../../network/request"
+
+
 
 export default {
   data() {
     return {
       passages: [],
+      time:3,
     };
   },
 
   components: {
     Passages,
-    Top,
-    Signin,
+    TopHot,
     Signin,
   },
 
   methods: {
-    getHomeData() {
-      getHomeData().then((res) => {
-        this.passages = res;
+    getdata(time){
+      let tim = time
+      request({
+        url: '/data/home',
+        data:`category=前端&tag=hot&time=${tim}`
+      }).then((res)=>{
+        this.passages = res
       });
+    },
+
+    goto(command){
+      if(command != this.time){
+        this.time = command
+        console.log(this.time)
+        if(command == '3天内'){
+          this.getdata(3)
+        }else if(command == '7天内'){
+          this.getdata(7)
+        }else if(command == '30天内'){
+          this.getdata(30)
+        }else{
+          this.getdata("all")
+        }
+      }
+      
     },
 
     scrollToTop() {
@@ -63,7 +88,7 @@ export default {
   },
 
   created() {
-    this.getHomeData();
+    this.getdata(3);
   },
 
   mounted() {
@@ -72,6 +97,7 @@ export default {
       // 滚动视口高度(也就是当前元素的真实高度)
       let scrollHeight =
         document.documentElement.scrollHeight || document.body.scrollHeight;
+
       // 可见区域高度
       let clientHeight =
         window.innerHeight ||
@@ -82,39 +108,57 @@ export default {
         window.pageYOffset ||
         document.documentElement.scrollTop ||
         document.body.scrollTop;
-      if (clientHeight + scrollTop + 1 >= scrollHeight) {
-        //获取更多数据函数
-        function getMore() {
-          console.log(that.passages);
-          const data = [];
-          getHomeData().then((res) => {
-            for (let i = 0; i < 15; i++) {
-              data.push(res[i]);
-            }
-            that.passages = that.passages.concat(data);
-          });
-        }
-        //节流函数
+      if (clientHeight + scrollTop +1 >= scrollHeight) {
+        
+          let tim = ''
+          if(that.time == '3天内'){
+            tim = '3'
+          }else if(that.time == '7天内'){
+            tim = '7'
+          }else if(that.time == '30天内'){
+            tim = '30'
+          }else{
+            tim = 'all'
+          }
+          
+        
+        const data = []
+        function getMore(){
+          request({
+            url: '/data/home',
+            data:`category=前端&tag=hot&time=${tim}`
+          }).then((res)=>{
+              for(let i = 0;i<15;i++){
+                data.push(res[i])
+              }
+              that.passages = that.passages.concat(data)
+            });
+          }
+          
+        
+
+        //节流
         function throttled(fn, delay) {
-          let timer = null;
-          let starttime = Date.now();
+          let timer = null
+          let starttime = Date.now()
           return function () {
-            let curTime = Date.now(); // 当前时间
-            let remaining = delay - (curTime - starttime); // 从上一次到现在，还剩下多少多余时间
-            let context = this;
-            let args = arguments;
-            clearTimeout(timer);
+            let curTime = Date.now() // 当前时间
+            let remaining = delay - (curTime - starttime)  // 从上一次到现在，还剩下多少多余时间
+            let context = this
+            let args = arguments
+            clearTimeout(timer)
             if (remaining <= 0) {
-              fn.apply(context, args);
-              starttime = Date.now();
+              fn.apply(context, args)
+              starttime = Date.now()
             } else {
               timer = setTimeout(fn, remaining);
             }
-          };
+          }
         }
-        //调用节流后的获取更多函数
-        throttled(getMore, 2000)();
+
+        throttled(getMore,2000)()
       }
+
     });
 
     window.addEventListener("scroll", this.scrollToTop, true);
@@ -140,31 +184,36 @@ export default {
   position: relative;
 }
 
-@media screen and (max-width: 1050px) {
-  .content {
+
+@media screen and (max-width:1050px) {
+  .content{
     background-color: rgb(244, 245, 245);
-    width: 100%;
+   width: 100%;
+    
   }
 
-  .right {
+  .right{
     display: none;
   }
 
-  .left {
+  .left{
     margin-top: 10px;
     width: 100%;
     background-color: #fff;
     position: relative;
   }
+
+
 }
 
-@media screen and (min-width: 1050px) {
-  .content {
+@media screen and (min-width:1050px) {
+  .content{
     background-color: rgb(244, 245, 245);
-
+    
     margin-left: calc(50% - 500px);
     width: 1000px;
     position: relative;
+    
   }
 
   .left {
@@ -178,12 +227,16 @@ export default {
     position: absolute;
     width: 250px;
     top: 0%;
-    right: 0px;
+    right:0px;
     background-color: #fff;
   }
+
+
 
   Top {
     width: 100%;
   }
+
 }
+
 </style>

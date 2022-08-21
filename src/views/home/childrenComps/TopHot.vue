@@ -3,12 +3,16 @@
         <div class="left" :style="activeStyle1" @click="toLeft">推荐</div>
         <div class="middle" :style="activeStyle2" @click="toMiddle" >最新</div>
         <div class="right" :style="activeStyle3" @click="toRight">热榜</div>
+        <Menu @goto="goto" ></Menu>    
     </div>
 </template>
 
 <script>
 import Menu from "../../../components/Menu.vue";
 export default{
+    component: {
+        Menu
+    },
     props: {
         index: {
             type: String,
@@ -29,16 +33,16 @@ export default{
     },
     methods: {
         toMiddle() {
-            console.log(this.upper)
             this.$router.push("/"+this.upper + "/" + "newest");
         },
         toLeft() {
-            console.log(this.upper)
             this.$router.push("/"+this.upper + "/" + "recommend");
         },
         toRight() {
-            console.log(this.upper)
             this.$router.push("/"+this.upper + "/" + "hot");
+        },
+        goto(command){
+            this.$emit('goto',command)
         },
     },
     components: { Menu }
