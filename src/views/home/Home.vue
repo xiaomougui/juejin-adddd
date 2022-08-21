@@ -32,7 +32,6 @@ export default {
     Passages,
     Top,
     Signin,
-    Signin,
   },
 
   methods: {
