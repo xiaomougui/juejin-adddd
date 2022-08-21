@@ -76,7 +76,6 @@ import CircleInfo from "./OtherInfo/CircleInfo.vue";
 import RelativeInfo from "./OtherInfo/RelativeInfo.vue";
 import TitleInfo from "./OtherInfo/TitleInfo.vue";
 import { getRightInfo, getRelativeInfo } from "../api/demo";
-import { getTitleData } from "../network/article";
 import { request } from "../network/request";
 // import axios from "axios";
 // import BottomButton  from "./Buttons/BottomButton.vue";
@@ -198,13 +197,11 @@ export default {
   },
   created() {
     this.getRouterData();
-    console.log("index:", this.index);
   },
   mounted() {
     // 获取md文件getTiltleData({})
     // this.getData(this.$route.params.index).then((res) => {
     this.getData(this.index).then((res) => {
-      console.log(this);
       // console.log(this.$route.params.index);
       this.text = res.essay;
       this.titleInfo = res;
@@ -373,7 +370,6 @@ a {
   /* margin-right: 16.875rem; */
   width: 75%;
   width: 820px;
-  height: 90px;
   max-width: 100%;
   z-index: 1;
   border-radius: 4px;

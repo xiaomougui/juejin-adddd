@@ -61,9 +61,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
-HEAD html {
-  background-color: #f4f5f5;
-}
 
 .header {
   height: 60px;
@@ -76,7 +73,6 @@ HEAD html {
   top: 10px;
 }
 .fixedNav {
-  background-color: #fff;
   position: fixed;
   width: 100%;
   z-index: 2032;

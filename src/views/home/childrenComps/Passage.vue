@@ -45,14 +45,6 @@ export default {
     itemClick() {
       //路由跳转占位
       console.log("打开新页面");
-      // console.log(this.$router);
-      // console.log(this.passage);
-      // const newpage = this.$router.resolve({
-      //   name: "Article",
-      //   params: { index: this.passage.index },
-      // });
-      // window.open(newpage.href, "_blank");
-      console.log(this.passage.index );
         const newpage = this.$router.resolve({
         name: "Article",
         query: { index: this.passage.index },

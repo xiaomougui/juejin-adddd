@@ -14,10 +14,25 @@
         </span>
         <!-- <div class="time">{{getNowDate()}}</div> -->
         <div class="time">
-          {{ titleInfo.timemini.years }}年{{ titleInfo.timemini.mouths }}月{{
-            titleInfo.timemini.days
-          }}日 {{ titleInfo.timemini.hours }}:{{ titleInfo.timemini.minutes }} ·
-          阅读 {{ titleInfo.information.browse }}
+          {{ titleInfo.timemini.years }}年{{
+            titleInfo.timemini.mouths < 10
+              ? "0" + titleInfo.timemini.mouths
+              : titleInfo.timemini.mouths
+          }}月{{
+            titleInfo.timemini.days < 10
+              ? "0" + titleInfo.timemini.days
+              : titleInfo.timemini.days
+          }}日
+          {{
+            titleInfo.timemini.hours < 10
+              ? "0" + titleInfo.timemini.hours
+              : titleInfo.timemini.hours
+          }}:{{
+            titleInfo.timemini.minutes < 10
+              ? "0" + titleInfo.timemini.minutes
+              : titleInfo.timemini.minutes
+          }}
+          · 阅读 {{ titleInfo.information.browse }}
         </div>
       </div>
       <button class="btn">
