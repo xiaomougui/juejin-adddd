@@ -264,13 +264,10 @@ a {
   left: 0;
   right: 0;
 }
-/* .zuo {
-  padding-bottom: 50px;
-} */
+
 .leimu {
   float: left;
   height: 20px;
-  /* margin-left: 200px; */
 }
 .nav ul li {
   float: left;
@@ -282,6 +279,7 @@ a {
 .nav ul li a {
   display: block;
   height: 30px;
+  line-height:0px;
   font-size: 13.92px;
   color: #71777c;
   text-decoration: none;

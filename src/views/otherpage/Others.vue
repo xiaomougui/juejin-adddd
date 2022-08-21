@@ -100,7 +100,7 @@ export default {
         url: '/data/home',
         data:`category=${cat}&tag=${ta}`
       }).then((res)=>{
-        console.log(cat)
+        //console.log(cat)
         this.passages = res
       });
     },
@@ -125,20 +125,6 @@ export default {
     },
 
     getMore() {
-      // let i = this.buttons.length -1;
-      // var buttons = document.querySelector(".tags");
-      // var zhankai = document.querySelector("div.tags > button:nth-child(11)");
-      // zhankai.style.display = "none";
-
-      // for (let j = 0; j < this.otherButtons.length; j++) {
-      //   this.buttons[i] = this.otherButtons[j];
-      //   i++;
-      //   buttons.innerHTML +=
-      //     '<button id="abc" style="  background-color: #fff; color: #71777c;padding: 3px 6px;border-radius: 17px;border: 2px solid #e7e7e7;cursor: pointer;margin-right: 13px;font-size: 10px;">' +
-      //     this.otherButtons[j] +
-      //     "</button>";
-      // }
-
       this.tips = [["全部","前端","JavaScript","Vue.js","React.js","CSS","面试","TypeScript","Node.js", "后端","算法", "架构", "前端框架", "Webpack", "微信小程序"],
       ["全部","Java","GO","算法","Python","Spring Boot","数据库","面试","MySQL","LeetCode","架构","Redis","Spring","前端","大数据"],
       ["全部","人工智能","深度学习","算法","机器学习","Python","计算机视觉","后端","PyTorch","NLP","神经网络","数据分析","TensorFlow","程序员","强化学习","自动驾驶"],
@@ -146,12 +132,11 @@ export default {
       ["全部","程序员","后端","前端","算法","Python","JavaScript","Java","年终总结","面试","开源", "架构", "大数据", "数据结构", "数据库","GitHub"],
       ["全部","IOS","Swift","SwiftUI","Flutter","前端","Objective-C","LeetCode","算法","WWDC","Xcode","MAC","面试","Apple","设计模式","计算机视觉"],
       ["全部","后端","前端","开源","GitHub","Git","Unity3D","大数据","Linux","WWDC","设计","JavaScript","Python","测试","架构"],
-      ["全部","云人生","程序员","笔记","前端","后端","Serverless","开源","容器","Java","微服务","Kubernetes","产品","深度学习","架构","测试"],]
-      
+      ["全部","云人生","程序员","笔记","前端","后端","Serverless","开源","容器","Java","微服务","Kubernetes","产品","深度学习","架构","测试"],]  
     },
 
     sendCategory(p){
-      console.log(p)
+      //console.log(p)
       this.$router.push('/'+p+'/recommend')
     }
   },

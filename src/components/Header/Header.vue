@@ -74,11 +74,11 @@
       <el-button type="text" style="color: gray">会员</el-button>
     </el-menu-item>
 
-    <el-menu-item>
+    <el-menu-item class="ling">
       <i class="el-icon-message-solid"></i>
     </el-menu-item>
 
-    <el-menu-item>
+    <el-menu-item class="tou">
       <el-avatar
         src="https://p3-passport.byteacctimg.com/img/mosaic-legacy/3791/5035712059~300x300.image"
       ></el-avatar>
@@ -89,6 +89,11 @@
 <script>
 export default {
   name: "Header",
+  data() {
+    return {
+      screenWidth: null,
+    };
+  },
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
@@ -100,7 +105,7 @@ export default {
     changeDiv() {
       document.querySelector("li.center").style.visibility = "visible";
     },
-    
+
     scrollToTop() {
       let that = this;
       let scrollTop =
@@ -119,7 +124,36 @@ export default {
   },
   mounted() {
     window.addEventListener("scroll", this.scrollToTop, true);
+
+    this.screenWidth =
+      window.innerWidth ||
+      document.documentElement.clientWidth ||
+      document.body.clientWidth;
+    window.onresize = () => {
+      return (() => {
+        this.screenWidth =
+          window.innerWidth ||
+          document.documentElement.clientWidth ||
+          document.body.clientWidth;
+      })();
+    };
   },
+
+  watch: {
+    screenWidth: {
+      handler: function (val) {
+        if (val < 1536) {
+          console.log(val + "屏幕宽度小");
+          document.querySelector("li.el-menu-item.search> div > input").blur();
+        } else {
+          console.log(val + "屏幕宽度大");
+        }
+      },
+      immediate: true,
+      deep: true,
+    },
+  },
+
   destroyed() {
     window.removeEventListener("scroll", this.scrollToTop, true);
   },
@@ -236,17 +270,51 @@ ul > li:nth-child(14) {
   .center {
     display: none;
   }
+
+  .ling {
+    display: none;
+  }
+
+  .tou {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 915px) {
   ul > li.el-menu-item.search {
     width: 20rem;
   }
+
+  ul > li.el-menu-item.search :focus {
+    -webkit-animation-name: first;
+    -webkit-animation-duration: 0.5s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+  }
+
+  @-webkit-keyframes first {
+    0% {
+      width: 20rem;
+    }
+    100% {
+      width: 21rem;
+    }
+  }
+
+  
 }
 
 @media screen and (max-width: 752px) {
   .search {
     display: none;
+  }
+
+  .ling {
+    display: block;
+  }
+
+  .tou {
+    display: block;
   }
 }
 
@@ -257,6 +325,4 @@ div.header > ul {
   z-index: 9999;
   top: 0px;
 }
-
-
 </style>

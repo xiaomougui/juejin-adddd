@@ -7,7 +7,7 @@
           class="button"
           v-for="(p, index) of buttons"
           :key="index"
-          @click="p == `展开` ? getMore() : sendCategory()"
+          @click="p == `展开` ? getMore() : sendCategory(p)"
         >
           {{ p }}
           <i class="el-icon-caret-bottom" v-if="p == `展开`"></i>
@@ -41,6 +41,15 @@ export default {
     return {
       passages: [],
       time:3,
+      tips:[["全部","前端","JavaScript","Vue.js","React.js","CSS","面试","TypeScript","Node.js", "后端","展开",],
+      ["全部","Java","GO","算法","Python","Spring Boot","数据库","面试","MySQL","LeetCode","展开",],
+      ["全部","人工智能","深度学习","算法","机器学习","Python","计算机视觉","后端","PyTorch","NLP","展开",],
+      ["全部","Android","前端","Flutter","Kotlin","Android Jetpack","Java","APP","面试","性能优化","展开",],
+      ["全部","程序员","后端","前端","算法","Python","JavaScript","Java","年终总结","面试","展开",],
+      ["全部","IOS","Swift","SwiftUI","Flutter","前端","Objective-C","LeetCode","算法","WWDC","展开",],
+      ["全部","后端","前端","开源","GitHub","Git","Unity3D","大数据","Linux","WWDC","展开",],
+      ["全部","云人生","程序员","笔记","前端","后端","Serverless","开源","容器","Java","展开",],
+      ]
     };
   },
 
@@ -57,48 +66,26 @@ export default {
       let categorys = str.split('/')
       let cat = categorys[1]
       if(cat == "frontend")
-        return ["全部","前端","JavaScript","Vue.js","React.js","CSS","面试","TypeScript","Node.js", "后端","展开",]
+        return this.tips[0]
       else if(cat == "backend")
-        return ["全部","Java","GO","算法","Python","Spring Boot","数据库","面试","MySQL","LeetCode","展开",]
+        return this.tips[1]
       else if(cat == "ai")
-        return ["全部","人工智能","深度学习","算法","机器学习","Python","计算机视觉","后端","PyTorch","NLP","展开",]
+        return this.tips[2]
       else if(cat == "android")
-        return ["全部","Android","前端","Flutter","Kotlin","Android Jetpack","Java","APP","面试","性能优化","展开",]
+        return this.tips[3]
       else if(cat == "code") 
-        return ["全部","程序员","后端","前端","算法","Python","JavaScript","Java","年终总结","面试","展开",]
+        return this.tips[4]
       else if(cat == "ios")
-        return ["全部","IOS","Swift","SwiftUI","Flutter","前端","Objective-C","LeetCode","算法","WWDC","展开",]
+        return this.tips[5]
       else if(cat == "tools")
-        return ["全部","后端","前端","开源","GitHub","Git","Unity3D","大数据","Linux","WWDC","展开",]
+        return this.tips[6]
       else if(cat == "reading")
-        return ["全部","云人生","程序员","笔记","前端","后端","Serverless","开源","容器","Java","展开",]
+        return this.tips[7]
       else 
-        return ["全部","前端","JavaScript","Vue.js","React.js","CSS","面试","TypeScript","Node.js", "后端","展开",]
+        return this.tips[0]
     },
     
-    otherButtons(){
-      let str = this.$route.path
-      let categorys = str.split('/')
-      let cat = categorys[1]
-      if(cat == "frontend")
-        return ["算法", "架构", "前端框架", "Webpack", "微信小程序"]
-      else if(cat == "backend")
-        return ["架构","Redis","Spring","前端","大数据"]
-      else if(cat == "ai")
-        return ["神经网络","数据分析","TensorFlow","程序员","强化学习","自动驾驶"]
-      else if(cat == "android")
-        return [ "架构", "源码", "Android Studio", "游戏","ios","音视频开发"]
-      else if(cat == "code") 
-        return ["开源", "架构", "大数据", "数据结构", "数据库","GitHub"]
-      else if(cat == "ios")
-        return ["Xcode","MAC","面试","Apple","设计模式","计算机视觉"]
-      else if(cat == "tools")
-        return ["设计","JavaScript","Python","测试","架构"]
-      else if(cat == "reading")
-        return ["微服务","Kubernetes","产品","深度学习","架构","测试"]
-      else
-        return  ["算法", "架构", "前端框架", "Webpack", "微信小程序"]
-    }
+    
   },
 
   components: {
@@ -120,6 +107,22 @@ export default {
       }).then((res)=>{
         this.passages = res
       });
+    },
+
+    getMore() {
+      this.tips = [["全部","前端","JavaScript","Vue.js","React.js","CSS","面试","TypeScript","Node.js", "后端","算法", "架构", "前端框架", "Webpack", "微信小程序"],
+      ["全部","Java","GO","算法","Python","Spring Boot","数据库","面试","MySQL","LeetCode","架构","Redis","Spring","前端","大数据"],
+      ["全部","人工智能","深度学习","算法","机器学习","Python","计算机视觉","后端","PyTorch","NLP","神经网络","数据分析","TensorFlow","程序员","强化学习","自动驾驶"],
+      ["全部","Android","前端","Flutter","Kotlin","Android Jetpack","Java","APP","面试","性能优化","架构", "源码", "Android Studio", "游戏","ios","音视频开发"],
+      ["全部","程序员","后端","前端","算法","Python","JavaScript","Java","年终总结","面试","开源", "架构", "大数据", "数据结构", "数据库","GitHub"],
+      ["全部","IOS","Swift","SwiftUI","Flutter","前端","Objective-C","LeetCode","算法","WWDC","Xcode","MAC","面试","Apple","设计模式","计算机视觉"],
+      ["全部","后端","前端","开源","GitHub","Git","Unity3D","大数据","Linux","WWDC","设计","JavaScript","Python","测试","架构"],
+      ["全部","云人生","程序员","笔记","前端","后端","Serverless","开源","容器","Java","微服务","Kubernetes","产品","深度学习","架构","测试"],]  
+    },
+
+    sendCategory(p){
+      //console.log(p)
+      this.$router.push('/'+p+'/hot')
     },
 
     
@@ -164,6 +167,18 @@ export default {
       }
     },
   },
+
+  watch:{
+    
+    $route: {
+		  handler(newVal,oldVal){
+			//判断newVal有没有值监听路由变化
+        //this.getMore()
+        this.getdata(3)
+	    },
+	  deep: true
+  },
+},
 
   created() {
     this.getdata(3);
