@@ -178,7 +178,7 @@ export default {
 
   .right {
     position: absolute;
-    width: 250px;
+    width: 240px;
     top: 0%;
     right: 0px;
     background-color: #fff;

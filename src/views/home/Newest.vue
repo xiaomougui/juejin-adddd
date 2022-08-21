@@ -1,30 +1,25 @@
 <template>
-
   <div class="home">
     <div class="board">
       <div class="content">
         <div class="left">
-        <Top :index="2+''" upper="home"></Top>
-        <Passages :passages="passages"></Passages>
+          <Top :index="2 + ''" upper="home"></Top>
+          <Passages :passages="passages"></Passages>
         </div>
         <div class="right">
           <Signin></Signin>
         </div>
       </div>
-      
     </div>
   </div>
 </template>
 
 <script>
-
-
 import Passages from "./childrenComps/Passages.vue";
 import Signin from "../../components/Signin.vue";
 import Top from "./childrenComps/Top.vue";
 
 import { getHomeDataN } from "../../network/home";
-
 
 export default {
   data() {
@@ -37,8 +32,8 @@ export default {
     Passages,
     Top,
     Signin,
-    Signin
-},
+    Signin,
+  },
 
   methods: {
     getHomeData() {
@@ -46,7 +41,6 @@ export default {
         this.passages = res;
       });
     },
-
 
     scrollToTop() {
       let that = this;
@@ -67,13 +61,11 @@ export default {
       }
     },
   },
-  
+
   created() {
     this.getHomeData();
-    
   },
   mounted() {
-    
     const that = this;
     window.addEventListener("scroll", function () {
       // 滚动视口高度(也就是当前元素的真实高度)
@@ -94,44 +86,39 @@ export default {
       //console.log(clientHeight)
       //console.log(scrollTop)
       //console.log("和："+clientHeight + scrollTop)
-      if (clientHeight + scrollTop +1 >= scrollHeight) {
-
-        function getMore(){
+      if (clientHeight + scrollTop + 1 >= scrollHeight) {
+        function getMore() {
           //console.log(that.passages)
-          const data = []
-          getHomeDataN().then((res)=>{
-            for(let i = 0;i<15;i++){
-              data.push(res[i])
+          const data = [];
+          getHomeDataN().then((res) => {
+            for (let i = 0; i < 15; i++) {
+              data.push(res[i]);
             }
-            that.passages = that.passages.concat(data)
+            that.passages = that.passages.concat(data);
           });
         }
 
         //节流
         function throttled(fn, delay) {
-          let timer = null
-          let starttime = Date.now()
+          let timer = null;
+          let starttime = Date.now();
           return function () {
-            let curTime = Date.now() // 当前时间
-            let remaining = delay - (curTime - starttime)  // 从上一次到现在，还剩下多少多余时间
-            let context = this
-            let args = arguments
-            clearTimeout(timer)
+            let curTime = Date.now(); // 当前时间
+            let remaining = delay - (curTime - starttime); // 从上一次到现在，还剩下多少多余时间
+            let context = this;
+            let args = arguments;
+            clearTimeout(timer);
             if (remaining <= 0) {
-              fn.apply(context, args)
-              starttime = Date.now()
+              fn.apply(context, args);
+              starttime = Date.now();
             } else {
               timer = setTimeout(fn, remaining);
             }
-          }
+          };
         }
 
-        throttled(getMore,2000)()
-        
-
-
+        throttled(getMore, 2000)();
       }
-
     });
 
     window.addEventListener("scroll", this.scrollToTop, true);
@@ -155,41 +142,36 @@ export default {
   padding-top: 20px;
 }
 
-
-@media screen and (max-width:1050px) {
-    .board {
+@media screen and (max-width: 1050px) {
+  .board {
     padding-top: 10px;
   }
 
-  .content{
+  .content {
     background-color: rgb(244, 245, 245);
-   width: 100%;
-    
+    width: 100%;
   }
 
-  .right{
+  .right {
     display: none;
   }
 
-  .left{
+  .left {
     margin-top: 10px;
-        padding-top: 10px;
+    padding-top: 10px;
     width: 100%;
     background-color: #fff;
     position: relative;
   }
-
-
 }
 
-@media screen and (min-width:1050px) {
-  .content{
+@media screen and (min-width: 1050px) {
+  .content {
     background-color: rgb(244, 245, 245);
-    
+
     margin-left: calc(50% - 500px);
     width: 1000px;
     position: relative;
-    
   }
 
   .left {
@@ -201,18 +183,14 @@ export default {
 
   .right {
     position: absolute;
-    width: 250px;
+    width: 240px;
     top: 0%;
-    right:0px;
+    right: 0px;
     background-color: #fff;
   }
-
-
 
   Top {
     width: 100%;
   }
-
 }
-
 </style>
