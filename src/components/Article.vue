@@ -13,7 +13,7 @@
           <RightSideButton v-if="screenWidth >= 1150"></RightSideButton>
           <!-- 主体内容 -->
           <div class="left">
-            <div class="titleInfo">
+            <div :class="screenWidth >= 1150 ? 'titleInfo' : 'titleInfo1'">
               <TitleInfo
                 :titleInfo="titleInfo"
                 :authorInfo="authorInfo"
@@ -364,12 +364,23 @@ a {
   border-radius: 4px;
   background-color: #fff;
 }
+.titleInfo1 {
+  position: relative;
+  /* padding: 27px; */
+  /* margin-right: 16.875rem; */
+  display: block;
+  width: 100%;
+  z-index: 1;
+  border-radius: 4px;
+  background-color: #fff;
+}
 .article {
   position: relative;
   /* padding: 27px; */
   /* margin-right: 16.875rem; */
   width: 75%;
   width: 820px;
+
   max-width: 100%;
   z-index: 1;
   border-radius: 4px;
