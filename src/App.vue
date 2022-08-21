@@ -3,7 +3,11 @@
     <div class="header">
       <Header />
     </div>
-    <div class="Nav" v-if="$route.path != `/article`">
+    <div
+      class="Nav"
+      v-if="$route.path != `/article`"
+      :class="{ fixedNav: isfixTab }"
+    >
       <Nav />
     </div>
     <router-view></router-view>
@@ -16,11 +20,29 @@ import Nav from "./views/home/childrenComps/Nav.vue";
 
 export default {
   name: "App",
+  data() {
+    return {
+      isfixTab: false,
+    };
+  },
   components: {
     Header,
     Nav,
   },
-  methods: {},
+  methods: {
+    handleTabFix() {
+      var scrollTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
+      var offsetTop = document.querySelector(".header").offsetTop;
+      scrollTop > offsetTop ? (this.isfixTab = true) : (this.isfixTab = false);
+    },
+  },
+
+  mounted() {
+    window.addEventListener("scroll", this.handleTabFix, true);
+  },
 };
 </script>
 

@@ -23,7 +23,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
 VMdPreview.use(vuepressTheme, {
-  Prism:Prism,
+  Prism: Prism,
   Hljs: hljs,
 });
 Vue.use(VMdPreview);

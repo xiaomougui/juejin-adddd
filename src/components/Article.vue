@@ -134,7 +134,7 @@ export default {
       let cate = this.$el.querySelector(".box_categories");
       if (scrollY > 1000) {
         cate.style.position = "fixed";
-        cate.style.marginTop = "-1050px";
+        cate.style.marginTop = "-1000px";
       } else {
         cate.style.position = "relative";
         cate.style.marginTop = "0px";

@@ -80,140 +80,17 @@ const routes = [
         component: FollowH
     },
     {
-        path: '/backend',
-        redirect: '/backend/recommend'
-    },
-    {
-        path: '/backend/recommend',
+        path: '/*/recommend',
         component: Others
     },
     {
-        path: '/backend/hot',
+        path: '/*/hot',
         component: OthersH
     },
     {
-        path: '/backend/newest',
+        path: '/*/newest',
         component: OthersN
     },
-    {
-        path: '/frontend',
-        redirect: '/frontend/recommend'
-    },
-    {
-        path: '/frontend/recommend',
-        component: Others
-    },
-    {
-        path: '/frontend/hot',
-        component: OthersH
-    },
-    {
-        path: '/frontend/newest',
-        component: OthersN
-    },
-    {
-        path: '/android',
-        redirect: '/android/recommend'
-    },
-    {
-        path: '/android/recommend',
-        component: Others
-    },
-    {
-        path: '/android/hot',
-        component: OthersH
-    },
-    {
-        path: '/android/newest',
-        component: OthersN
-    },
-
-    {
-        path: '/ios',
-        redirect: '/ios/recommend'
-    },
-    {
-        path: '/ios/recommend',
-        component: Others
-    },
-    {
-        path: '/ios/hot',
-        component: OthersH
-    },
-    {
-        path: '/ios/newest',
-        component: OthersN
-    },
-
-    {
-        path: '/ai',
-        redirect: '/ai/recommend'
-    },
-    {
-        path: '/ai/recommend',
-        component: Others
-    },
-    {
-        path: '/ai/hot',
-        component: OthersH
-    },
-    {
-        path: '/ai/newest',
-        component: OthersN
-    },
-
-    {
-        path: '/code',
-        redirect: '/code/recommend'
-    },
-    {
-        path: '/code/recommend',
-        component: Others
-    },
-    {
-        path: '/code/hot',
-        component: OthersH
-    },
-    {
-        path: '/code/newest',
-        component: OthersN
-    },
-
-    {
-        path: '/tools',
-        redirect: '/tools/recommend'
-    },
-    {
-        path: '/tools/recommend',
-        component: Others
-    },
-    {
-        path: '/tools/hot',
-        component: OthersH
-    },
-    {
-        path: '/tools/newest',
-        component: OthersN
-    },
-
-    {
-        path: '/reading',
-        redirect: '/reading/recommend'
-    },
-    {
-        path: '/reading/recommend',
-        component: Others
-    },
-    {
-        path: '/reading/hot',
-        component: OthersH
-    },
-    {
-        path: '/reading/newest',
-        component: OthersN
-    },
-
-
 ]
 const router = new VueRouter({
     mode: 'history',
