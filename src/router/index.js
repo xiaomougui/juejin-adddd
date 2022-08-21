@@ -5,7 +5,7 @@ const Home = () =>
     import('../views/home/Home')
 
 const Article = () =>
-    import('../views/articles/Article')
+    import('../components/Article.vue')
 
 
 //1.安装插件
@@ -23,6 +23,7 @@ const routes = [
     },
     {
         path: '/article',
+        name: 'Article',
         component: Article
     }
 

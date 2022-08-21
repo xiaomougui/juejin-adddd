@@ -1,8 +1,8 @@
 import { request } from './request'
 
-export function getTiltleData() {
+export function getTitleData() {
   return request({
     url: '/data/article',
-    data:`index=10`
+    data: 'index=2'
   })
 }

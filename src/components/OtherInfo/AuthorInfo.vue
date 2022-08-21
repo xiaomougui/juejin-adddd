@@ -4,7 +4,8 @@
     <div class="author_all">
       <span class="author__img">
         <!-- <img src="http://127.0.0.1:3000/images/jue.png"> -->
-        <img src="https://p6-passport.byteacctimg.com/img/user-avatar/9929dd3ae439d1f2412a92ed0387caef~300x300.image">
+        <!-- <img src="https://p6-passport.byteacctimg.com/img/user-avatar/9929dd3ae439d1f2412a92ed0387caef~300x300.image"> -->
+        <img :src="authorInfo.icon">
       </span>
       <span class="author__name">
         {{authorInfo.name}}

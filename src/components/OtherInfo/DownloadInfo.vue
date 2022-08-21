@@ -1,7 +1,7 @@
 <template>
   <div class="app-link">
     <span>
-      <img src="http://127.0.0.1:3000/images/QR.png" alt="">
+      <img src="http://47.92.2.163:80/images/QR.png" alt="">
     </span>
     <div class="download">
       <div class="download-app">下载稀土掘金app</div>

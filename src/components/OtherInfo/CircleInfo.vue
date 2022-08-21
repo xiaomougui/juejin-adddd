@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="http://127.0.0.1:3000/images/article1.png">
+    <img src="http://47.92.2.163:80/images/article1.png">
   </div>
 </template>
 

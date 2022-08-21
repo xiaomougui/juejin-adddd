@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="title">相关文章</div>
-    <div class="list" v-for="(item,index) in relativeInfo" :key="index">
+    <div class="list" v-for="(item,index) in relativeInfo" :key="index" @click="itemClick">
       <div class="list-item">{{item.title}}</div>
       <div class="list-info">
         <span>{{item.like}}点赞</span> ·
@@ -22,6 +22,15 @@ export default {
       },
     },
   },
+  methods:{
+    itemClick(){
+      const newpage = this.$router.resolve({
+        name:"Article",
+        params:{index:1}
+      })
+      window.open(newpage.href,"_blank")
+    }
+  }
 }
 </script>
 

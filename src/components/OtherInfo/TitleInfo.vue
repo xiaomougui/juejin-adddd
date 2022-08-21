@@ -3,14 +3,18 @@
     <div class="title-info">{{titleInfo.title}}</div>
     <div class="author-info">
       <span class="author__img">
-        <img src="https://p6-passport.byteacctimg.com/img/user-avatar/9929dd3ae439d1f2412a92ed0387caef~300x300.image">
+        <img :src="authorInfo.icon">
       </span>
       <div class="author__name">
         <span class="autho__name__text">
-        掘金
+         {{authorInfo.name}}
         <img src="https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/lv-4.a78c420.png">  
         </span>
-        <div class="time">{{getNowDate()}}</div>
+        <!-- <div class="time">{{getNowDate()}}</div> -->
+        <div class="time">{{titleInfo.timemini.years + "年"+ titleInfo.timemini.mouths + "月" 
+        + titleInfo.timemini.days+"日 " + titleInfo.timemini.hours + ":" + titleInfo.timemini.minutes}}
+        · 阅读 {{titleInfo.information.browse}}
+        </div>
       </div>
       <button class="btn">
         <span class="text">
@@ -37,36 +41,14 @@ export default {
         return {};
     },
   },
-},
-methods:{
-    getNowDate:function(){
-      var date = new Date();
-      var sign2 = ":";
-      var year = date.getFullYear() // 年
-      var month = date.getMonth() + 1; // 月
-      var day = date.getDate(); // 日
-      var hour = date.getHours(); // 时
-      var minutes = date.getMinutes(); // 分
-      var seconds = date.getSeconds() //秒
-      // 给一位数的数据前面加 “0”
-      if (month >= 1 && month <= 9) {
-        month = "0" + month;
-      }
-      if (day >= 0 && day <= 9) {
-        day = "0" + day;
-      }
-      if (hour >= 0 && hour <= 9) {
-        hour = "0" + hour;
-      }
-      if (minutes >= 0 && minutes <= 9) {
-        minutes = "0" + minutes;
-      }
-      if (seconds >= 0 && seconds <= 9) {
-        seconds = "0" + seconds;
-      }
-      return year + "年" + month + "月" + day + "日 " + hour + sign2 + minutes + sign2 + seconds;
-    }
+  authorInfo: {
+    type: Object,
+    default() {
+      return {};
+    },
   },
+
+},
 }
 </script>
 

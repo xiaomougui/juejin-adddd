@@ -11,7 +11,7 @@
           <!-- 主体内容 -->
           <div class="left">
             <div class="titleInfo">
-              <TitleInfo :titleInfo = "titleInfo"></TitleInfo>
+              <TitleInfo :titleInfo = "titleInfo" :authorInfo = "authorInfo"></TitleInfo>
             </div>
             <v-md-preview
               :text="text"
@@ -69,8 +69,10 @@ import DownloadInfo from './OtherInfo/DownloadInfo.vue'
 import CircleInfo from './OtherInfo/CircleInfo.vue'
 import RelativeInfo from './OtherInfo/RelativeInfo.vue'
 import TitleInfo from "./OtherInfo/TitleInfo.vue";
-import { demoMD,getRightInfo,getRelativeInfo } from "../api/demo";
-import {getTiltleData} from '../network/article'
+import { getRightInfo,getRelativeInfo } from "../api/demo";
+import {getTitleData} from '../network/article'
+import { request } from '../network/request'
+// import axios from "axios";
 // import BottomButton  from "./Buttons/BottomButton.vue";
 export default {
   name: "Article",
@@ -97,9 +99,15 @@ export default {
       authorInfo:{},
       relativeInfo:[],
       titleInfo:{},
+      index:7
     };
   },
   methods: {
+    // 路由接收参数
+    // getRouterData() {
+    //   // 只是改了query，其他都不变
+    //   this.index = this.$route.query.index
+    // },
     handleAnchorClick(anchor) {
       const { preview } = this.$refs;
       const { lineIndex } = anchor;
@@ -145,6 +153,13 @@ export default {
         }
       }
     },
+    getData(index){
+      let url = "http://47.92.2.163:80/data/article"
+      return request({
+      url: url,
+      data: `index=${index}`
+  })
+    },
 
     // 监听滚轮
     CatalogueScroll() {
@@ -172,18 +187,15 @@ export default {
       this.CatalogueScroll();
     },
   },
-  beforeMount() {
-    // demoMD({}).then((res)=>{
-    // // console.log(res);
-    // this.text = res.data
-    // })
+    created() {
+    // this.getRouterData()
   },
   mounted() {
-    // 获取md文件
-    demoMD({}).then((res) => {
-      // console.log(res);
-      this.text = res.data;
-      // console.log(this.text);
+    // 获取md文件getTiltleData({})
+    // this.getData(this.$route.params.index).then((res) => {
+    this.getData(this.index).then((res) => {
+      this.text = res.essay;
+      this.titleInfo = res
       this.$nextTick(() => {
         const anchors =
           this.$refs.preview.$el.querySelectorAll("h1,h2,h3,h4,h5,h6");
@@ -220,13 +232,13 @@ export default {
     })
     // 获取相关文章信息
     getRelativeInfo({}).then((res)=>{
-
+      console.log(res);
       this.relativeInfo = res.data
     })
     // 获取标题相关信息
-    getTiltleData().then((res)=>{
-      
-      this.titleInfo = res
+    getTitleData().then((res)=>{
+      // console.log(res);
+      // this.titleInfo = res
     })
     
     // 响应式布局
