@@ -5,13 +5,19 @@
     <div :class="screenWidth >= 1150 ? 'bg' : 'bg1'">
       <div class="content">
         <div class="view">
-            <LeftSideButton v-if="screenWidth >= 1150" class="left-button"></LeftSideButton>
-            <!-- <BottomButton v-else></BottomButton> -->
-            <RightSideButton v-if="screenWidth >= 1150"></RightSideButton>
+          <LeftSideButton
+            v-if="screenWidth >= 1150"
+            class="left-button"
+          ></LeftSideButton>
+          <!-- <BottomButton v-else></BottomButton> -->
+          <RightSideButton v-if="screenWidth >= 1150"></RightSideButton>
           <!-- 主体内容 -->
           <div class="left">
             <div class="titleInfo">
-              <TitleInfo :titleInfo = "titleInfo" :authorInfo = "authorInfo"></TitleInfo>
+              <TitleInfo
+                :titleInfo="titleInfo"
+                :authorInfo="authorInfo"
+              ></TitleInfo>
             </div>
             <v-md-preview
               :text="text"
@@ -24,7 +30,7 @@
           <div class="right" v-if="screenWidth >= 1150">
             <!-- <div class="author-info">作者信息</div> -->
             <div class="author-info">
-              <AuthorInfo :authorInfo = "authorInfo"></AuthorInfo>
+              <AuthorInfo :authorInfo="authorInfo"></AuthorInfo>
             </div>
             <div class="download">
               <DownloadInfo></DownloadInfo>
@@ -32,9 +38,9 @@
             <div class="circleInfo">
               <CircleInfo></CircleInfo>
             </div>
-            
+
             <div class="article-rela">
-              <RelativeInfo :relativeInfo = "relativeInfo"></RelativeInfo>
+              <RelativeInfo :relativeInfo="relativeInfo"></RelativeInfo>
             </div>
             <div class="box_categories">
               <div class="nav_catalogue">
@@ -64,14 +70,14 @@
 <script>
 import LeftSideButton from "./Buttons/LeftSideButton.vue";
 import RightSideButton from "./Buttons/RightSideButton.vue";
-import AuthorInfo from './OtherInfo/AuthorInfo.vue'
-import DownloadInfo from './OtherInfo/DownloadInfo.vue'
-import CircleInfo from './OtherInfo/CircleInfo.vue'
-import RelativeInfo from './OtherInfo/RelativeInfo.vue'
+import AuthorInfo from "./OtherInfo/AuthorInfo.vue";
+import DownloadInfo from "./OtherInfo/DownloadInfo.vue";
+import CircleInfo from "./OtherInfo/CircleInfo.vue";
+import RelativeInfo from "./OtherInfo/RelativeInfo.vue";
 import TitleInfo from "./OtherInfo/TitleInfo.vue";
-import { getRightInfo,getRelativeInfo } from "../api/demo";
-import {getTitleData} from '../network/article'
-import { request } from '../network/request'
+import { getRightInfo, getRelativeInfo } from "../api/demo";
+import { getTitleData } from "../network/article";
+import { request } from "../network/request";
 // import axios from "axios";
 // import BottomButton  from "./Buttons/BottomButton.vue";
 export default {
@@ -83,10 +89,9 @@ export default {
     DownloadInfo,
     CircleInfo,
     RelativeInfo,
-    TitleInfo
+    TitleInfo,
     // BottomButton
-    ,
-},
+  },
   data() {
     return {
       text: "",
@@ -96,10 +101,10 @@ export default {
       screenWidth: document.body.clientWidth,
       moveIndex: 0,
       ContentHeightList: null,
-      authorInfo:{},
-      relativeInfo:[],
-      titleInfo:{},
-      index:7
+      authorInfo: {},
+      relativeInfo: [],
+      titleInfo: {},
+      index: 7,
     };
   },
   methods: {
@@ -153,12 +158,13 @@ export default {
         }
       }
     },
-    getData(index){
-      let url = "http://47.92.2.163:80/data/article"
+    getData(index) {
+      let url = "http://47.92.2.163:80/data/article";
+      console.log(index);
       return request({
-      url: url,
-      data: `index=${index}`
-  })
+        url: url,
+        data: `index=${index}`,
+      });
     },
 
     // 监听滚轮
@@ -187,15 +193,15 @@ export default {
       this.CatalogueScroll();
     },
   },
-    created() {
+  created() {
     // this.getRouterData()
   },
   mounted() {
     // 获取md文件getTiltleData({})
     // this.getData(this.$route.params.index).then((res) => {
     this.getData(this.index).then((res) => {
-      this.text = res.essay;
-      this.titleInfo = res
+      this.text = " ## 什么gui";
+      this.titleInfo = res;
       this.$nextTick(() => {
         const anchors =
           this.$refs.preview.$el.querySelectorAll("h1,h2,h3,h4,h5,h6");
@@ -226,21 +232,21 @@ export default {
         this.ContentHeightList = arr;
       });
     });
-    // 获取右侧作者信息 
-    getRightInfo({}).then((res)=>{
-      this.authorInfo = res.data
-    })
+    // 获取右侧作者信息
+    getRightInfo({}).then((res) => {
+      this.authorInfo = res.data;
+    });
     // 获取相关文章信息
-    getRelativeInfo({}).then((res)=>{
+    getRelativeInfo({}).then((res) => {
       console.log(res);
-      this.relativeInfo = res.data
-    })
+      this.relativeInfo = res.data;
+    });
     // 获取标题相关信息
-    getTitleData().then((res)=>{
+    getTitleData().then((res) => {
       // console.log(res);
       // this.titleInfo = res
-    })
-    
+    });
+
     // 响应式布局
     //获取屏幕尺寸
     window.onresize = () => {
@@ -263,7 +269,7 @@ export default {
 </script>
 <style scoped>
 html {
-  color:#f4f5f5;
+  color: #f4f5f5;
 }
 .main {
   margin: 0;

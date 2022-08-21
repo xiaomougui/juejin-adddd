@@ -280,7 +280,6 @@ export default {
   }
 
   .left {
-    padding-top: 10px;
     width: 700px;
     background-color: #fff;
     position: relative;
@@ -295,6 +294,7 @@ export default {
   }
 
   Top {
+    padding-top: 15px;
     width: 100%;
   }
 }

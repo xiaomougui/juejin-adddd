@@ -269,8 +269,11 @@ a {
   padding-bottom: 50px;
 } */
 .leimu {
+  display: block;
+  line-height: 20px;
   float: left;
   height: 20px;
+  margin-top: 10px;
   /* margin-left: 200px; */
 }
 .nav ul li {

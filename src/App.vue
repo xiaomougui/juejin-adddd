@@ -3,7 +3,7 @@
     <div class="header">
       <Header />
     </div>
-    <div class="Nav">
+    <div class="Nav" v-if="$route.path != `/article`">
       <Nav />
     </div>
     <router-view></router-view>

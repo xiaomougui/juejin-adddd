@@ -435,7 +435,6 @@ export default {
 
   .left {
     margin-right: 13px;
-    padding-top: 10px;
     width: 700px;
     background-color: #fff;
     position: relative;
