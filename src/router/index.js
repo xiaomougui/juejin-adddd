@@ -79,6 +79,7 @@ const routes = [
         path: '/following/hot',
         component: FollowH
     },
+
     {
         path: '/*/recommend',
         component: Others
@@ -91,6 +92,9 @@ const routes = [
         path: '/*/newest',
         component: OthersN
     },
+
+
+
 ]
 const router = new VueRouter({
     mode: 'history',

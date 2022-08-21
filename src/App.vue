@@ -48,6 +48,11 @@ export default {
 
 
 
+
+
+
+
+
 <style>
 @import "./style/style.css";
 #app {
@@ -56,7 +61,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
-html {
+HEAD html {
   background-color: #f4f5f5;
 }
 
@@ -64,5 +69,19 @@ html {
   height: 60px;
   display: flex;
   justify-content: center;
+}
+
+.nav {
+  position: sticky;
+  top: 10px;
+}
+.fixedNav {
+  background-color: #fff;
+  position: fixed;
+  width: 100%;
+  z-index: 2032;
+  top: 0;
+  left: 0;
+  padding-bottom: 0px;
 }
 </style>

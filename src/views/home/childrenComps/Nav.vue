@@ -222,29 +222,28 @@ export default {
       this.$router.push("/following");
     },
     goBack() {
-      this.$emit("back");
-      this.$router.push("/backend");
+      this.$router.push("/backend/recommend");
     },
     goFront() {
-      this.$router.push("/frontend");
+      this.$router.push("/frontend/recommend");
     },
     goAI() {
-      this.$router.push("/ai");
+      this.$router.push("/ai/recommend");
     },
     goAndroid() {
-      this.$router.push("/android");
+      this.$router.push("/android/recommend");
     },
     goios() {
-      this.$router.push("/ios");
+      this.$router.push("/ios/recommend");
     },
     goCode() {
-      this.$router.push("/code");
+      this.$router.push("/code/recommend");
     },
     goTools() {
-      this.$router.push("/tools");
+      this.$router.push("/tools/recommend");
     },
     goReading() {
-      this.$router.push("/reading");
+      this.$router.push("/reading/recommend");
     },
   },
 };
@@ -265,16 +264,12 @@ a {
   left: 0;
   right: 0;
 }
-/* .zuo {
-  padding-bottom: 50px;
-} */
+
 .leimu {
   display: block;
   line-height: 20px;
   float: left;
   height: 20px;
-  margin-top: 10px;
-  /* margin-left: 200px; */
 }
 .nav ul li {
   float: left;
@@ -286,6 +281,7 @@ a {
 .nav ul li a {
   display: block;
   height: 30px;
+  line-height: 0px;
   font-size: 13.92px;
   color: #71777c;
   text-decoration: none;
@@ -294,6 +290,8 @@ a {
   color: #007fff;
 }
 </style>
+
+
 
 
 

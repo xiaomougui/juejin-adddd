@@ -81,7 +81,7 @@ export default {
         window.pageYOffset ||
         document.documentElement.scrollTop ||
         document.body.scrollTop;
-      if (clientHeight + scrollTop + 1 >= scrollHeight) {
+      if (clientHeight + scrollTop >= scrollHeight) {
         //获取更多数据函数
         function getMore() {
           console.log(that.passages);
@@ -132,14 +132,16 @@ export default {
 }
 
 .board {
-  height: 100%;
   width: 100%;
   background-color: rgb(244, 245, 245);
   padding-top: 20px;
-  position: relative;
 }
 
 @media screen and (max-width: 1050px) {
+  .board {
+    padding-top: 10px;
+  }
+
   .content {
     background-color: rgb(244, 245, 245);
     width: 100%;
@@ -151,6 +153,7 @@ export default {
 
   .left {
     margin-top: 10px;
+    padding-top: 10px;
     width: 100%;
     background-color: #fff;
     position: relative;
@@ -186,3 +189,8 @@ export default {
   }
 }
 </style>
+
+
+
+
+
